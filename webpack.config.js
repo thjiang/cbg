@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+// var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 	entry: {
@@ -16,27 +16,26 @@ module.exports = {
 	module: {
         loaders: [{
             test: /\.css$/,
-            loader: 'style!css!autoprefixer'
+            loader: 'style-loader!css-loader!autoprefixer-loader'
         }, {
             test: /\.less$/,
-            loader: 'style!css!less'
+            loader: 'style-loader!css-loader!less-loader'
         }, {
             test: /\.html$/,
             loader: "file-loader?name=../pages/[name].[ext]"
 		}, {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-            loader: 'url-loader',
-            query: {
-                limit: 8192,
-                name: `image/[name].[ext]`
-            }
+            loader: 'url-loader?limit=8192&name=image/[name].[ext]'
         }, {
+	        test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+	        loader: 'file-loader'
+      	},{
             test: /\.vue$/,
             loader: 'vue-loader'
         }, {
 			test: /\.js$/,
-			loader: ['babel-loader?presets[]=es2015,presets[]=stage-0'],
-			exclude: /node_modules/
+	        loader: 'babel-loader',
+	        exclude: /node_modules/
 		}]
 	},
 	plugins: [
