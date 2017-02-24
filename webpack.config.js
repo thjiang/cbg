@@ -1,12 +1,12 @@
-var path = require('path');
-var webpack = require('webpack');
-var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
-// var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+// const CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
+// const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-	entry: {
+    entry: {
 		index: path.join(__dirname, 'src', 'main'),
-		vendors: ['vue']
+        vendors: ['vue']
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),
@@ -22,20 +22,20 @@ module.exports = {
             loader: 'style-loader!css-loader!less-loader'
         }, {
             test: /\.html$/,
-            loader: "file-loader?name=../pages/[name].[ext]"
+            loader: 'file-loader?name=../pages/[name].[ext]'
 		}, {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
             loader: 'url-loader?limit=8192&name=image/[name].[ext]'
         }, {
-	        test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
-	        loader: 'file-loader'
-      	},{
+            test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+            loader: 'file-loader'
+        }, {
             test: /\.vue$/,
             loader: 'vue-loader'
         }, {
 			test: /\.js$/,
-	        loader: 'babel-loader',
-	        exclude: /node_modules/
+            loader: 'babel-loader',
+            exclude: /node_modules/
 		}]
 	},
 	plugins: [
@@ -53,4 +53,4 @@ module.exports = {
         quiet: false,
         port: 9091
 	}
-}
+};
