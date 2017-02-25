@@ -39,11 +39,13 @@
             <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item> -->
         </el-menu>
         <search></search>
+        <data-table></data-table>
     </div>
 </template>
 
 <script>
-import search from './components/search.vue'
+import search from './components/search.vue';
+import dataTable from './components/dataTable.vue';
 
 export default {
     el: "#app",
@@ -58,7 +60,8 @@ export default {
         }
     },
     components: {
-        search
+        search,
+        dataTable
     }
 }
 </script>

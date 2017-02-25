@@ -11,6 +11,7 @@
         "indent": 0,
         "linebreak-style": 0,
         "no-tabs": 0,
+        "no-new": 0,
         "comma-dangle": ["error", "never"]
     }
 }
