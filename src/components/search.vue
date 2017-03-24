@@ -1,6 +1,6 @@
 <style lang="less">
     .line {
-        text-align: center;
+        text-align:center;
     }
 </style>
 <template>
@@ -25,39 +25,38 @@
             </el-radio-group>
         </el-form-item>
         <!-- <el-form :inline="true"> -->
-        <el-form-item label="输入价格：">
-            <el-col :span="4">
-                <el-form-item prop="price1">
-                    <el-input type="input" placeholder="请输入最低价格" v-model="ruleForm.price1"></el-input>
+        <el-form-item label="输入等级：">
+            <el-col :span="3">
+                <el-form-item prop="level1">
+                    <el-input type="input" placeholder="请输入最低等级" v-model="ruleForm.level1"></el-input>
                 </el-form-item>
             </el-col>
             <el-col class="line" :span="1">-</el-col>
-            <el-col :span="4">
-                <el-form-item prop="price2">
-                    <el-input type="input" placeholder="请输入最高价格" v-model="ruleForm.price2"></el-input>
+            <el-col :span="3">
+                <el-form-item prop="level2">
+                    <el-input type="input" placeholder="请输入最高等级" v-model="ruleForm.level2"></el-input>
                 </el-form-item>
             </el-col>
         </el-form-item>
-        <!-- </el-form> 黛染青花玄素天成孤鸿月影玄龙之秘玄海之秘蟾宫折桂沧海桑田海棠未雨心之所属玉簟秋碧海蛟歌
-玄素天成 黛染青花 孤鸿月影 海棠未雨 岸芷汀兰 绛云思暖 飞狐华裘 仙狐彩袂 天狐霓裳 沧海桑田 夜雨江南 大圣金甲 碧海惊涛 蟾宫折桂 凤羽紫凰 疏影横斜
-
--->
-        <!-- <el-form-item label="价格" prop="price">
+        <!-- </el-form> -->
+        <el-form-item label="选择价格：" prop="price">
             <el-checkbox-group v-model="ruleForm.price">
-                <el-checkbox label="80-300" name="price"></el-checkbox>
-                <el-checkbox label="301-800" name="price"></el-checkbox>
-                <el-checkbox label="801-1500" name="price"></el-checkbox>
-                <el-checkbox label="1501-3000" name="price"></el-checkbox>
-                <el-checkbox label="3001-6000" name="price"></el-checkbox>
-                <el-checkbox label="6001-10000" name="price"></el-checkbox>
+                <el-checkbox label="00080-00300" name="price"></el-checkbox>
+                <el-checkbox label="00301-00800" name="price"></el-checkbox>
+                <el-checkbox label="00801-01500" name="price"></el-checkbox>
+                <el-checkbox label="01501-03000" name="price"></el-checkbox>
+                <br>
+                <el-checkbox label="03001-06000" name="price"></el-checkbox>
+                <el-checkbox label="06001-10000" name="price"></el-checkbox>
                 <el-checkbox label="10001-15000" name="price"></el-checkbox>
                 <el-checkbox label="15001-20000" name="price"></el-checkbox>
+                <br>
                 <el-checkbox label="20001-30000" name="price"></el-checkbox>
                 <el-checkbox label="30001-45000" name="price"></el-checkbox>
                 <el-checkbox label="45001-60000" name="price"></el-checkbox>
                 <el-checkbox label="60000以上" name="price"></el-checkbox>
             </el-checkbox-group>
-        </el-form-item> -->
+        </el-form-item>
         <el-form-item label="选择时装：" prop="clothes">
             <el-checkbox-group v-model="ruleForm.clothes">
                 <el-checkbox label="玄素天成" name="clothes"></el-checkbox>
@@ -93,12 +92,12 @@
                 <el-checkbox label="护心" name="skill"></el-checkbox>
             </el-checkbox-group>
         </el-form-item>
-        <el-form-item label="特殊资源" prop="resource">
+        <!-- <el-form-item label="特殊资源" prop="resource">
             <el-radio-group v-model="ruleForm.resource">
                 <el-radio label="线上品牌商赞助"></el-radio>
                 <el-radio label="线下场地免费"></el-radio>
             </el-radio-group>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item>
             <el-button type="primary" @click="submitForm('ruleForm')">搜索</el-button>
             <el-button @click="resetForm('ruleForm')">重置</el-button>
@@ -115,9 +114,9 @@ export default {
                 school: '荒火',
                 clothes: [],
                 skill: [],
-                price: '',
-                price1: '',
-                price2: '',
+                price: [],
+                level1: '',
+                level2: '',
                 resource: ''
             },
             rules: {
@@ -137,29 +136,29 @@ export default {
                     required: false,
                     trigger: 'change'
                 }],
-                price1: [{
-                    type: 'number',
+                level1: [{
+                    type: 'string',
                     required: true,
-                    message: '请輸入最低价格',
+                    message: '请输入最低等级',
                     trigger: 'change'
                 }],
-                price2: [{
-                    type: 'number',
+                level2: [{
+                    type: 'string',
                     required: true,
-                    message: '请輸入最高价格',
+                    message: '请输入最高等级',
                     trigger: 'blur'
                 }],
-                // price: [{
-                //     type: 'array',
-                //     required: true,
-                //     message: '请至少选择一个门派',
-                //     trigger: 'change'
-                // }],
-                resource: [{
+                price: [{
+                    type: 'array',
                     required: true,
-                    message: '请选择活动资源',
+                    message: '请至少选择一个价格范围',
                     trigger: 'change'
                 }]
+                // resource: [{
+                //     required: true,
+                //     message: '请选择活动资源',
+                //     trigger: 'change'
+                // }]
             }
         };
     },
