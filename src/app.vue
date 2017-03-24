@@ -7,7 +7,7 @@
         font-family: "Bree Serif", "Open Sans", "Arial", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", serif;
     }
     .container {
-        max-width: 1280px;
+        max-width: 1080px;
         margin: 0 auto;
         .el-menu-item {
             font-size: 16px;
@@ -39,6 +39,7 @@
             <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item> -->
         </el-menu>
         <search></search>
+        <movie></movie>
         <data-table></data-table>
     </div>
 </template>
@@ -46,6 +47,7 @@
 <script>
 import search from './components/search.vue';
 import dataTable from './components/dataTable.vue';
+import movie from './components/movie.vue';
 
 export default {
     el: "#app",
@@ -61,7 +63,8 @@ export default {
     },
     components: {
         search,
-        dataTable
+        dataTable,
+        movie
     }
 }
 </script>
