@@ -40,13 +40,13 @@ export default {
     },
     mounted: function() {
         // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
-        this.$http.get('http://127.0.0.1:8081/roleList', {}, {
+        this.$http.get('http://127.0.0.1:8081/roleList', {params: {'id':1234567}}, {
             headers: {
             },
             emulateJSON: true
         }).then(function(response) {
             // 这里是处理正确的回调
-            this.articles = response.data.subjects
+            this.articles = response.data.result.data;
             // this.articles = response.data["subjects"] 也可以
         }, function(response) {
             // 这里是处理错误的回调
