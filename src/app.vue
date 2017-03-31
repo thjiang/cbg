@@ -40,7 +40,7 @@
         </el-menu>
         <search></search>
         <movie></movie>
-        <data-table></data-table>
+        <!-- <data-table></data-table> -->
     </div>
 </template>
 

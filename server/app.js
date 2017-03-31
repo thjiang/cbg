@@ -1,19 +1,24 @@
-const restify = require('restify');
+const express = require('express');
 
-const server = restify.createServer({
-	name: 'myapp'
-});
+const app = express();
 
-server.use(restify.queryParser());
-server.use(restify.bodyParser());
-server.use(restify.CORS());
-server.use(restify.jsonp());
+const allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:9091');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+};
+
+app.use(allowCrossDomain);
 
 let data;
 
-function respond(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
+app.get('/', function (req, res) {
+	res.send('Hello World');
+});
+app.get('/roleList', function (req, res) {
+	console.log(req);
     data = {
         result: {
             success: true,
@@ -21,27 +26,18 @@ function respond(req, res) {
                 a: 1
             }
         },
-        statue: {
+        status: {
             code: 0,
             message: 'OK'
         }
     };
 
-    res.send({
-        data
-    });
-}
+    res.send(data);
+});
 
-function respondDetail(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    console.log(req.params.taskid);
-}
+const server = app.listen(8081, function () {
+	const host = server.address().address;
+	const port = server.address().port;
 
-server.get('/taskList', respond);
-server.head('/taskList', respond);
-
-server.get('/:taskid', respondDetail);
-
-server.listen(3900, function () {
-	console.log('%s listening at %s', server.name, server.url);
+	console.log('应用实例，访问地址为 http://%s:%s', host, port);
 });

@@ -1,10 +1,8 @@
 <style lang="less">
-    #dataTable {
-        display: none;
-    }
+
 </style>
 <template>
-    <div id="dataTable" class="table">
+    <div class="table">
         <el-card class="box-card">
             <div slot="header" class="clearfix">
                 <h1 style="line-height: 20px; color: #20A0FF">数据：</h2>
