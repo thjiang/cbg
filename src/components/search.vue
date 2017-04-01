@@ -1,6 +1,9 @@
 <style lang="less">
-    .line {
-        text-align:center;
+    .search {
+        margin-top: 20px;
+        .line {
+            text-align:center;
+        }
     }
 </style>
 <template>

@@ -39,7 +39,27 @@ app.get('/roleList', function (req, res) {
                 "nickname": "三千多个荒火",
                 "equipscore": "103582",
                 "score": "634524",
-                "lefttime": "1491060879893",
+                "lefttime": "1491059879893",
+                "price": "124000",
+                "yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
+                "cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"
+            }, {
+                "avatar": "http://res.tx3.cbg.163.com/images/role/smallface/12.jpg",
+                "school": "云麓",
+                "nickname": "三千多个云麓",
+                "equipscore": "103582",
+                "score": "634524",
+                "lefttime": "1491041879893",
+                "price": "124000",
+                "yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
+                "cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"
+            }, {
+                "avatar": "http://res.tx3.cbg.163.com/images/role/smallface/12.jpg",
+                "school": "弈剑",
+                "nickname": "三千多个弈剑",
+                "equipscore": "103582",
+                "score": "634524",
+                "lefttime": "1491054879893",
                 "price": "124000",
                 "yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
                 "cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"

@@ -4,6 +4,29 @@
             text-decoration: none;
             color: #FFF;
         }
+        .el-table_1_column_1 {
+            img {
+                transform: translateY(4px);
+            }
+        }
+        .el-table_1_column_2 {
+            color: #22B8DD;
+        }
+        .el-table_1_column_3 {
+            color: blueviolet;
+        }
+        .el-table_1_column_4 {
+            color: red;
+        }
+        .el-table_1_column_5 {
+            color: red;
+        }
+        .el-table_1_column_6 {
+            color: red;
+        }
+        .el-table_1_column_7 {
+            color: #ff7800;
+        }
     }
 </style>
 
