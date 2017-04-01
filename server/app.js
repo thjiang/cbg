@@ -24,35 +24,25 @@ app.get('/roleList', function (req, res) {
         result: {
             success: true,
             data: [{
-                year: '2016-07-07',
-                title: '王二虎',
-                genres: ['剧情', '爱情', req.query.id],
-                images: {
-                    small: 'https://img3.doubanio.com/view/movie_poster_cover/ipst/public/p513344864.jpg',
-                    large: 'https://img3.doubanio.com/view/movie_poster_cover/spst/public/p513344864.jpg',
-                    medium: 'https://img3.doubanio.com/view/movie_poster_cover/spst/public/p513344864.jpg'
-                },
-                rating: {
-                    'max': 10,
-                    'average': 9.5,
-                    'stars': '50',
-                    'min': 0
-                }
+                "avatar": "http://res.tx3.cbg.163.com/images/role/smallface/61.jpg",
+                "school": "天机",
+                "nickname": "三千多个天机",
+                "equipscore": "103582",
+                "score": "634524",
+                "lefttime": "1491040879893",
+                "price": "124000",
+                "yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
+                "cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"
             }, {
-                year: '2016-07-08',
-                title: '王三虎',
-                genres: ['剧情', '爱情'],
-                images: {
-                    small: 'https://img3.doubanio.com/view/movie_poster_cover/ipst/public/p513344864.jpg',
-                    large: 'https://img3.doubanio.com/view/movie_poster_cover/spst/public/p513344864.jpg',
-                    medium: 'https://img3.doubanio.com/view/movie_poster_cover/spst/public/p513344864.jpg'
-                },
-                rating: {
-                    'max': 10,
-                    'average': 9.5,
-                    'stars': '50',
-                    'min': 0
-                }
+                "avatar": "http://res.tx3.cbg.163.com/images/role/smallface/12.jpg",
+                "school": "荒火",
+                "nickname": "三千多个荒火",
+                "equipscore": "103582",
+                "score": "634524",
+                "lefttime": "1491060879893",
+                "price": "124000",
+                "yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
+                "cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"
             }]
         },
         status: {
