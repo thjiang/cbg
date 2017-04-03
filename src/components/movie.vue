@@ -39,6 +39,7 @@
         </el-table-column>
         <el-table-column prop="school" label="职业" sortable width=""></el-table-column>
         <el-table-column prop="nickname" label="昵称" sortable width="120"></el-table-column>
+        <el-table-column prop="server" label="服务器" sortable width=""></el-table-column>
         <el-table-column prop="equipscore" label="装评" sortable width=""></el-table-column>
         <el-table-column prop="score" label="修为" sortable width=""></el-table-column>
         <el-table-column prop="lefttime" label="时间" sortable width=""></el-table-column>
@@ -60,6 +61,7 @@ export default {
                 "avatar": "http://res.tx3.cbg.163.com/images/role/smallface/61.jpg",
                 "school": "天机",
                 "nickname": "三千多个天机",
+                "server": "天下无双",
                 "equipscore": "103582",
                 "score": "634524",
                 "lefttime": "7小时",
