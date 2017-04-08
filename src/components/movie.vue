@@ -19,13 +19,16 @@
             color: red;
         }
         .el-table_1_column_5 {
-            color: red;
+            color: #0087ff;
         }
         .el-table_1_column_6 {
-            color: red;
+            color: #0087ff;
         }
         .el-table_1_column_7 {
-            color: #ff7800;
+            color: #00b56b;
+        }
+        .el-table_1_column_8 {
+            color: red;
         }
     }
 </style>
@@ -39,10 +42,10 @@
         </el-table-column>
         <el-table-column prop="school" label="职业" sortable width=""></el-table-column>
         <el-table-column prop="nickname" label="昵称" sortable width="120"></el-table-column>
-        <el-table-column prop="server" label="服务器" sortable width=""></el-table-column>
+        <el-table-column prop="server" label="服务器" sortable width="100"></el-table-column>
         <el-table-column prop="equipscore" label="装评" sortable width=""></el-table-column>
         <el-table-column prop="score" label="修为" sortable width=""></el-table-column>
-        <el-table-column prop="lefttime" label="时间" sortable width=""></el-table-column>
+        <el-table-column prop="lefttime" label="时间" sortable width="110"></el-table-column>
         <el-table-column prop="price" label="价格" sortable width=""></el-table-column>
         <el-table-column label="操作" width="270">
             <template scope="scope">
