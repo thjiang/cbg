@@ -1,5 +1,6 @@
 <style lang="less">
     .roleList {
+        margin: 20px 0;
         a {
             text-decoration: none;
             color: #FFF;
@@ -49,8 +50,8 @@
         <el-table-column prop="price" label="价格" sortable width=""></el-table-column>
         <el-table-column label="操作" width="270">
             <template scope="scope">
-                <el-button type="info"><a class="link" :href="scope.row.yxblink">英雄榜</a></el-button>
-                <el-button type="info"><a class="link" :href="scope.row.cbglink">去购买</a></el-button>
+                <el-button type="info"><a class="link" :href="scope.row.yxblink" target="_blank">英雄榜</a></el-button>
+                <el-button type="info"><a class="link" :href="scope.row.cbglink" target="_blank">去购买</a></el-button>
             </template>
         </el-table-column>
     </el-table>
