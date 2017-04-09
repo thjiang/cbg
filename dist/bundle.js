@@ -31849,13 +31849,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_search_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_search_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_dataTable_vue__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_dataTable_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_dataTable_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_movie_vue__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_movie_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_movie_vue__);
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_roleList_vue__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_roleList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_roleList_vue__);
 //
 //
 //
@@ -31905,9 +31900,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = {
     el: "#app",
     data() {
-        return {
-            activeIndex: '1'
-        };
+        return {};
     },
     methods: {
         handleSelect(key, keyPath) {
@@ -31917,7 +31910,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         search: __WEBPACK_IMPORTED_MODULE_0__components_search_vue___default.a,
         dataTable: __WEBPACK_IMPORTED_MODULE_1__components_dataTable_vue___default.a,
-        movie: __WEBPACK_IMPORTED_MODULE_2__components_movie_vue___default.a
+        roleList: __WEBPACK_IMPORTED_MODULE_2__components_roleList_vue___default.a
     }
 };
 
@@ -31989,6 +31982,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -32205,10 +32202,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
         return {
+            activeNames: ['1'],
             ruleForm: {
                 delivery: false,
                 school: '荒火',
@@ -32266,7 +32275,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         submitForm(formName) {
             this.$refs[formName].validate(valid => {
                 if (valid) {
-                    alert('submit!');
+                    this.$message({
+                        showClose: true,
+                        message: '查询成功'
+                    });
                 } else {
                     console.log('error submit!!');
                     return false;
@@ -32302,7 +32314,7 @@ exports = module.exports = __webpack_require__(5)();
 
 
 // module
-exports.push([module.i, "\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: \"Bree Serif\", \"Open Sans\", \"Arial\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\5FAE\\8F6F\\96C5\\9ED1\", serif;\n}\n.container {\n  max-width: 1080px;\n  margin: 0 auto;\n}\n.container .el-menu-item {\n  font-size: 16px;\n}\n.container .el-menu--horizontal > .el-menu-item:hover,\n.container .el-menu--horizontal > .el-submenu.is-active .el-submenu__title,\n.container .el-menu--horizontal > .el-submenu:hover .el-submenu__title {\n  border-bottom: 0;\n}\n.container .logo {\n  float: left;\n  height: 60px;\n}\n", ""]);
+exports.push([module.i, "\n* {\n  margin: 0;\n  padding: 0;\n}\nbody {\n  font-family: \"Bree Serif\", \"Open Sans\", \"Arial\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\5FAE\\8F6F\\96C5\\9ED1\", serif;\n}\n.container {\n  max-width: 1080px;\n  margin: 0 auto;\n}\n.container .header {\n  font-size: 18px;\n  height: 60px;\n  line-height: 60px;\n  color: #114d79;\n  cursor: pointer;\n}\n.container .logo {\n  float: left;\n  height: 60px;\n  margin-right: 15px;\n}\n", ""]);
 
 // exports
 
@@ -32316,7 +32328,7 @@ exports = module.exports = __webpack_require__(5)();
 
 
 // module
-exports.push([module.i, "\n.search {\n  margin-top: 20px;\n}\n.search .line {\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.search-collapse {\n  margin: 20px 0;\n}\n.search {\n  margin-top: 20px;\n}\n.search .line {\n  text-align: center;\n}\n.el-collapse-item__header {\n  color: #0087ff;\n  font-size: 14px;\n}\n", ""]);
 
 // exports
 
@@ -32330,7 +32342,7 @@ exports = module.exports = __webpack_require__(5)();
 
 
 // module
-exports.push([module.i, "\n.roleList a {\n  text-decoration: none;\n  color: #FFF;\n}\n.roleList .el-table_1_column_1 img {\n  transform: translateY(4px);\n}\n.roleList .el-table_1_column_2 {\n  color: #22B8DD;\n}\n.roleList .el-table_1_column_3 {\n  color: blueviolet;\n}\n.roleList .el-table_1_column_4 {\n  color: red;\n}\n.roleList .el-table_1_column_5 {\n  color: red;\n}\n.roleList .el-table_1_column_6 {\n  color: red;\n}\n.roleList .el-table_1_column_7 {\n  color: #ff7800;\n}\n", ""]);
+exports.push([module.i, "\n.roleList {\n  margin: 20px 0;\n}\n.roleList a {\n  text-decoration: none;\n  color: #FFF;\n}\n.roleList .el-table_1_column_1 img {\n  transform: translateY(4px);\n}\n.roleList .el-table_1_column_2 {\n  color: #22B8DD;\n}\n.roleList .el-table_1_column_3 {\n  color: blueviolet;\n}\n.roleList .el-table_1_column_4 {\n  color: red;\n}\n.roleList .el-table_1_column_5 {\n  color: #0087ff;\n}\n.roleList .el-table_1_column_6 {\n  color: #0087ff;\n}\n.roleList .el-table_1_column_7 {\n  color: #00b56b;\n}\n.roleList .el-table_1_column_8 {\n  color: red;\n}\n", ""]);
 
 // exports
 
@@ -38762,9 +38774,9 @@ var Component = __webpack_require__(7)(
   /* cssModules */
   null
 )
-Component.options.__file = "G:\\cbg\\src\\components\\movie.vue"
+Component.options.__file = "G:\\cbg\\src\\components\\roleList.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] movie.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] roleList.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -38773,9 +38785,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-63e7e097", Component.options)
+    hotAPI.createRecord("data-v-7627459d", Component.options)
   } else {
-    hotAPI.reload("data-v-63e7e097", Component.options)
+    hotAPI.reload("data-v-7627459d", Component.options)
   }
 })()}
 
@@ -38827,15 +38839,10 @@ module.exports = Component.exports
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container"
-  }, [_c('el-menu', {
-    staticClass: "el-menu-demo",
-    attrs: {
-      "default-active": _vm.activeIndex,
-      "mode": "horizontal"
-    },
-    on: {
-      "select": _vm.handleSelect
-    }
+  }, [_vm._m(0), _vm._v(" "), _c('search'), _vm._v(" "), _c('role-list')], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "header"
   }, [_c('div', {
     staticClass: "logo"
   }, [_c('img', {
@@ -38844,12 +38851,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "alt": "logo",
       "height": "100%"
     }
-  })]), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "1"
-    }
-  }, [_vm._v("天下贰藏宝阁查询")])], 1), _vm._v(" "), _c('search'), _vm._v(" "), _c('movie')], 1)
-},staticRenderFns: []}
+  })]), _vm._v(" "), _c('div', {}, [_vm._v("天下贰藏宝阁查询")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -38863,7 +38866,28 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return _c('el-collapse', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.activeNames),
+      expression: "activeNames"
+    }],
+    staticClass: "search-collapse",
+    domProps: {
+      "value": (_vm.activeNames)
+    },
+    on: {
+      "input": function($event) {
+        _vm.activeNames = $event
+      }
+    }
+  }, [_c('el-collapse-item', {
+    attrs: {
+      "title": "点击可切换展开/折叠",
+      "name": "1"
+    }
+  }, [_c('div', {
     staticClass: "search"
   }, [_c('el-form', {
     ref: "ruleForm",
@@ -39266,7 +39290,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.resetForm('ruleForm')
       }
     }
-  }, [_vm._v("重置")])], 1)], 1)], 1)
+  }, [_vm._v("重置")])], 1)], 1)], 1)])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -39329,7 +39353,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "prop": "server",
       "label": "服务器",
       "sortable": "",
-      "width": ""
+      "width": "100"
     }
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
@@ -39350,7 +39374,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "prop": "lefttime",
       "label": "时间",
       "sortable": "",
-      "width": ""
+      "width": "110"
     }
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
@@ -39373,7 +39397,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }, [_c('a', {
           staticClass: "link",
           attrs: {
-            "href": scope.row.yxblink
+            "href": scope.row.yxblink,
+            "target": "_blank"
           }
         }, [_vm._v("英雄榜")])]), _vm._v(" "), _c('el-button', {
           attrs: {
@@ -39382,7 +39407,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }, [_c('a', {
           staticClass: "link",
           attrs: {
-            "href": scope.row.cbglink
+            "href": scope.row.cbglink,
+            "target": "_blank"
           }
         }, [_vm._v("去购买")])])]
       }
@@ -39393,7 +39419,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-63e7e097", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-7627459d", module.exports)
   }
 }
 
@@ -39499,13 +39525,13 @@ var content = __webpack_require__(61);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(8)("57846a48", content, false);
+var update = __webpack_require__(8)("46671fcc", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-63e7e097\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/less-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./movie.vue", function() {
-     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-63e7e097\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/less-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./movie.vue");
+   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-7627459d\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/less-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./roleList.vue", function() {
+     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-7627459d\",\"scoped\":false,\"hasInlineConfig\":false}!../../node_modules/less-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./roleList.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
