@@ -1,12 +1,19 @@
 ### 启动开发环境
 
 ```bash
+# 前端webpack-dev-server启动
+npm run wds
+
+# 本地调试器启动
 node-inspector --web-port = 8888
 # node-debug --no-preload server/app.js
 
 # 使用supervisor自动监听文件变化，自动重启
 supervisor server/app.js
-npm run wds
+
+# 线上环境forever启动
+forever start -w server/app.js
+
 ```
 
 
