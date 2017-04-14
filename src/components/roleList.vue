@@ -77,8 +77,8 @@ export default {
     },
     mounted: function() {
         // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
-        // this.$http.get('//45.76.203.218:8081/roleList', {params: {'id':1234567}}, {
-        this.$http.get('//cbg.thjiang.com/roleList', {params: {'id':1234567}}, {
+        // this.$http.get('http://45.76.203.218:8081/roleList', {params: {'id':1234567}}, {
+        this.$http.get('http://cbg.thjiang.com/roleList', {params: {'id':1234567}}, {
         // this.$http.get('http://127.0.0.1:8081/roleList', {params: {'id':1234567}}, {
             headers: {
             },
