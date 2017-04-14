@@ -2,7 +2,10 @@
 
 ```bash
 node-inspector --web-port = 8888
-node-debug --no-preload server/app.js
+# node-debug --no-preload server/app.js
+
+# 使用supervisor自动监听文件变化，自动重启
+supervisor server/app.js
 npm run wds
 ```
 

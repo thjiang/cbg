@@ -26,7 +26,7 @@ app.get('/roleList', function (req, res) {
             data: [{
                 "avatar": "http://res.tx3.cbg.163.com/images/role/smallface/61.jpg",
                 "school": "天机",
-                "nickname": "三千多个天机",
+                "nickname": "三千多个天机啊呀呀",
                 "server": "天下无双",
                 "equipscore": "103582",
                 "score": "634524",
