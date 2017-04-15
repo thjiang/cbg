@@ -41,7 +41,7 @@
                 <img :src="scope.row.avatar" alt="" height="40">
             </template>
         </el-table-column>
-        <el-table-column prop="school" label="职业" sortable width=""></el-table-column>
+        <el-table-column prop="school" label="门派" sortable width=""></el-table-column>
         <el-table-column prop="nickname" label="昵称" sortable width="120"></el-table-column>
         <el-table-column prop="server" label="服务器" sortable width="100"></el-table-column>
         <el-table-column prop="equipscore" label="装评" sortable width=""></el-table-column>
@@ -78,8 +78,9 @@ export default {
     mounted: function() {
         // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
         // this.$http.get('http://45.76.203.218:8081/roleList', {params: {'id':1234567}}, {
-        this.$http.get('http://req.thjiang.com/roleList', {params: {'id':1234567}}, {
-        // this.$http.get('http://127.0.0.1:8081/roleList', {params: {'id':1234567}}, {
+        // this.$http.get('http://182.254.222.174:8081/roleList', {params: {'id':1234567}}, {
+        // this.$http.get('http://req.thjiang.com/roleList', {params: {'id':1234567}}, {
+        this.$http.get('http://127.0.0.1:8081/roleList', {params: {'id':1234567}}, {
             headers: {
             },
             emulateJSON: true
