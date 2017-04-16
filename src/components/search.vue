@@ -51,7 +51,20 @@
                     </el-col>
                 </el-form-item>
                 <!-- </el-form> -->
-                <el-form-item label="选择价格：" prop="price">
+                <el-form-item label="输入价格：">
+                    <el-col :span="3">
+                        <el-form-item prop="price1">
+                            <el-input type="input" placeholder="请输入最低价格" v-model="ruleForm.price1"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col class="line" :span="1">-</el-col>
+                    <el-col :span="3">
+                        <el-form-item prop="price2">
+                            <el-input type="input" placeholder="请输入最高价格" v-model="ruleForm.price2"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-form-item>
+                <!-- <el-form-item label="选择价格：" prop="price">
                     <el-checkbox-group v-model="ruleForm.price">
                         <el-checkbox label="00080-00300" name="price"></el-checkbox>
                         <el-checkbox label="00301-00800" name="price"></el-checkbox>
@@ -68,8 +81,8 @@
                         <el-checkbox label="45001-60000" name="price"></el-checkbox>
                         <el-checkbox label="60000以上" name="price"></el-checkbox>
                     </el-checkbox-group>
-                </el-form-item>
-                <el-form-item label="选择时装：" prop="clothes">
+                </el-form-item> -->
+                <!-- <el-form-item label="选择时装：" prop="clothes">
                     <el-checkbox-group v-model="ruleForm.clothes">
                         <el-checkbox label="玄素天成" name="clothes"></el-checkbox>
                         <el-checkbox label="黛染青花" name="clothes"></el-checkbox>
@@ -103,7 +116,7 @@
                         <el-checkbox label="完封" name="skill"></el-checkbox>
                         <el-checkbox label="护心" name="skill"></el-checkbox>
                     </el-checkbox-group>
-                </el-form-item>
+                </el-form-item> -->
                 <!-- <el-form-item label="特殊资源" prop="resource">
                     <el-radio-group v-model="ruleForm.resource">
                         <el-radio label="线上品牌商赞助"></el-radio>
@@ -127,9 +140,10 @@ export default {
             ruleForm: {
                 delivery: false,
                 school: '荒火',
-                clothes: [],
-                skill: [],
-                price: [],
+                // clothes: [],
+                // skill: [],
+                price1: '',
+                price2: '',
                 level1: '',
                 level2: '',
                 resource: ''
@@ -141,16 +155,16 @@ export default {
                     message: '请至少选择一个门派',
                     trigger: 'change'
                 }],
-                clothes: [{
-                    type: 'array',
-                    required: false,
-                    trigger: 'change'
-                }],
-                skill: [{
-                    type: 'array',
-                    required: false,
-                    trigger: 'change'
-                }],
+                // clothes: [{
+                //     type: 'array',
+                //     required: false,
+                //     trigger: 'change'
+                // }],
+                // skill: [{
+                //     type: 'array',
+                //     required: false,
+                //     trigger: 'change'
+                // }],
                 level1: [{
                     type: 'string',
                     required: true,
@@ -163,12 +177,24 @@ export default {
                     message: '请输入最高等级',
                     trigger: 'blur'
                 }],
-                price: [{
-                    type: 'array',
+                price1: [{
+                    type: 'string',
                     required: true,
-                    message: '请至少选择一个价格范围',
-                    trigger: 'change'
+                    message: '请输入最低价格',
+                    trigger: 'blur'
+                }],
+                price2: [{
+                    type: 'string',
+                    required: true,
+                    message: '请输入最高价格',
+                    trigger: 'blur'
                 }]
+                // price: [{
+                //     type: 'array',
+                //     required: true,
+                //     message: '请至少选择一个价格范围',
+                //     trigger: 'change'
+                // }],
                 // resource: [{
                 //     required: true,
                 //     message: '请选择活动资源',
