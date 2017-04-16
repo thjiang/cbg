@@ -33,8 +33,10 @@
             <div class="">天下贰藏宝阁查询</div>
         </div>
 
+        <!-- <search v-on:search="recieveSearchData"></search> -->
         <search></search>
-        <role-list></role-list>
+        <!-- <role-list :searchData="searchData"></role-list> -->
+        <!-- <role-list></role-list> -->
         <!-- <data-table></data-table> -->
     </div>
 </template>
@@ -42,22 +44,32 @@
 <script>
 import search from './components/search.vue';
 import dataTable from './components/dataTable.vue';
-import roleList from './components/roleList.vue';
+// import roleList from './components/roleList.vue';
 
 export default {
     el: "#app",
     data() {
-        return {};
+        return {
+            // searchData: {}
+        };
     },
     methods: {
+        // recieveSearchData(data) {
+        //     this.searchData = data;
+        //     console.log(data);
+        // },
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
         }
     },
+    // mounted () {
+    //     this.$on("search", function (a) {
+    //         this.a = a;
+    //     }.bind(this));
+    // },
     components: {
         search,
-        dataTable,
-        roleList
+        dataTable
     }
 }
 </script>

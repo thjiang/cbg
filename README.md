@@ -10,6 +10,7 @@ node --inspect server/app.js // 不再使用node-inspector，加入 `--inspect` 
 
 # 使用supervisor自动监听文件变化，自动重启
 supervisor server/app.js
+supervisor --inspect server/app.js
 
 # 线上环境forever启动
 forever start -w server/app.js

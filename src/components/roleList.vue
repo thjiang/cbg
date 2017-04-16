@@ -59,50 +59,31 @@
 
 <script>
 export default {
+    props: ['dataList'],
     data() {
         return {
-            roles: [{
-                "avatar": "http://res.tx3.cbg.163.com/images/role/smallface/61.jpg",
-                "school": "天机",
-                "nickname": "三千多个天机",
-                "server": "天下无双",
-                "equipscore": "103582",
-                "score": "634524",
-                "lefttime": "7小时",
-                "price": "124000",
-                "yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
-                "cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"
-            }]
+            // searchParam: this.searchData,
+            roles: this.dataList
+            // roles: [{
+            //     "avatar": "http://res.tx3.cbg.163.com/images/role/smallface/61.jpg",
+            //     "school": "天机",
+            //     "nickname": "三千多个天机",
+            //     "server": "天下无双",
+            //     "equipscore": "103582",
+            //     "score": "634524",
+            //     "lefttime": "7小时",
+            //     "price": "124000",
+            //     "yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
+            //     "cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"
+            // }]
         };
     },
     mounted: function() {
-        // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
-        // this.$http.get('http://45.76.203.218:8081/roleList', {params: {'id':1234567}}, {
-        // this.$http.get('http://182.254.222.174:8081/roleList', {params: {'id':1234567}}, {
-        // this.$http.get('http://req.thjiang.com/roleList', {params: {'id':1234567}}, {
-        this.$http.get('http://127.0.0.1:8081/roleList', {params: {'id':1234567}}, {
-            headers: {
-            },
-            emulateJSON: true
-        }).then(function(response) {
-            var tmpRoles = response.data.result.data;
-            var nowTime = new Date().getTime();
-            for (var i = 0; i < tmpRoles.length; i++) {
-                if (tmpRoles[i].deadline) {
-                    // 1天=24*60*60*1000=86400000ms,1小时=60*60*1000=3600000ms
-                    if (tmpRoles[i].deadline - nowTime > 86400000) {
-                        tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 86400000) + "天" + Math.floor((tmpRoles[i].deadline - nowTime) % 86400000 / 3600000) + "小时";
-                    } else if (tmpRoles[i].deadline - nowTime > 3600000) {
-                        tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 3600000) + "小时";
-                    } else {
-                        tmpRoles[i].lefttime = "不足1小时";
-                    }
-                }
-            }
-            this.roles = tmpRoles;
-        }, function(response) {
-            console.log(response);
-        });
+        console.log(111);
+        console.log(this.roles);
+        console.log(222);
+
+
     }
 }
 </script>
