@@ -32,6 +32,7 @@ app.use(allowCrossDomain);
 
 let data;
 let checkedData;
+const schoolArray = ['荒火', '天机', '翎羽', '魍魉', '太虚', '云麓', '冰心', '弈剑', '鬼墨', '龙巫', '幽篁'];
 
 app.get('/', function (req, res) {
 	res.send('Hello World');
@@ -47,17 +48,18 @@ app.get('/roleList', function (req, res) {
 				checkedData = new Array(cbgData.msg.length); // 整理过的数据，准备发送给前端
 				for (let i = 0; i < cbgData.msg.length; i++) {
 					checkedData[i] = {};
-					checkedData[i].avatar = 'http://res.tx3.cbg.163.com/images/role/smallface/61.jpg'; // 暂定
-					checkedData[i].school = cbgData.msg[i].school;
+					// 头像图片地址格式由2个数字组成：门派+性别，如云麓男，61，弈剑女82
+					checkedData[i].avatar = 'http://res.tx3.cbg.163.com/images/role/smallface/' + cbgData.msg[i].school + cbgData.msg[i].sex + '.jpg';
+					checkedData[i].school = schoolArray[cbgData.msg[i].school - 1];
 					checkedData[i].nickname = unescape(cbgData.msg[i].equip_name.replace(/\u/g, "%u"));
 					checkedData[i].server = unescape(cbgData.msg[i].server_name.replace(/\u/g, "%u"));
 					checkedData[i].equipscore = cbgData.msg[i].equ_xiuwei;
 					checkedData[i].score = cbgData.msg[i].xiuwei;
-					checkedData[i].lefttime = (cbgData.msg[i].expire_time * 1000) - new Date().getTime();
-					// checkedData[i].jiahu = cbgData.msg[i].equip_jia_hu;
-					// checkedData[i].lianhu = cbgData.msg[i].equip_lian_hu;
-					// checkedData[i].level = cbgData.msg[i].equip_level;
-					// checkedData[i].tian_hun_level = cbgData.msg[i].tian_hun_level;
+					checkedData[i].deadline = cbgData.msg[i].expire_time * 1000;
+					checkedData[i].jiahu = cbgData.msg[i].equip_jia_hu;
+					checkedData[i].lianhu = cbgData.msg[i].equip_lian_hu;
+					checkedData[i].level = cbgData.msg[i].equip_level;
+					checkedData[i].tian_hun_level = cbgData.msg[i].tian_hun_level;
 					checkedData[i].price = (cbgData.msg[i].price / 100).toFixed(2) * 1;
 					// 取到的价格格式为 778900，需要截取2位小数
 					checkedData[i].cbglink = 'http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&equip_id=' + cbgData.msg[i].equipid + '&serverid=' + cbgData.msg[i].serverid;
@@ -77,7 +79,19 @@ app.get('/roleList', function (req, res) {
 
 				res.send(data);
 			}
-			// console.log(body);
+		} else {
+			data = {
+				result: {
+					success: false,
+					data: []
+				},
+				status: {
+					code: 1,
+					message: '获取藏宝阁数据失败'
+				}
+			};
+
+			res.send(data);
 		}
 	});
 });
@@ -88,50 +102,3 @@ const server = app.listen(8081, function () {
 
 	console.log('Listening at http://%s:%s', host, port);
 });
-
-// mock data
-// [{
-// 	"avatar": "http://res.tx3.cbg.163.com/images/role/smallface/61.jpg",
-// 	"school": "天机",
-// 	"nickname": "三千多个天机",
-// 	"server": "天下无双",
-// 	"equipscore": "103582",
-// 	"score": "634524",
-// 	"lefttime": "1491040879893",
-// 	"price": "124000",
-// 	"yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
-// 	"cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"
-// }, {
-// 	"avatar": "http://res.tx3.cbg.163.com/images/role/smallface/12.jpg",
-// 	"school": "荒火",
-// 	"nickname": "三千多个荒火",
-// 	"server": "天府之国",
-// 	"equipscore": "103582",
-// 	"score": "634524",
-// 	"lefttime": "1491059879893",
-// 	"price": "124000",
-// 	"yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
-// 	"cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"
-// }, {
-// 	"avatar": "http://res.tx3.cbg.163.com/images/role/smallface/12.jpg",
-// 	"school": "云麓",
-// 	"nickname": "三千多个云麓",
-// 	"server": "长相思",
-// 	"equipscore": "103582",
-// 	"score": "634524",
-// 	"lefttime": "1491041879893",
-// 	"price": "124000",
-// 	"yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
-// 	"cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"
-// }, {
-// 	"avatar": "http://res.tx3.cbg.163.com/images/role/smallface/12.jpg",
-// 	"school": "弈剑",
-// 	"nickname": "三千多个弈剑",
-// 	"server": "莫问今朝",
-// 	"equipscore": "103582",
-// 	"score": "634524",
-// 	"lefttime": "1491054879893",
-// 	"price": "124000",
-// 	"yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
-// 	"cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"
-// }]

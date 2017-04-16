@@ -36,7 +36,9 @@
 
 // 发送给前端的数据
 {
-    "avatar": "http://res.tx3.cbg.163.com/images/role/smallface/61.jpg", // 头像，根据性别和门派拼接
+    "sex": 2, // 1男 2女
+    "avatar": "http://res.tx3.cbg.163.com/images/role/smallface/61.jpg",
+    // 头像，根据性别和门派拼接，头像图片地址格式由2个数字组成：门派+性别，如云麓男，61.jpg，弈剑女82.jpg
     "school": 8, // 门派 1荒火教 2天机营 3翎羽山庄 4魍魉 5太虚观 6云麓仙居 7冰心堂 8弈剑听雨阁 9鬼墨 10龙巫宫 11幽篁国
     "equip_name": "\u4e44\u58a8\u67d3\u9752\u950b", // 昵称 需要unicode转码
     "server_name": "\u5929\u4e0b\u65e0\u53cc", // 服务器名字 需要unicode转码

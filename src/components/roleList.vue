@@ -88,12 +88,12 @@ export default {
             var tmpRoles = response.data.result.data;
             var nowTime = new Date().getTime();
             for (var i = 0; i < tmpRoles.length; i++) {
-                if (tmpRoles[i].lefttime) {
+                if (tmpRoles[i].deadline) {
                     // 1天=24*60*60*1000=86400000ms,1小时=60*60*1000=3600000ms
-                    if (nowTime - tmpRoles[i].lefttime > 86400000) {
-                        tmpRoles[i].lefttime = Math.floor((nowTime - tmpRoles[i].lefttime) / 86400000) + "天" + Math.floor((nowTime - tmpRoles[i].lefttime) % 86400000 / 3600000) + "小时";
-                    } else if (nowTime - tmpRoles[i].lefttime > 3600000) {
-                        tmpRoles[i].lefttime = Math.floor((nowTime - tmpRoles[i].lefttime) / 3600000) + "小时";
+                    if (tmpRoles[i].deadline - nowTime > 86400000) {
+                        tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 86400000) + "天" + Math.floor((tmpRoles[i].deadline - nowTime) % 86400000 / 3600000) + "小时";
+                    } else if (tmpRoles[i].deadline - nowTime > 3600000) {
+                        tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 3600000) + "小时";
                     } else {
                         tmpRoles[i].lefttime = "不足1小时";
                     }
