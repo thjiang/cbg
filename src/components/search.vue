@@ -38,29 +38,29 @@
                 </el-form-item>
                 <!-- <el-form :inline="true"> -->
                 <el-form-item label="输入等级：">
-                    <el-col :span="3">
+                    <el-col :span="5">
                         <el-form-item prop="level1">
-                            <el-input type="input" placeholder="请输入最低等级" v-model="ruleForm.level1"></el-input>
+                            <el-input type="number" placeholder="请输入最低等级" v-model="ruleForm.level1" min="1" max="80"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col class="line" :span="1">-</el-col>
-                    <el-col :span="3">
+                    <el-col :span="5">
                         <el-form-item prop="level2">
-                            <el-input type="input" placeholder="请输入最高等级" v-model="ruleForm.level2"></el-input>
+                            <el-input type="number" placeholder="请输入最高等级" v-model="ruleForm.level2" min="1" max="80"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-form-item>
                 <!-- </el-form> -->
                 <el-form-item label="输入价格：">
-                    <el-col :span="3">
+                    <el-col :span="5">
                         <el-form-item prop="price1">
-                            <el-input type="input" placeholder="请输入最低价格" v-model="ruleForm.price1"></el-input>
+                            <el-input type="number" placeholder="请输入最低价格" v-model="ruleForm.price1" min="80" max="300000"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col class="line" :span="1">-</el-col>
-                    <el-col :span="3">
+                    <el-col :span="5">
                         <el-form-item prop="price2">
-                            <el-input type="input" placeholder="请输入最高价格" v-model="ruleForm.price2"></el-input>
+                            <el-input type="number" placeholder="请输入最高价格" v-model="ruleForm.price2" min="80" max="300000"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-form-item>
@@ -166,25 +166,25 @@ export default {
                 //     trigger: 'change'
                 // }],
                 level1: [{
-                    type: 'string',
+                    type: 'number',
                     required: true,
                     message: '请输入最低等级',
                     trigger: 'change'
                 }],
                 level2: [{
-                    type: 'string',
+                    type: 'number',
                     required: true,
                     message: '请输入最高等级',
                     trigger: 'blur'
                 }],
                 price1: [{
-                    type: 'string',
+                    type: 'number',
                     required: true,
                     message: '请输入最低价格',
                     trigger: 'blur'
                 }],
                 price2: [{
-                    type: 'string',
+                    type: 'number',
                     required: true,
                     message: '请输入最高价格',
                     trigger: 'blur'
@@ -209,7 +209,7 @@ export default {
                 if (valid) {
                     this.$message({
                         showClose: true,
-                        message: '查询成功'
+                        message: '查询参数为：门派 ' + this.$refs[formName].model.school + '，等级 ' + this.$refs[formName].model.level1 + '-' +  this.$refs[formName].model.level2 + '，价格 ' + this.$refs[formName].model.price1 + '-' + this.$refs[formName].model.price2
                     });
                 } else {
                     console.log('error submit!!');

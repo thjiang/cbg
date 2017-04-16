@@ -32062,20 +32062,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function () {
         // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
         // this.$http.get('http://45.76.203.218:8081/roleList', {params: {'id':1234567}}, {
-        this.$http.get('http://req.thjiang.com/roleList', { params: { 'id': 1234567 } }, {
-            // this.$http.get('http://127.0.0.1:8081/roleList', {params: {'id':1234567}}, {
+        // this.$http.get('http://182.254.222.174:8081/roleList', {params: {'id':1234567}}, {
+        // this.$http.get('http://req.thjiang.com/roleList', {params: {'id':1234567}}, {
+        this.$http.get('http://127.0.0.1:8081/roleList', { params: { 'id': 1234567 } }, {
             headers: {},
             emulateJSON: true
         }).then(function (response) {
             var tmpRoles = response.data.result.data;
             var nowTime = new Date().getTime();
             for (var i = 0; i < tmpRoles.length; i++) {
-                if (tmpRoles[i].lefttime) {
+                if (tmpRoles[i].deadline) {
                     // 1天=24*60*60*1000=86400000ms,1小时=60*60*1000=3600000ms
-                    if (nowTime - tmpRoles[i].lefttime > 86400000) {
-                        tmpRoles[i].lefttime = Math.floor((nowTime - tmpRoles[i].lefttime) / 86400000) + "天" + Math.floor((nowTime - tmpRoles[i].lefttime) % 86400000 / 3600000) + "小时";
-                    } else if (nowTime - tmpRoles[i].lefttime > 3600000) {
-                        tmpRoles[i].lefttime = Math.floor((nowTime - tmpRoles[i].lefttime) / 3600000) + "小时";
+                    if (tmpRoles[i].deadline - nowTime > 86400000) {
+                        tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 86400000) + "天" + Math.floor((tmpRoles[i].deadline - nowTime) % 86400000 / 3600000) + "小时";
+                    } else if (tmpRoles[i].deadline - nowTime > 3600000) {
+                        tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 3600000) + "小时";
                     } else {
                         tmpRoles[i].lefttime = "不足1小时";
                     }
@@ -32215,6 +32216,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
@@ -32223,9 +32237,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             ruleForm: {
                 delivery: false,
                 school: '荒火',
-                clothes: [],
-                skill: [],
-                price: [],
+                // clothes: [],
+                // skill: [],
+                price1: '',
+                price2: '',
                 level1: '',
                 level2: '',
                 resource: ''
@@ -32237,34 +32252,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     message: '请至少选择一个门派',
                     trigger: 'change'
                 }],
-                clothes: [{
-                    type: 'array',
-                    required: false,
-                    trigger: 'change'
-                }],
-                skill: [{
-                    type: 'array',
-                    required: false,
-                    trigger: 'change'
-                }],
+                // clothes: [{
+                //     type: 'array',
+                //     required: false,
+                //     trigger: 'change'
+                // }],
+                // skill: [{
+                //     type: 'array',
+                //     required: false,
+                //     trigger: 'change'
+                // }],
                 level1: [{
-                    type: 'string',
+                    type: 'number',
                     required: true,
                     message: '请输入最低等级',
                     trigger: 'change'
                 }],
                 level2: [{
-                    type: 'string',
+                    type: 'number',
                     required: true,
                     message: '请输入最高等级',
                     trigger: 'blur'
                 }],
-                price: [{
-                    type: 'array',
+                price1: [{
+                    type: 'number',
                     required: true,
-                    message: '请至少选择一个价格范围',
-                    trigger: 'change'
+                    message: '请输入最低价格',
+                    trigger: 'blur'
+                }],
+                price2: [{
+                    type: 'number',
+                    required: true,
+                    message: '请输入最高价格',
+                    trigger: 'blur'
                 }]
+                // price: [{
+                //     type: 'array',
+                //     required: true,
+                //     message: '请至少选择一个价格范围',
+                //     trigger: 'change'
+                // }],
                 // resource: [{
                 //     required: true,
                 //     message: '请选择活动资源',
@@ -32279,7 +32306,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (valid) {
                     this.$message({
                         showClose: true,
-                        message: '查询成功'
+                        message: '查询参数为：门派 ' + this.$refs[formName].model.school + '，等级 ' + this.$refs[formName].model.level1 + '-' + this.$refs[formName].model.level2 + '，价格 ' + this.$refs[formName].model.price1 + '-' + this.$refs[formName].model.price2
                     });
                 } else {
                     console.log('error submit!!');
@@ -38980,7 +39007,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('el-col', {
     attrs: {
-      "span": 3
+      "span": 5
     }
   }, [_c('el-form-item', {
     attrs: {
@@ -38994,15 +39021,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "ruleForm.level1"
     }],
     attrs: {
-      "type": "input",
-      "placeholder": "请输入最低等级"
+      "type": "number",
+      "placeholder": "请输入最低等级",
+      "min": "1",
+      "max": "80"
     },
     domProps: {
       "value": (_vm.ruleForm.level1)
     },
     on: {
       "input": function($event) {
-        _vm.ruleForm.level1 = $event
+        _vm.ruleForm.level1 = _vm._n($event)
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
       }
     }
   })], 1)], 1), _vm._v(" "), _c('el-col', {
@@ -39012,7 +39044,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("-")]), _vm._v(" "), _c('el-col', {
     attrs: {
-      "span": 3
+      "span": 5
     }
   }, [_c('el-form-item', {
     attrs: {
@@ -39026,258 +39058,96 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "ruleForm.level2"
     }],
     attrs: {
-      "type": "input",
-      "placeholder": "请输入最高等级"
+      "type": "number",
+      "placeholder": "请输入最高等级",
+      "min": "1",
+      "max": "80"
     },
     domProps: {
       "value": (_vm.ruleForm.level2)
     },
     on: {
       "input": function($event) {
-        _vm.ruleForm.level2 = $event
+        _vm.ruleForm.level2 = _vm._n($event)
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
       }
     }
   })], 1)], 1)], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
-      "label": "选择价格：",
-      "prop": "price"
+      "label": "输入价格："
     }
-  }, [_c('el-checkbox-group', {
+  }, [_c('el-col', {
+    attrs: {
+      "span": 5
+    }
+  }, [_c('el-form-item', {
+    attrs: {
+      "prop": "price1"
+    }
+  }, [_c('el-input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.ruleForm.price),
-      expression: "ruleForm.price"
+      value: (_vm.ruleForm.price1),
+      expression: "ruleForm.price1"
     }],
+    attrs: {
+      "type": "number",
+      "placeholder": "请输入最低价格",
+      "min": "80",
+      "max": "300000"
+    },
     domProps: {
-      "value": (_vm.ruleForm.price)
+      "value": (_vm.ruleForm.price1)
     },
     on: {
       "input": function($event) {
-        _vm.ruleForm.price = $event
+        _vm.ruleForm.price1 = _vm._n($event)
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
       }
     }
-  }, [_c('el-checkbox', {
+  })], 1)], 1), _vm._v(" "), _c('el-col', {
+    staticClass: "line",
     attrs: {
-      "label": "00080-00300",
-      "name": "price"
+      "span": 1
     }
-  }), _vm._v(" "), _c('el-checkbox', {
+  }, [_vm._v("-")]), _vm._v(" "), _c('el-col', {
     attrs: {
-      "label": "00301-00800",
-      "name": "price"
+      "span": 5
     }
-  }), _vm._v(" "), _c('el-checkbox', {
+  }, [_c('el-form-item', {
     attrs: {
-      "label": "00801-01500",
-      "name": "price"
+      "prop": "price2"
     }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "01501-03000",
-      "name": "price"
-    }
-  }), _vm._v(" "), _c('br'), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "03001-06000",
-      "name": "price"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "06001-10000",
-      "name": "price"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "10001-15000",
-      "name": "price"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "15001-20000",
-      "name": "price"
-    }
-  }), _vm._v(" "), _c('br'), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "20001-30000",
-      "name": "price"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "30001-45000",
-      "name": "price"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "45001-60000",
-      "name": "price"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "60000以上",
-      "name": "price"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "选择时装：",
-      "prop": "clothes"
-    }
-  }, [_c('el-checkbox-group', {
+  }, [_c('el-input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.ruleForm.clothes),
-      expression: "ruleForm.clothes"
+      value: (_vm.ruleForm.price2),
+      expression: "ruleForm.price2"
     }],
+    attrs: {
+      "type": "number",
+      "placeholder": "请输入最高价格",
+      "min": "80",
+      "max": "300000"
+    },
     domProps: {
-      "value": (_vm.ruleForm.clothes)
+      "value": (_vm.ruleForm.price2)
     },
     on: {
       "input": function($event) {
-        _vm.ruleForm.clothes = $event
+        _vm.ruleForm.price2 = _vm._n($event)
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
       }
     }
-  }, [_c('el-checkbox', {
-    attrs: {
-      "label": "玄素天成",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "黛染青花",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "孤鸿月影",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "海棠未雨",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "夜雨江南",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('br'), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "岸芷汀兰",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "绛云思暖",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "飞狐华裘",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "仙狐彩袂",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "天狐霓裳",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('br'), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "沧海桑田",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "大圣金甲",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "碧海惊涛",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "蟾宫折桂",
-      "name": "clothes"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "疏影横斜",
-      "name": "clothes"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "选择特技：",
-      "prop": "skill"
-    }
-  }, [_c('el-checkbox-group', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.ruleForm.skill),
-      expression: "ruleForm.skill"
-    }],
-    domProps: {
-      "value": (_vm.ruleForm.skill)
-    },
-    on: {
-      "input": function($event) {
-        _vm.ruleForm.skill = $event
-      }
-    }
-  }, [_c('el-checkbox', {
-    attrs: {
-      "label": "挥砍防护",
-      "name": "skill"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "钝刺防护",
-      "name": "skill"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "火元防护",
-      "name": "skill"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "水风毒防护",
-      "name": "skill"
-    }
-  }), _vm._v(" "), _c('br'), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "物理防护",
-      "name": "skill"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "法术防护",
-      "name": "skill"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "伤害防护",
-      "name": "skill"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "完封",
-      "name": "skill"
-    }
-  }), _vm._v(" "), _c('el-checkbox', {
-    attrs: {
-      "label": "护心",
-      "name": "skill"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-form-item', [_c('el-button', {
+  })], 1)], 1)], 1), _vm._v(" "), _c('el-form-item', [_c('el-button', {
     attrs: {
       "type": "primary"
     },
@@ -39339,7 +39209,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
       "prop": "school",
-      "label": "职业",
+      "label": "门派",
       "sortable": "",
       "width": ""
     }
