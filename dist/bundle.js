@@ -32232,6 +32232,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
+        var checkLevel = (rule, value, callback) => {
+            if (!value) {
+                return callback(new Error('请输入等级'));
+            }
+            setTimeout(() => {
+                var tmp = value.toString().indexOf(".");
+                if (value < 1 || value > 80 || tmp > -1) {
+                    callback(new Error('请输入1-80之间的正整数'));
+                } else {
+                    callback();
+                }
+            }, 300);
+        };
+        var checkPrice = (rule, value, callback) => {
+            if (!value) {
+                return callback(new Error('请输入价格'));
+            }
+            setTimeout(() => {
+                var tmp = value.toString().indexOf(".");
+                if (value < 80 || value > 300000 || tmp > -1) {
+                    callback(new Error('请输入80-300000之间的正整数'));
+                } else {
+                    callback();
+                }
+            }, 300);
+        };
         return {
             activeNames: ['1'],
             ruleForm: {
@@ -32265,25 +32291,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 level1: [{
                     type: 'number',
                     required: true,
-                    message: '请输入最低等级',
-                    trigger: 'change'
+                    validator: checkLevel,
+                    // message: '请输入最低等级',
+                    trigger: 'blur'
                 }],
                 level2: [{
                     type: 'number',
                     required: true,
-                    message: '请输入最高等级',
+                    validator: checkLevel,
+                    // message: '请输入最高等级',
                     trigger: 'blur'
                 }],
                 price1: [{
                     type: 'number',
                     required: true,
-                    message: '请输入最低价格',
+                    validator: checkPrice,
+                    // message: '请输入最低价格',
                     trigger: 'blur'
                 }],
                 price2: [{
                     type: 'number',
                     required: true,
-                    message: '请输入最高价格',
+                    validator: checkPrice,
+                    // message: '请输入最高价格',
                     trigger: 'blur'
                 }]
                 // price: [{
