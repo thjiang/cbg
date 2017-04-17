@@ -10,18 +10,18 @@ const request = require('request');
 const app = express();
 
 const allowCrossDomain = function (req, res, next) {
-	// const allows = [
-    //     "http://localhost:9091",
-    //     "https://thjiang.github.io",
-    //     "https://www.thjiang.com",
-    //     "http://www.thjiang.com",
-    //     "https://cbg.thjiang.com",
-    //     "http://cbg.thjiang.com"
-    // ];
-	// if (allows.indexOf(req.headers.origin) > -1) {
-	// 	res.header("Access-Control-Allow-Origin", req.headers.origin);
-	// }
-	res.header('Access-Control-Allow-Origin', '*');
+	const allows = [
+        "http://localhost:9091",
+        "https://thjiang.github.io",
+        "https://www.thjiang.com",
+        "http://www.thjiang.com",
+        "https://cbg.thjiang.com",
+        "http://cbg.thjiang.com"
+    ];
+	if (allows.indexOf(req.headers.origin) > -1) {
+		res.header("Access-Control-Allow-Origin", req.headers.origin);
+	}
+	// res.header('Access-Control-Allow-Origin', 'http://localhost:9091');
 	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
 	res.header('Access-Control-Allow-Headers', 'Content-Type');
 	res.header('Access-Control-Allow-Credentials', 'true');
