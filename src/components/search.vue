@@ -132,11 +132,12 @@
                 </div>
             </el-collapse-item>
         </el-collapse>
-        <role-list :dataList='roles'></role-list>
+        <role-list></role-list>
     </div>
 </template>
 <script>
 import roleList from './roleList.vue';
+import bus from '../eventBus.js';
 export default {
     data() {
         var checkLevel = (rule, value, callback) => {
@@ -166,7 +167,6 @@ export default {
             }, 300);
         };
         return {
-            roles: [],
             activeNames: ['1'],
             ruleForm: {
                 // delivery: false,
@@ -271,11 +271,10 @@ export default {
                     price_min: model.price1,
                     price_max: model.price2
                 }
+
                 // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
-                // this.$http.get('http://45.76.203.218:8081/roleList', {params: params}, {
-                // this.$http.get('http://182.254.222.174:8081/roleList', {params: params}, {
-                // this.$http.get('http://req.thjiang.com/roleList', {params: {id: 123456}}, {
-                this.$http.get('http://127.0.0.1:8081/roleList', {params: params}, {
+                this.$http.get('http://req.thjiang.com/roleList', {params: params}, {
+                // this.$http.get('http://127.0.0.1:8081/roleList', {params: params}, {
                     headers: {},
                     emulateJSON: true
                 }).then(function(response) {
@@ -293,7 +292,8 @@ export default {
                             }
                         }
                     }
-                    this.roles = tmpRoles;
+
+                    bus.$emit("updateList", tmpRoles);
                 }, function(response) {
                     console.log(response);
                 });

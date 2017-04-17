@@ -58,31 +58,20 @@
 </template>
 
 <script>
+import bus from '../eventBus.js';
 export default {
-    props: ['dataList'],
     data() {
         return {
-            // searchParam: this.searchData,
-            roles: this.dataList
-            // roles: [{
-            //     "avatar": "http://res.tx3.cbg.163.com/images/role/smallface/61.jpg",
-            //     "school": "天机",
-            //     "nickname": "三千多个天机",
-            //     "server": "天下无双",
-            //     "equipscore": "103582",
-            //     "score": "634524",
-            //     "lefttime": "7小时",
-            //     "price": "124000",
-            //     "yxblink": "http://bang.tx3.163.com/bang/role/39_17647",
-            //     "cbglink": "http://tx3.cbg.163.com/cgi-bin/equipquery.py?act=overall_search_show_detail&serverid=171&equip_id=75154"
-            // }]
+            roles: []
         };
     },
     mounted: function() {
-        console.log(111);
-        console.log(this.roles);
-        console.log(222);
-
+        var _this = this;
+        bus.$on("updateList",function(msg){
+            _this.roles = msg;
+        });
+    },
+    methods: {
 
     }
 }

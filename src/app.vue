@@ -36,7 +36,6 @@
         <!-- <search v-on:search="recieveSearchData"></search> -->
         <search></search>
         <!-- <role-list :searchData="searchData"></role-list> -->
-        <!-- <role-list></role-list> -->
         <!-- <data-table></data-table> -->
     </div>
 </template>
