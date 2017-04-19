@@ -38,7 +38,6 @@ let data;
 let checkedData;
 const schoolArray = ['荒火', '天机', '翎羽', '魍魉', '太虚', '云麓', '冰心', '弈剑', '鬼墨', '龙巫', '幽篁'];
 let requestUrl = 'http://tx3.cbg.163.com/cgi-bin/search.py?act=overall_search_role&order_by=&page=1&other_arg=&';
-// school=8&price_min=666600&price_max=777700&equip_level_min=78&equip_level_max=79&
 
 app.get('/', function (req, res) {
 	res.send('Hello World');
@@ -46,12 +45,6 @@ app.get('/', function (req, res) {
 
 app.get('/roleList', function (req, res) {
 	console.log(req.query);
-	// http://tx3.cbg.163.com/cgi-bin/search.py?
-	// act=overall_search_role&order_by=&page=1&other_arg=
-	// &school=6&sex=2&price_min=67800&price_max=29888800&
-	// equip_level_min=71&equip_level_max=79&xiuwei_min=2344&xiuwei_max=788999&
-	// equ_xiuwei_min=1344&equ_xiuwei_max=799889&juexing_level=12&guizong_level=34&
-	// equip_jia_hu_min=11&equip_jia_hu_max=327&equip_lian_hu_min=9&equip_lian_hu_max=319&
 
 	let page, school, sex, price_min, price_max, equip_level_min, equip_level_max,
 	xiuwei_min, xiuwei_max, equ_xiuwei_min, equ_xiuwei_max, juexing_level, guizong_level,

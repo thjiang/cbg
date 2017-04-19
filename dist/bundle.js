@@ -32346,10 +32346,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 };
 
                 // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
-                // this.$http.get('http://req.zhounan.win/roleList', {params: {params: params}}, {
-                // this.$http.get('http://182.254.222.174:8081/roleList', {params: {id:12345}}, {
-                // this.$http.get('http://45.77.27.67:8081/roleList', {params: {params: params}}, {
-                this.$http.get('http://127.0.0.1:8081/roleList', { params: params }, {
+                this.$http.get('http://req.zhounan.win/roleList', { params: { params: params } }, {
+                    // this.$http.get('http://182.254.222.174:8081/roleList', {params: {id:12345}}, {
+                    // this.$http.get('http://45.77.27.67:8081/roleList', {params: {params: params}}, {
+                    // this.$http.get('http://127.0.0.1:8081/roleList', {params: params}, {
                     headers: {},
                     emulateJSON: true
                 }).then(function (response) {
