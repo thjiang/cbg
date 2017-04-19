@@ -32241,6 +32241,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, 300);
         };
         return {
+            fullscreenLoading: false,
             activeNames: ['1'],
             ruleForm: {
                 // delivery: false,
@@ -32315,10 +32316,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         submitForm(formName) {
             this.$refs[formName].validate(valid => {
                 if (valid) {
-                    this.$message({
-                        showClose: true,
-                        message: '查询参数为：门派 ' + this.$refs[formName].model.school + '，等级 ' + this.$refs[formName].model.level1 + '-' + this.$refs[formName].model.level2 + '，价格 ' + this.$refs[formName].model.price1 + '-' + this.$refs[formName].model.price2
-                    });
+                    // this.$message({
+                    //     showClose: true,
+                    //     message: '查询参数为：门派 ' + this.$refs[formName].model.school + '，等级 ' + this.$refs[formName].model.level1 + '-' +  this.$refs[formName].model.level2 + '，价格 ' + this.$refs[formName].model.price1 + '-' + this.$refs[formName].model.price2
+                    // });
 
                     // this.$emit('search', this.$refs[formName].model);
                     this.search(this.$refs[formName].model);
@@ -32336,6 +32337,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         search(model) {
             if (model.school) {
+                var _this = this;
                 var schoolArray = ['荒火', '天机', '翎羽', '魍魉', '太虚', '云麓', '冰心', '弈剑', '鬼墨', '龙巫', '幽篁'];
                 var params = {
                     school: schoolArray.indexOf(model.school) + 1,
@@ -32352,12 +32354,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // this.$http.get('http://req.zhounan.win/roleList', {params: {params: params}}, {
                 // this.$http.get('http://182.254.222.174:8081/roleList', {params: {id:12345}}, {
                 // this.$http.get('http://45.77.27.67:8081/roleList', {params: {params: params}}, {
+
+                this.fullscreenLoading = true;
                 this.$http.get(url, {
                     params: { params: JSON.stringify(params) }
                 }, {
                     headers: {},
                     emulateJSON: true
                 }).then(function (response) {
+                    _this.fullscreenLoading = false;
+
                     var tmpRoles = response.data.result.data;
                     var nowTime = new Date().getTime();
                     for (var i = 0; i < tmpRoles.length; i++) {
@@ -32372,7 +32378,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             }
                         }
                     }
-
                     __WEBPACK_IMPORTED_MODULE_1__eventBus_js__["a" /* default */].$emit("updateList", tmpRoles);
                 }, function (response) {
                     console.log(response);
@@ -38905,7 +38910,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {}, [_c('el-collapse', {
+  return _c('div', {
+    directives: [{
+      name: "loading",
+      rawName: "v-loading.fullscreen.lock",
+      value: (_vm.fullscreenLoading),
+      expression: "fullscreenLoading",
+      modifiers: {
+        "fullscreen": true,
+        "lock": true
+      }
+    }],
+    attrs: {
+      "element-loading-text": "查询中，请稍候"
+    }
+  }, [_c('el-collapse', {
     directives: [{
       name: "model",
       rawName: "v-model",

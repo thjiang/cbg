@@ -14,7 +14,7 @@
     }
 </style>
 <template>
-    <div class="">
+    <div class="" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="查询中，请稍候">
         <el-collapse class="search-collapse" v-model="activeNames">
             <el-collapse-item title="点击可切换展开/折叠" name="1">
                 <div class="search">
@@ -167,6 +167,7 @@ export default {
             }, 300);
         };
         return {
+            fullscreenLoading: false,
             activeNames: ['1'],
             ruleForm: {
                 // delivery: false,
@@ -242,10 +243,10 @@ export default {
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    this.$message({
-                        showClose: true,
-                        message: '查询参数为：门派 ' + this.$refs[formName].model.school + '，等级 ' + this.$refs[formName].model.level1 + '-' +  this.$refs[formName].model.level2 + '，价格 ' + this.$refs[formName].model.price1 + '-' + this.$refs[formName].model.price2
-                    });
+                    // this.$message({
+                    //     showClose: true,
+                    //     message: '查询参数为：门派 ' + this.$refs[formName].model.school + '，等级 ' + this.$refs[formName].model.level1 + '-' +  this.$refs[formName].model.level2 + '，价格 ' + this.$refs[formName].model.price1 + '-' + this.$refs[formName].model.price2
+                    // });
 
                     // this.$emit('search', this.$refs[formName].model);
                     this.search(this.$refs[formName].model);
@@ -263,6 +264,7 @@ export default {
         },
         search(model) {
             if (model.school) {
+                var _this = this;
                 var schoolArray = ['荒火', '天机', '翎羽', '魍魉', '太虚', '云麓', '冰心', '弈剑', '鬼墨', '龙巫', '幽篁'];
                 var params = {
                     school: schoolArray.indexOf(model.school) + 1,
@@ -279,12 +281,16 @@ export default {
                 // this.$http.get('http://req.zhounan.win/roleList', {params: {params: params}}, {
                 // this.$http.get('http://182.254.222.174:8081/roleList', {params: {id:12345}}, {
                 // this.$http.get('http://45.77.27.67:8081/roleList', {params: {params: params}}, {
+
+                this.fullscreenLoading = true;
                 this.$http.get(url, {
                     params: {params: JSON.stringify(params)}
                 }, {
                     headers:{},
                     emulateJSON: true
                 }).then(function(response) {
+                    _this.fullscreenLoading = false;
+
                     var tmpRoles = response.data.result.data;
                     var nowTime = new Date().getTime();
                     for (var i = 0; i < tmpRoles.length; i++) {
@@ -299,7 +305,6 @@ export default {
                             }
                         }
                     }
-
                     bus.$emit("updateList", tmpRoles);
                 }, function(response) {
                     console.log(response);
