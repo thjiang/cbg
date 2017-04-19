@@ -44,29 +44,30 @@ app.get('/', function (req, res) {
 });
 
 app.get('/roleList', function (req, res) {
-	console.log(req.query);
+	console.log(req.query.params);
 
+	const query = JSON.parse(req.query.params);
 	let page, school, sex, price_min, price_max, equip_level_min, equip_level_max,
 	xiuwei_min, xiuwei_max, equ_xiuwei_min, equ_xiuwei_max, juexing_level, guizong_level,
 	equip_jia_hu_min, equip_jia_hu_max, equip_lian_hu_min, equip_lian_hu_max;
 
-	req.query.page ? page = req.query.page : page = 1;
-	req.query.school ? school = req.query.school : school = 1;
-	req.query.sex ? sex = req.query.sex : sex = "";
-	req.query.price_min ? price_min = req.query.price_min : price_min = "";
-	req.query.price_max ? price_max = req.query.price_max : price_max = "";
-	req.query.equip_level_min ? equip_level_min = req.query.equip_level_min : equip_level_min = "";
-	req.query.equip_level_max ? equip_level_max = req.query.equip_level_max : equip_level_max = "";
-	req.query.xiuwei_min ? xiuwei_min = req.query.xiuwei_min : xiuwei_min = "";
-	req.query.xiuwei_max ? xiuwei_max = req.query.xiuwei_max : xiuwei_max = "";
-	req.query.equ_xiuwei_min ? equ_xiuwei_min = req.query.equ_xiuwei_min : equ_xiuwei_min = "";
-	req.query.equ_xiuwei_max ? equ_xiuwei_max = req.query.equ_xiuwei_max : equ_xiuwei_max = "";
-	req.query.juexing_level ? juexing_level = req.query.juexing_level : juexing_level = "";
-	req.query.guizong_level ? guizong_level = req.query.guizong_level : guizong_level = "";
-	req.query.equip_jia_hu_min ? equip_jia_hu_min = req.query.equip_jia_hu_min : equip_jia_hu_min = "";
-	req.query.equip_jia_hu_max ? equip_jia_hu_max = req.query.equip_jia_hu_max : equip_jia_hu_max = "";
-	req.query.equip_lian_hu_min ? equip_lian_hu_min = req.query.equip_lian_hu_min : equip_lian_hu_min = "";
-	req.query.equip_lian_hu_max ? equip_lian_hu_max = req.query.equip_lian_hu_max : equip_lian_hu_max = "";
+	query.page ? page = query.page : page = "";
+	query.school ? school = query.school : school = 1;
+	query.sex ? sex = query.sex : sex = "";
+	query.price_min ? price_min = query.price_min : price_min = "";
+	query.price_max ? price_max = query.price_max : price_max = "";
+	query.equip_level_min ? equip_level_min = query.equip_level_min : equip_level_min = "";
+	query.equip_level_max ? equip_level_max = query.equip_level_max : equip_level_max = "";
+	query.xiuwei_min ? xiuwei_min = query.xiuwei_min : xiuwei_min = "";
+	query.xiuwei_max ? xiuwei_max = query.xiuwei_max : xiuwei_max = "";
+	query.equ_xiuwei_min ? equ_xiuwei_min = query.equ_xiuwei_min : equ_xiuwei_min = "";
+	query.equ_xiuwei_max ? equ_xiuwei_max = query.equ_xiuwei_max : equ_xiuwei_max = "";
+	query.juexing_level ? juexing_level = query.juexing_level : juexing_level = "";
+	query.guizong_level ? guizong_level = query.guizong_level : guizong_level = "";
+	query.equip_jia_hu_min ? equip_jia_hu_min = query.equip_jia_hu_min : equip_jia_hu_min = "";
+	query.equip_jia_hu_max ? equip_jia_hu_max = query.equip_jia_hu_max : equip_jia_hu_max = "";
+	query.equip_lian_hu_min ? equip_lian_hu_min = query.equip_lian_hu_min : equip_lian_hu_min = "";
+	query.equip_lian_hu_max ? equip_lian_hu_max = query.equip_lian_hu_max : equip_lian_hu_max = "";
 
 	requestUrl = 'http://tx3.cbg.163.com/cgi-bin/search.py?act=overall_search_role&order_by=&page=1&other_arg=&school='
 	+ school + '&sex=' + sex + '&price_min=' + price_min + '&price_max='
