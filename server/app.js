@@ -45,14 +45,43 @@ app.get('/', function (req, res) {
 });
 
 app.get('/roleList', function (req, res) {
-	console.log(req.query.id);
+	console.log(req.query);
+	// http://tx3.cbg.163.com/cgi-bin/search.py?
 	// act=overall_search_role&order_by=&page=1&other_arg=
 	// &school=6&sex=2&price_min=67800&price_max=29888800&
 	// equip_level_min=71&equip_level_max=79&xiuwei_min=2344&xiuwei_max=788999&
 	// equ_xiuwei_min=1344&equ_xiuwei_max=799889&juexing_level=12&guizong_level=34&
 	// equip_jia_hu_min=11&equip_jia_hu_max=327&equip_lian_hu_min=9&equip_lian_hu_max=319&
 
-	requestUrl = 1;
+	let page, school, sex, price_min, price_max, equip_level_min, equip_level_max,
+	xiuwei_min, xiuwei_max, equ_xiuwei_min, equ_xiuwei_max, juexing_level, guizong_level,
+	equip_jia_hu_min, equip_jia_hu_max, equip_lian_hu_min, equip_lian_hu_max;
+
+	req.query.page ? page = req.query.page : page = 1;
+	req.query.school ? school = req.query.school : school = 1;
+	req.query.sex ? sex = req.query.sex : sex = "";
+	req.query.price_min ? price_min = req.query.price_min : price_min = "";
+	req.query.price_max ? price_max = req.query.price_max : price_max = "";
+	req.query.equip_level_min ? equip_level_min = req.query.equip_level_min : equip_level_min = "";
+	req.query.equip_level_max ? equip_level_max = req.query.equip_level_max : equip_level_max = "";
+	req.query.xiuwei_min ? xiuwei_min = req.query.xiuwei_min : xiuwei_min = "";
+	req.query.xiuwei_max ? xiuwei_max = req.query.xiuwei_max : xiuwei_max = "";
+	req.query.equ_xiuwei_min ? equ_xiuwei_min = req.query.equ_xiuwei_min : equ_xiuwei_min = "";
+	req.query.equ_xiuwei_max ? equ_xiuwei_max = req.query.equ_xiuwei_max : equ_xiuwei_max = "";
+	req.query.juexing_level ? juexing_level = req.query.juexing_level : juexing_level = "";
+	req.query.guizong_level ? guizong_level = req.query.guizong_level : guizong_level = "";
+	req.query.equip_jia_hu_min ? equip_jia_hu_min = req.query.equip_jia_hu_min : equip_jia_hu_min = "";
+	req.query.equip_jia_hu_max ? equip_jia_hu_max = req.query.equip_jia_hu_max : equip_jia_hu_max = "";
+	req.query.equip_lian_hu_min ? equip_lian_hu_min = req.query.equip_lian_hu_min : equip_lian_hu_min = "";
+	req.query.equip_lian_hu_max ? equip_lian_hu_max = req.query.equip_lian_hu_max : equip_lian_hu_max = "";
+
+	requestUrl = 'http://tx3.cbg.163.com/cgi-bin/search.py?act=overall_search_role&order_by=&page=1&other_arg=&school='
+	+ school + '&sex=' + sex + '&price_min=' + price_min + '&price_max='
+	+ price_max + '&equip_level_min=' + equip_level_min + '&equip_level_max=' + equip_level_max + '&xiuwei_min='
+	+ xiuwei_min + '&xiuwei_max=' + xiuwei_max + '&equ_xiuwei_min=' + equ_xiuwei_min + '&equ_xiuwei_max='
+	+ equ_xiuwei_max + '&juexing_level=' + juexing_level + '&guizong_level=' + guizong_level;
+
+	console.log(requestUrl);
 	request(requestUrl, function (error, response, body) {
 		if (!error && response.statusCode === 200) {
 			const cbgData = JSON.parse(body);

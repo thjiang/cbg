@@ -18,6 +18,8 @@
         "quote-props": 0,
         "quotes": 0,
         "prefer-template": 0,
-        "no-plusplus": [2, {"allowForLoopAfterthoughts": true}]
+        "no-plusplus": [2, {"allowForLoopAfterthoughts": true}],
+        "camelcase": 0,
+        "no-unused-expressions": 0
     }
 }
