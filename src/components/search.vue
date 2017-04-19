@@ -14,7 +14,7 @@
     }
 </style>
 <template>
-    <div class="" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="查询中，请稍候">
+    <div class="" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="查询需要较长时间，请稍候">
         <el-collapse class="search-collapse" v-model="activeNames">
             <el-collapse-item title="点击可切换展开/折叠" name="1">
                 <div class="search">
@@ -276,6 +276,9 @@ export default {
                 var url = "http://127.0.0.1:8081/roleList";
                 if (window.location.href.indexOf("zhounan") > -1) {
                     url = "http://req.zhounan.win/roleList";
+                }
+                if (window.location.href.indexOf("thjiang") > -1) {
+                    url = "http://req.thjiang.com/roleList";
                 }
                 // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
                 // this.$http.get('http://req.zhounan.win/roleList', {params: {params: params}}, {

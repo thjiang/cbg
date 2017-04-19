@@ -32350,6 +32350,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (window.location.href.indexOf("zhounan") > -1) {
                     url = "http://req.zhounan.win/roleList";
                 }
+                if (window.location.href.indexOf("thjiang") > -1) {
+                    url = "http://req.thjiang.com/roleList";
+                }
                 // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
                 // this.$http.get('http://req.zhounan.win/roleList', {params: {params: params}}, {
                 // this.$http.get('http://182.254.222.174:8081/roleList', {params: {id:12345}}, {
@@ -38922,7 +38925,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }],
     attrs: {
-      "element-loading-text": "查询中，请稍候"
+      "element-loading-text": "查询需要较长时间，请稍候"
     }
   }, [_c('el-collapse', {
     directives: [{
