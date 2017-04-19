@@ -271,12 +271,15 @@ export default {
                     price_min: model.price1 * 100,
                     price_max: model.price2 * 100
                 }
-
+                var url = "http://127.0.0.1:8081/roleList";
+                if (window.location.href.indexOf("zhounan") > -1) {
+                    url = "http://req.zhounan.win/roleList";
+                }
                 // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
                 // this.$http.get('http://req.zhounan.win/roleList', {params: {params: params}}, {
                 // this.$http.get('http://182.254.222.174:8081/roleList', {params: {id:12345}}, {
                 // this.$http.get('http://45.77.27.67:8081/roleList', {params: {params: params}}, {
-                this.$http.get('http://127.0.0.1:8081/roleList', {
+                this.$http.get(url, {
                     params: {params: JSON.stringify(params)}
                 }, {
                     headers:{},
