@@ -549,13 +549,13 @@ export default {
                 level1: [{
                     type: 'number',
                     required: false,
-                    validator: checkLevel,
+                    // validator: checkLevel,
                     trigger: 'blur'
                 }],
                 level2: [{
                     type: 'number',
                     required: false,
-                    validator: checkLevel,
+                    // validator: checkLevel,
                     trigger: 'blur'
                 }],
                 price1: [{
@@ -573,25 +573,25 @@ export default {
                 equip_level_min: [{
                     type: 'number',
                     required: false,
-                    validator: checkEquipLevel,
+                    // validator: checkEquipLevel,
                     trigger: 'blur'
                 }],
                 equip_level_max: [{
                     type: 'number',
                     required: false,
-                    validator: checkEquipLevel,
+                    // validator: checkEquipLevel,
                     trigger: 'blur'
                 }],
                 xiuwei_min: [{
                     type: 'number',
                     required: false,
-                    validator: checkXiuwei,
+                    // validator: checkXiuwei,
                     trigger: 'blur'
                 }],
                 xiuwei_max: [{
                     type: 'number',
                     required: false,
-                    validator: checkXiuwei,
+                    // validator: checkXiuwei,
                     trigger: 'blur'
                 }]
                 // price: [{

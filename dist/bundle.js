@@ -32435,13 +32435,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 level1: [{
                     type: 'number',
                     required: false,
-                    validator: checkLevel,
+                    // validator: checkLevel,
                     trigger: 'blur'
                 }],
                 level2: [{
                     type: 'number',
                     required: false,
-                    validator: checkLevel,
+                    // validator: checkLevel,
                     trigger: 'blur'
                 }],
                 price1: [{
@@ -32459,25 +32459,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 equip_level_min: [{
                     type: 'number',
                     required: false,
-                    validator: checkEquipLevel,
+                    // validator: checkEquipLevel,
                     trigger: 'blur'
                 }],
                 equip_level_max: [{
                     type: 'number',
                     required: false,
-                    validator: checkEquipLevel,
+                    // validator: checkEquipLevel,
                     trigger: 'blur'
                 }],
                 xiuwei_min: [{
                     type: 'number',
                     required: false,
-                    validator: checkXiuwei,
+                    // validator: checkXiuwei,
                     trigger: 'blur'
                 }],
                 xiuwei_max: [{
                     type: 'number',
                     required: false,
-                    validator: checkXiuwei,
+                    // validator: checkXiuwei,
                     trigger: 'blur'
                 }]
                 // price: [{
