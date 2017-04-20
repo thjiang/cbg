@@ -9,7 +9,7 @@
         "skill_baoshi": 0, // 宝石采掘 等级
         "server_name": "\u5929\u4e0b\u65e0\u53cc", // 服务器名字 需要unicode转码
         "equ_xiuwei": 87677, // 装评
-        "thump_add_p": 0,
+        "thump_add_p": 0, // 万钧
         "special_clothes": [21323, 21324, 21399, 21400, 121661, 121662, 210000, 210001],
         "kindid": 37,
         "remain_expire_time": "5\u592921\u5c0f\u65f641\u5206\u949f", // 剩余时间
@@ -70,7 +70,7 @@
         "equip_suit": "{\"suit_97\":8}", // 套装
         "juexing_mingchanliandao": 1103, // 溟禅炼道
         "xiuwei": 50648, // 修为
-        "cri_sub_p": 0, // 御心 ？？？ 待定
+        "cri_sub_p": 0, // 御心
         "tian_hun_level": 0, // 天魂等级
         "attadd": 235, 	// 附伤
         "inprotect": 189, // 神明
@@ -113,7 +113,7 @@
         "paixi_skill_2": 79,
         "castspeed": 22, // 疾语
         "guizong_zongshi_value": 4,
-        "thump_sub_p": 0,
+        "thump_sub_p": 0, // 铁壁
         "equip_gui_zhong": 1704, // 装备贵重
         "hbs_count": 3,
         "attackspeed": 30, // 骤雨
@@ -121,8 +121,8 @@
         "movespeed": 439, // 追电
         "skill_grass": 0,
         "equip_level": 79,
-        "absolutely_defence": 0,
-        "defhuman": 0,
+        "absolutely_defence": 0, // 磐石
+        "defhuman": 0, // 知彼
         "juexing_fengjinzhili": 8,
         "skill_wood": 0,
         "equip_lian_hu": 195, // 炼护

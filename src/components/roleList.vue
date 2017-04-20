@@ -36,13 +36,13 @@
 
 <template>
     <el-table class="roleList" :data="roles" style="width: 100%" :default-sort = "{prop: 'year', order: 'descending'}">
-        <el-table-column label="头像" sortable width="100">
+        <el-table-column label="头像" width="100">
             <template scope="scope">
                 <img :src="scope.row.avatar" alt="" height="40">
             </template>
         </el-table-column>
-        <el-table-column prop="school" label="门派" sortable width=""></el-table-column>
-        <el-table-column prop="nickname" label="昵称" sortable width="120"></el-table-column>
+        <el-table-column prop="school" label="门派" width=""></el-table-column>
+        <el-table-column prop="nickname" label="昵称" width=""></el-table-column>
         <el-table-column prop="server" label="服务器" sortable width="100"></el-table-column>
         <el-table-column prop="equipscore" label="装评" sortable width=""></el-table-column>
         <el-table-column prop="score" label="修为" sortable width=""></el-table-column>

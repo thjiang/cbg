@@ -14,7 +14,7 @@
     }
 </style>
 <template>
-    <div class="" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="查询需要较长时间，请稍候">
+    <div class="" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="查询可能需要较长时间，请稍候">
         <el-collapse class="search-collapse" v-model="activeNames">
             <el-collapse-item title="点击可切换展开/折叠" name="1">
                 <div class="search">
@@ -65,6 +65,287 @@
                             </el-form-item>
                         </el-col>
                     </el-form-item>
+                    <el-form-item label="装备评价：">
+                        <el-col :span="5">
+                            <el-form-item prop="equip_level_min">
+                                <el-input type="number" placeholder="请输入最低装评" v-model="ruleForm.equip_level_min" min="0" max="150000"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col class="line" :span="1">-</el-col>
+                        <el-col :span="5">
+                            <el-form-item prop="equip_level_max">
+                                <el-input type="number" placeholder="请输入最高装评" v-model="ruleForm.equip_level_max" min="0" max="150000"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="人物修为：">
+                        <el-col :span="5">
+                            <el-form-item prop="xiuwei_min">
+                                <el-input type="number" placeholder="请输入最低修为" v-model="ruleForm.xiuwei_min" min="0" max="80000"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col class="line" :span="1">-</el-col>
+                        <el-col :span="5">
+                            <el-form-item prop="xiuwei_max">
+                                <el-input type="number" placeholder="请输入最高修为" v-model="ruleForm.xiuwei_max" min="0" max="80000"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="装备加护：">
+                        <el-col :span="5">
+                            <el-form-item prop="equip_jia_hu_min">
+                                <el-input type="number" placeholder="请输入最低加护" v-model="ruleForm.equip_jia_hu_min" min="0" max="324"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col class="line" :span="1">-</el-col>
+                        <el-col :span="5">
+                            <el-form-item prop="equip_jia_hu_max">
+                                <el-input type="number" placeholder="请输入最高加护" v-model="ruleForm.equip_jia_hu_max" min="0" max="324"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="装备炼护：">
+                        <el-col :span="5">
+                            <el-form-item prop="equip_lian_hu_min">
+                                <el-input type="number" placeholder="请输入最低炼护" v-model="ruleForm.equip_lian_hu_min" min="0" max="80000"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col class="line" :span="1">-</el-col>
+                        <el-col :span="5">
+                            <el-form-item prop="equip_lian_hu_max">
+                                <el-input type="number" placeholder="请输入最高炼护" v-model="ruleForm.equip_lian_hu_max" min="0" max="80000"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="基础属性：">
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.mhp" type="number">
+                                <template slot="prepend">生命≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.attr_basic_li" type="number">
+                                <template slot="prepend">力≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.attr_basic_ti" type="number">
+                                <template slot="prepend">体≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.attr_basic_min" type="number">
+                                <template slot="prepend">敏≥ </template>
+                            </el-input>
+                        </el-col>
+                        <br>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.msp" type="number">
+                                <template slot="prepend">技力≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.attr_basic_ji" type="number">
+                                <template slot="prepend">疾≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.attr_basic_hun" type="number">
+                                <template slot="prepend">魂≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.attr_basic_nian" type="number">
+                                <template slot="prepend">念≥ </template>
+                            </el-input>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="攻击属性：">
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.critical" type="number">
+                                <template slot="prepend">会心≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.attadd" type="number">
+                                <template slot="prepend">附伤≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.pattack_min" type="number">
+                                <template slot="prepend">最小物攻≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.pattack_max" type="number">
+                                <template slot="prepend">最大物攻≥ </template>
+                            </el-input>
+                        </el-col>
+                        <br>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.hit" type="number">
+                                <template slot="prepend">命中≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.modadd" type="number">
+                                <template slot="prepend">重击≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.mattack_min" type="number">
+                                <template slot="prepend">最小法攻≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.mattack_max" type="number">
+                                <template slot="prepend">最大法攻≥ </template>
+                            </el-input>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="防御属性：">
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.pdef" type="number">
+                                <template slot="prepend">防御≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.avoid" type="number">
+                                <template slot="prepend">回避≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.mdef" type="number">
+                                <template slot="prepend">法防≥ </template>
+                            </el-input>
+                        </el-col>
+                        <br>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.inprotect" type="number">
+                                <template slot="prepend">神明≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.attdef" type="number">
+                                <template slot="prepend">化解≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.defhuman" type="number">
+                                <template slot="prepend">知彼≥ </template>
+                            </el-input>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="高级属性：">
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.movespeed" type="number">
+                                <template slot="prepend">追电≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.attackspeed" type="number">
+                                <template slot="prepend">骤雨≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.castspeed" type="number">
+                                <template slot="prepend">疾语≥ </template>
+                            </el-input>
+                        </el-col>
+                        <br>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.spreduce" type="number">
+                                <template slot="prepend">明思≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.inbreak" type="number">
+                                <template slot="prepend">扰心≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.attackhuman" type="number">
+                                <template slot="prepend">人祸≥ </template>
+                            </el-input>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="抗性属性：">
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.sract" type="number">
+                                <template slot="prepend">身法≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.srbody" type="number">
+                                <template slot="prepend">坚韧≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.srmind" type="number">
+                                <template slot="prepend">定力≥ </template>
+                            </el-input>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="特殊属性：">
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.cri_add_p" type="number">
+                                <template slot="prepend">诛心≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.thump_add_p" type="number">
+                                <template slot="prepend">万钧≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.absolutely_attack" type="number">
+                                <template slot="prepend">破阵≥ </template>
+                            </el-input>
+                        </el-col>
+                        <br>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.cri_sub_p" type="number">
+                                <template slot="prepend">御心≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.thump_sub_p" type="number">
+                                <template slot="prepend">铁壁≥ </template>
+                            </el-input>
+                        </el-col>
+                        <el-col class="line" :span="1">&nbsp;</el-col>
+                        <el-col :span="4">
+                            <el-input v-model="ruleForm.absolutely_defence" type="number">
+                                <template slot="prepend">磐石≥ </template>
+                            </el-input>
+                        </el-col>
+                    </el-form-item>
+
                     <!-- <el-form-item label="选择价格：" prop="price">
                         <el-checkbox-group v-model="ruleForm.price">
                             <el-checkbox label="00080-00300" name="price"></el-checkbox>
@@ -141,17 +422,16 @@ import bus from '../eventBus.js';
 export default {
     data() {
         var checkLevel = (rule, value, callback) => {
-            if (!value) {
-                return callback(new Error('请输入等级'));
+            if (value) {
+                setTimeout(() => {
+                    var tmp = (value.toString()).indexOf(".");
+                    if (value < 1 || value > 80 || tmp > -1) {
+                        callback(new Error('请输入1-80之间的正整数'));
+                    } else {
+                        callback();
+                    }
+                }, 200);
             }
-            setTimeout(() => {
-                var tmp = (value.toString()).indexOf(".");
-                if (value < 1 || value > 80 || tmp > -1) {
-                    callback(new Error('请输入1-80之间的正整数'));
-                } else {
-                    callback();
-                }
-            }, 300);
         };
         var checkPrice = (rule, value, callback) => {
             if (!value) {
@@ -164,7 +444,31 @@ export default {
                 } else {
                     callback();
                 }
-            }, 300);
+            }, 200);
+        };
+        var checkEquipLevel = (rule, value, callback) => {
+            if (value) {
+                setTimeout(() => {
+                    var tmp = (value.toString()).indexOf(".");
+                    if (value < 0 || value > 150000 || tmp > -1) {
+                        callback(new Error('请输入0-150000之间的正整数'));
+                    } else {
+                        callback();
+                    }
+                }, 200);
+            }
+        };
+        var checkXiuwei = (rule, value, callback) => {
+            if (value) {
+                setTimeout(() => {
+                    var tmp = (value.toString()).indexOf(".");
+                    if (value < 0 || value > 80000 || tmp > -1) {
+                        callback(new Error('请输入0-80000之间的正整数'));
+                    } else {
+                        callback();
+                    }
+                }, 200);
+            }
         };
         return {
             fullscreenLoading: false,
@@ -178,7 +482,52 @@ export default {
                 price2: '',
                 level1: '',
                 level2: '',
-                // resource: ''
+                equip_level_min: '',
+                equip_level_max: '',
+                xiuwei_min: '',
+                xiuwei_max: '',
+                equip_jia_hu_min: '',
+                equip_jia_hu_max: '',
+                equip_lian_hu_min: '',
+                equip_lian_hu_max: '',
+                mhp: "",
+                attr_basic_li: "",
+                attr_basic_ti: "",
+                attr_basic_min: "",
+                msp: "",
+                attr_basic_ji: "",
+                attr_basic_hun: "",
+                attr_basic_nian: "",
+                critical: "",
+                attadd: "",
+                pattack_min: "",
+                pattack_max: "",
+                hit: "",
+                modadd: "",
+                mattack_min: "",
+                mattack_max: "",
+                pdef: "",
+                avoid: "",
+                mdef: "",
+                inprotect: "",
+                attdef: "",
+                defhuman: "",
+                movespeed: "",
+                attackspeed: "",
+                castspeed: "",
+                spreduce: "",
+                inbreak: "",
+                attackhuman: "",
+                sract: "",
+                srbody: "",
+                srmind: "",
+                cri_add_p: "",
+                thump_add_p: "",
+                absolutely_attack: "",
+                cri_sub_p: "",
+                thump_sub_p: "",
+                absolutely_defence: "",
+                // resource: ''juexing_level, guizong_level
             },
             rules: {
                 school: [{
@@ -199,30 +548,50 @@ export default {
                 // }],
                 level1: [{
                     type: 'number',
-                    required: true,
+                    required: false,
                     validator: checkLevel,
-                    // message: '请输入最低等级',
                     trigger: 'blur'
                 }],
                 level2: [{
                     type: 'number',
-                    required: true,
+                    required: false,
                     validator: checkLevel,
-                    // message: '请输入最高等级',
                     trigger: 'blur'
                 }],
                 price1: [{
                     type: 'number',
                     required: true,
                     validator: checkPrice,
-                    // message: '请输入最低价格',
                     trigger: 'blur'
                 }],
                 price2: [{
                     type: 'number',
                     required: true,
                     validator: checkPrice,
-                    // message: '请输入最高价格',
+                    trigger: 'blur'
+                }],
+                equip_level_min: [{
+                    type: 'number',
+                    required: false,
+                    validator: checkEquipLevel,
+                    trigger: 'blur'
+                }],
+                equip_level_max: [{
+                    type: 'number',
+                    required: false,
+                    validator: checkEquipLevel,
+                    trigger: 'blur'
+                }],
+                xiuwei_min: [{
+                    type: 'number',
+                    required: false,
+                    validator: checkXiuwei,
+                    trigger: 'blur'
+                }],
+                xiuwei_max: [{
+                    type: 'number',
+                    required: false,
+                    validator: checkXiuwei,
                     trigger: 'blur'
                 }]
                 // price: [{
@@ -271,7 +640,52 @@ export default {
                     equip_level_min: model.level1,
                     equip_level_max: model.level2,
                     price_min: model.price1 * 100,
-                    price_max: model.price2 * 100
+                    price_max: model.price2 * 100,
+                    equip_level_min: model.equip_level_min,
+                    equip_level_max: model.equip_level_max,
+                    xiuwei_min: model.xiuwei_min,
+                    xiuwei_max: model.xiuwei_max,
+                    equip_jia_hu_min: model.equip_jia_hu_min,
+                    equip_jia_hu_max: model.equip_jia_hu_max,
+                    equip_lian_hu_min: model.equip_lian_hu_min,
+                    equip_lian_hu_max: model.equip_lian_hu_max,
+                    mhp: model.mhp,
+                    attr_basic_li: model.attr_basic_li,
+                    attr_basic_ti: model.attr_basic_ti,
+                    attr_basic_min: model.attr_basic_min,
+                    msp: model.msp,
+                    attr_basic_ji: model.attr_basic_ji,
+                    attr_basic_hun: model.attr_basic_hun,
+                    attr_basic_nian: model.attr_basic_nian,
+                    critical: model.critical,
+                    attadd: model.attadd,
+                    pattack_min: model.pattack_min,
+                    pattack_max: model.pattack_max,
+                    hit: model.hit,
+                    modadd: model.modadd,
+                    mattack_min: model.mattack_min,
+                    mattack_max: model.mattack_max,
+                    pdef: model.pdef,
+                    avoid: model.avoid,
+                    mdef: model.mdef,
+                    inprotect: model.inprotect,
+                    attdef: model.attdef,
+                    defhuman: model.defhuman,
+                    movespeed: model.movespeed,
+                    attackspeed: model.attackspeed,
+                    castspeed: model.castspeed,
+                    spreduce: model.spreduce,
+                    inbreak: model.inbreak,
+                    attackhuman: model.attackhuman,
+                    sract: model.sract,
+                    srbody: model.srbody,
+                    srmind: model.srmind,
+                    cri_add_p: model.cri_add_p,
+                    thump_add_p: model.thump_add_p,
+                    absolutely_attack: model.absolutely_attack,
+                    cri_sub_p: model.cri_sub_p,
+                    thump_sub_p: model.thump_sub_p,
+                    absolutely_defence: model.absolutely_defence
                 }
                 var url = "http://127.0.0.1:8081/roleList";
                 if (window.location.href.indexOf("zhounan") > -1) {
@@ -280,6 +694,7 @@ export default {
                 if (window.location.href.indexOf("thjiang") > -1) {
                     url = "http://req.thjiang.com/roleList";
                 }
+
                 // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
                 // this.$http.get('http://req.zhounan.win/roleList', {params: {params: params}}, {
                 // this.$http.get('http://182.254.222.174:8081/roleList', {params: {id:12345}}, {
@@ -294,23 +709,34 @@ export default {
                 }).then(function(response) {
                     _this.fullscreenLoading = false;
 
-                    var tmpRoles = response.data.result.data;
-                    var nowTime = new Date().getTime();
-                    for (var i = 0; i < tmpRoles.length; i++) {
-                        if (tmpRoles[i].deadline) {
-                            // 1天=24*60*60*1000=86400000ms,1小时=60*60*1000=3600000ms
-                            if (tmpRoles[i].deadline - nowTime > 86400000) {
-                                tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 86400000) + "天" + Math.floor((tmpRoles[i].deadline - nowTime) % 86400000 / 3600000) + "小时";
-                            } else if (tmpRoles[i].deadline - nowTime > 3600000) {
-                                tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 3600000) + "小时";
-                            } else {
-                                tmpRoles[i].lefttime = "不足1小时";
+                    if (response.data.result && response.data.result.data && response.data.result.data.length === 0) {
+                        this.$message({
+                            showClose: true,
+                            message: '没有找到符合条件的角色'
+                        });
+                    } else {
+                        var tmpRoles = response.data.result.data;
+                        var nowTime = new Date().getTime();
+                        for (var i = 0; i < tmpRoles.length; i++) {
+                            if (tmpRoles[i].deadline) {
+                                // 1天=24*60*60*1000=86400000ms,1小时=60*60*1000=3600000ms
+                                if (tmpRoles[i].deadline - nowTime > 86400000) {
+                                    tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 86400000) + "天" + Math.floor((tmpRoles[i].deadline - nowTime) % 86400000 / 3600000) + "小时";
+                                } else if (tmpRoles[i].deadline - nowTime > 3600000) {
+                                    tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 3600000) + "小时";
+                                } else {
+                                    tmpRoles[i].lefttime = "不足1小时";
+                                }
                             }
                         }
+                        bus.$emit("updateList", tmpRoles);
                     }
-                    bus.$emit("updateList", tmpRoles);
                 }, function(response) {
                     console.log(response);
+                    this.$message({
+                        showClose: true,
+                        message: response
+                    });
                 });
             }
         }
