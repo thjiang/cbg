@@ -242,8 +242,8 @@
                         <el-collapse-item title="高级查询条件：（点击可切换展开/折叠）" name="1">
                             <el-form-item label="装备评价：">
                                 <el-col :span="5">
-                                    <el-form-item prop="equip_level_min">
-                                        <el-input size="small" type="number" placeholder="请输入最低装评" v-model="ruleForm.equip_level_min" min="0" max="150000"></el-input>
+                                    <el-form-item prop="equip_xiuwei_min">
+                                        <el-input size="small" type="number" placeholder="请输入最低装评" v-model="ruleForm.equip_xiuwei_min" min="0" max="150000"></el-input>
                                     </el-form-item>
                                 </el-col>
                                 <el-col class="line" :span="1">-</el-col>
@@ -444,8 +444,8 @@ export default {
                 price2: '',
                 level1: '',
                 level2: '',
-                equip_level_min: '',
-                equip_level_max: '',
+                equip_xiuwei_min: '',
+                equip_xiuwei_max: '',
                 xiuwei_min: '',
                 xiuwei_max: '',
                 equip_jia_hu_min: '',
@@ -546,8 +546,8 @@ export default {
                     equip_level_max: model.level2,
                     price_min: model.price1 * 100,
                     price_max: model.price2 * 100,
-                    equip_level_min: model.equip_level_min,
-                    equip_level_max: model.equip_level_max,
+                    equip_xiuwei_min: model.equip_xiuwei_min,
+                    equip_xiuwei_max: model.equip_xiuwei_max,
                     xiuwei_min: model.xiuwei_min,
                     xiuwei_max: model.xiuwei_max,
                     equip_jia_hu_min: model.equip_jia_hu_min,

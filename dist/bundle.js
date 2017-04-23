@@ -32584,8 +32584,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 price2: '',
                 level1: '',
                 level2: '',
-                equip_level_min: '',
-                equip_level_max: '',
+                equip_xiuwei_min: '',
+                equip_xiuwei_max: '',
                 xiuwei_min: '',
                 xiuwei_max: '',
                 equip_jia_hu_min: '',
@@ -32685,8 +32685,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     equip_level_max: model.level2,
                     price_min: model.price1 * 100,
                     price_max: model.price2 * 100,
-                    equip_level_min: model.equip_level_min,
-                    equip_level_max: model.equip_level_max,
+                    equip_xiuwei_min: model.equip_xiuwei_min,
+                    equip_xiuwei_max: model.equip_xiuwei_max,
                     xiuwei_min: model.xiuwei_min,
                     xiuwei_max: model.xiuwei_max,
                     equip_jia_hu_min: model.equip_jia_hu_min,
@@ -40258,7 +40258,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('el-form-item', {
     attrs: {
-      "prop": "equip_level_min"
+      "prop": "equip_xiuwei_min"
     }
   }, [_c('el-input', {
     attrs: {
@@ -40269,11 +40269,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "max": "150000"
     },
     model: {
-      value: (_vm.ruleForm.equip_level_min),
+      value: (_vm.ruleForm.equip_xiuwei_min),
       callback: function($$v) {
-        _vm.ruleForm.equip_level_min = $$v
+        _vm.ruleForm.equip_xiuwei_min = $$v
       },
-      expression: "ruleForm.equip_level_min"
+      expression: "ruleForm.equip_xiuwei_min"
     }
   })], 1)], 1), _vm._v(" "), _c('el-col', {
     staticClass: "line",
