@@ -16,7 +16,7 @@
 <template>
     <div class="" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="查询可能需要较长时间，请稍候">
         <el-collapse class="search-collapse" v-model="activeNames">
-            <el-collapse-item title="点击可切换展开/折叠" name="1">
+            <el-collapse-item title="查询条件：（点击可切换展开/折叠）" name="1">
                 <div class="search">
                 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
                     <!-- <el-form-item label="即时配送" prop="delivery">
@@ -41,13 +41,13 @@
                     <el-form-item label="输入等级：">
                         <el-col :span="5">
                             <el-form-item prop="level1">
-                                <el-input type="number" placeholder="请输入最低等级" v-model="ruleForm.level1" min="1" max="80"></el-input>
+                                <el-input size="small" type="number" placeholder="请输入最低等级" v-model="ruleForm.level1" min="1" max="80"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col class="line" :span="1">-</el-col>
                         <el-col :span="5">
                             <el-form-item prop="level2">
-                                <el-input type="number" placeholder="请输入最高等级" v-model="ruleForm.level2" min="1" max="80"></el-input>
+                                <el-input size="small" type="number" placeholder="请输入最高等级" v-model="ruleForm.level2" min="1" max="80"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-form-item>
@@ -55,315 +55,301 @@
                     <el-form-item label="输入价格：">
                         <el-col :span="5">
                             <el-form-item prop="price1">
-                                <el-input type="number" placeholder="请输入最低价格" v-model="ruleForm.price1" min="80" max="300000"></el-input>
+                                <el-input size="small" type="number" placeholder="请输入最低价格" v-model="ruleForm.price1" min="80" max="300000"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col class="line" :span="1">-</el-col>
                         <el-col :span="5">
                             <el-form-item prop="price2">
-                                <el-input type="number" placeholder="请输入最高价格" v-model="ruleForm.price2" min="80" max="300000"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="装备评价：">
-                        <el-col :span="5">
-                            <el-form-item prop="equip_level_min">
-                                <el-input type="number" placeholder="请输入最低装评" v-model="ruleForm.equip_level_min" min="0" max="150000"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col class="line" :span="1">-</el-col>
-                        <el-col :span="5">
-                            <el-form-item prop="equip_level_max">
-                                <el-input type="number" placeholder="请输入最高装评" v-model="ruleForm.equip_level_max" min="0" max="150000"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="人物修为：">
-                        <el-col :span="5">
-                            <el-form-item prop="xiuwei_min">
-                                <el-input type="number" placeholder="请输入最低修为" v-model="ruleForm.xiuwei_min" min="0" max="80000"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col class="line" :span="1">-</el-col>
-                        <el-col :span="5">
-                            <el-form-item prop="xiuwei_max">
-                                <el-input type="number" placeholder="请输入最高修为" v-model="ruleForm.xiuwei_max" min="0" max="80000"></el-input>
+                                <el-input size="small" type="number" placeholder="请输入最高价格" v-model="ruleForm.price2" min="80" max="300000"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-form-item>
                     <el-form-item label="装备加护：">
                         <el-col :span="5">
                             <el-form-item prop="equip_jia_hu_min">
-                                <el-input type="number" placeholder="请输入最低加护" v-model="ruleForm.equip_jia_hu_min" min="0" max="324"></el-input>
+                                <el-input size="small" type="number" placeholder="请输入最低加护" v-model="ruleForm.equip_jia_hu_min" min="0" max="324"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col class="line" :span="1">-</el-col>
                         <el-col :span="5">
                             <el-form-item prop="equip_jia_hu_max">
-                                <el-input type="number" placeholder="请输入最高加护" v-model="ruleForm.equip_jia_hu_max" min="0" max="324"></el-input>
+                                <el-input size="small" type="number" placeholder="请输入最高加护" v-model="ruleForm.equip_jia_hu_max" min="0" max="324"></el-input>
                             </el-form-item>
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="装备炼护：">
-                        <el-col :span="5">
-                            <el-form-item prop="equip_lian_hu_min">
-                                <el-input type="number" placeholder="请输入最低炼护" v-model="ruleForm.equip_lian_hu_min" min="0" max="80000"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col class="line" :span="1">-</el-col>
-                        <el-col :span="5">
-                            <el-form-item prop="equip_lian_hu_max">
-                                <el-input type="number" placeholder="请输入最高炼护" v-model="ruleForm.equip_lian_hu_max" min="0" max="80000"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="基础属性：">
-                        <el-col :span="4">
-                            <el-input v-model="ruleForm.mhp" type="number">
-                                <template slot="prepend">生命≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input v-model="ruleForm.attr_basic_li" type="number">
-                                <template slot="prepend">力≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input v-model="ruleForm.attr_basic_ti" type="number">
-                                <template slot="prepend">体≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input v-model="ruleForm.attr_basic_min" type="number">
-                                <template slot="prepend">敏≥ </template>
-                            </el-input>
-                        </el-col>
-                        <br>
-                        <el-col :span="4">
-                            <el-input v-model="ruleForm.msp" type="number">
-                                <template slot="prepend">技力≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input v-model="ruleForm.attr_basic_ji" type="number">
-                                <template slot="prepend">疾≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input v-model="ruleForm.attr_basic_hun" type="number">
-                                <template slot="prepend">魂≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input v-model="ruleForm.attr_basic_nian" type="number">
-                                <template slot="prepend">念≥ </template>
-                            </el-input>
                         </el-col>
                     </el-form-item>
                     <el-form-item label="攻击属性：">
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.critical" type="number">
+                            <el-input size="small" v-model="ruleForm.critical" type="number">
                                 <template slot="prepend">会心≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.attadd" type="number">
+                            <el-input size="small" v-model="ruleForm.attadd" type="number">
                                 <template slot="prepend">附伤≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.pattack_min" type="number">
+                            <el-input size="small" v-model="ruleForm.pattack_min" type="number">
                                 <template slot="prepend">最小物攻≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.pattack_max" type="number">
+                            <el-input size="small" v-model="ruleForm.pattack_max" type="number">
                                 <template slot="prepend">最大物攻≥ </template>
                             </el-input>
                         </el-col>
                         <br>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.hit" type="number">
+                            <el-input size="small" v-model="ruleForm.hit" type="number">
                                 <template slot="prepend">命中≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.modadd" type="number">
+                            <el-input size="small" v-model="ruleForm.modadd" type="number">
                                 <template slot="prepend">重击≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.mattack_min" type="number">
+                            <el-input size="small" v-model="ruleForm.mattack_min" type="number">
                                 <template slot="prepend">最小法攻≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.mattack_max" type="number">
+                            <el-input size="small" v-model="ruleForm.mattack_max" type="number">
                                 <template slot="prepend">最大法攻≥ </template>
                             </el-input>
                         </el-col>
                     </el-form-item>
                     <el-form-item label="防御属性：">
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.pdef" type="number">
+                            <el-input size="small" v-model="ruleForm.pdef" type="number">
                                 <template slot="prepend">防御≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.avoid" type="number">
+                            <el-input size="small" v-model="ruleForm.avoid" type="number">
                                 <template slot="prepend">回避≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.mdef" type="number">
+                            <el-input size="small" v-model="ruleForm.mdef" type="number">
                                 <template slot="prepend">法防≥ </template>
                             </el-input>
                         </el-col>
                         <br>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.inprotect" type="number">
+                            <el-input size="small" v-model="ruleForm.inprotect" type="number">
                                 <template slot="prepend">神明≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.attdef" type="number">
+                            <el-input size="small" v-model="ruleForm.attdef" type="number">
                                 <template slot="prepend">化解≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.defhuman" type="number">
+                            <el-input size="small" v-model="ruleForm.defhuman" type="number">
                                 <template slot="prepend">知彼≥ </template>
                             </el-input>
                         </el-col>
                     </el-form-item>
                     <el-form-item label="高级属性：">
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.movespeed" type="number">
+                            <el-input size="small" v-model="ruleForm.movespeed" type="number">
                                 <template slot="prepend">追电≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.attackspeed" type="number">
+                            <el-input size="small" v-model="ruleForm.attackspeed" type="number">
                                 <template slot="prepend">骤雨≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.castspeed" type="number">
+                            <el-input size="small" v-model="ruleForm.castspeed" type="number">
                                 <template slot="prepend">疾语≥ </template>
                             </el-input>
                         </el-col>
                         <br>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.spreduce" type="number">
+                            <el-input size="small" v-model="ruleForm.spreduce" type="number">
                                 <template slot="prepend">明思≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.inbreak" type="number">
+                            <el-input size="small" v-model="ruleForm.inbreak" type="number">
                                 <template slot="prepend">扰心≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.attackhuman" type="number">
+                            <el-input size="small" v-model="ruleForm.attackhuman" type="number">
                                 <template slot="prepend">人祸≥ </template>
-                            </el-input>
-                        </el-col>
-                    </el-form-item>
-                    <el-form-item label="抗性属性：">
-                        <el-col :span="4">
-                            <el-input v-model="ruleForm.sract" type="number">
-                                <template slot="prepend">身法≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input v-model="ruleForm.srbody" type="number">
-                                <template slot="prepend">坚韧≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input v-model="ruleForm.srmind" type="number">
-                                <template slot="prepend">定力≥ </template>
                             </el-input>
                         </el-col>
                     </el-form-item>
                     <el-form-item label="特殊属性：">
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.cri_add_p" type="number">
+                            <el-input size="small" v-model="ruleForm.cri_add_p" type="number">
                                 <template slot="prepend">诛心≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.thump_add_p" type="number">
+                            <el-input size="small" v-model="ruleForm.thump_add_p" type="number">
                                 <template slot="prepend">万钧≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.absolutely_attack" type="number">
+                            <el-input size="small" v-model="ruleForm.absolutely_attack" type="number">
                                 <template slot="prepend">破阵≥ </template>
                             </el-input>
                         </el-col>
                         <br>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.cri_sub_p" type="number">
+                            <el-input size="small" v-model="ruleForm.cri_sub_p" type="number">
                                 <template slot="prepend">御心≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.thump_sub_p" type="number">
+                            <el-input size="small" v-model="ruleForm.thump_sub_p" type="number">
                                 <template slot="prepend">铁壁≥ </template>
                             </el-input>
                         </el-col>
                         <el-col class="line" :span="1">&nbsp;</el-col>
                         <el-col :span="4">
-                            <el-input v-model="ruleForm.absolutely_defence" type="number">
+                            <el-input size="small" v-model="ruleForm.absolutely_defence" type="number">
                                 <template slot="prepend">磐石≥ </template>
                             </el-input>
                         </el-col>
                     </el-form-item>
+                    <el-collapse class="search-collapse" v-model="activeNames2">
+                        <el-collapse-item title="高级查询条件：（点击可切换展开/折叠）" name="1">
+                            <el-form-item label="装备评价：">
+                                <el-col :span="5">
+                                    <el-form-item prop="equip_level_min">
+                                        <el-input size="small" type="number" placeholder="请输入最低装评" v-model="ruleForm.equip_level_min" min="0" max="150000"></el-input>
+                                    </el-form-item>
+                                </el-col>
+                                <el-col class="line" :span="1">-</el-col>
+                                <el-col :span="5">
+                                    <el-form-item prop="equip_level_max">
+                                        <el-input size="small" type="number" placeholder="请输入最高装评" v-model="ruleForm.equip_level_max" min="0" max="150000"></el-input>
+                                    </el-form-item>
+                                </el-col>
+                            </el-form-item>
+                            <el-form-item label="人物修为：">
+                                <el-col :span="5">
+                                    <el-form-item prop="xiuwei_min">
+                                        <el-input size="small" type="number" placeholder="请输入最低修为" v-model="ruleForm.xiuwei_min" min="0" max="80000"></el-input>
+                                    </el-form-item>
+                                </el-col>
+                                <el-col class="line" :span="1">-</el-col>
+                                <el-col :span="5">
+                                    <el-form-item prop="xiuwei_max">
+                                        <el-input size="small" type="number" placeholder="请输入最高修为" v-model="ruleForm.xiuwei_max" min="0" max="80000"></el-input>
+                                    </el-form-item>
+                                </el-col>
+                            </el-form-item>
+                            <el-form-item label="装备炼护：">
+                                <el-col :span="5">
+                                    <el-form-item prop="equip_lian_hu_min">
+                                        <el-input size="small" type="number" placeholder="请输入最低炼护" v-model="ruleForm.equip_lian_hu_min" min="0" max="80000"></el-input>
+                                    </el-form-item>
+                                </el-col>
+                                <el-col class="line" :span="1">-</el-col>
+                                <el-col :span="5">
+                                    <el-form-item prop="equip_lian_hu_max">
+                                        <el-input size="small" type="number" placeholder="请输入最高炼护" v-model="ruleForm.equip_lian_hu_max" min="0" max="80000"></el-input>
+                                    </el-form-item>
+                                </el-col>
+                            </el-form-item>
+                            <el-form-item label="基础属性：">
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.mhp" type="number">
+                                        <template slot="prepend">生命≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.attr_basic_li" type="number">
+                                        <template slot="prepend">力≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.attr_basic_ti" type="number">
+                                        <template slot="prepend">体≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.attr_basic_min" type="number">
+                                        <template slot="prepend">敏≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <br>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.msp" type="number">
+                                        <template slot="prepend">技力≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.attr_basic_ji" type="number">
+                                        <template slot="prepend">疾≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.attr_basic_hun" type="number">
+                                        <template slot="prepend">魂≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.attr_basic_nian" type="number">
+                                        <template slot="prepend">念≥ </template>
+                                    </el-input>
+                                </el-col>
+                            </el-form-item>
+                            <el-form-item label="抗性属性：">
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.sract" type="number">
+                                        <template slot="prepend">身法≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.srbody" type="number">
+                                        <template slot="prepend">坚韧≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.srmind" type="number">
+                                        <template slot="prepend">定力≥ </template>
+                                    </el-input>
+                                </el-col>
+                            </el-form-item>
+                        </el-collapse-item>
+                    </el-collapse>
 
-                    <!-- <el-form-item label="选择价格：" prop="price">
-                        <el-checkbox-group v-model="ruleForm.price">
-                            <el-checkbox label="00080-00300" name="price"></el-checkbox>
-                            <el-checkbox label="00301-00800" name="price"></el-checkbox>
-                            <el-checkbox label="00801-01500" name="price"></el-checkbox>
-                            <el-checkbox label="01501-03000" name="price"></el-checkbox>
-                            <br>
-                            <el-checkbox label="03001-06000" name="price"></el-checkbox>
-                            <el-checkbox label="06001-10000" name="price"></el-checkbox>
-                            <el-checkbox label="10001-15000" name="price"></el-checkbox>
-                            <el-checkbox label="15001-20000" name="price"></el-checkbox>
-                            <br>
-                            <el-checkbox label="20001-30000" name="price"></el-checkbox>
-                            <el-checkbox label="30001-45000" name="price"></el-checkbox>
-                            <el-checkbox label="45001-60000" name="price"></el-checkbox>
-                            <el-checkbox label="60000以上" name="price"></el-checkbox>
-                        </el-checkbox-group>
-                    </el-form-item> -->
                     <!-- <el-form-item label="选择时装：" prop="clothes">
                         <el-checkbox-group v-model="ruleForm.clothes">
                             <el-checkbox label="玄素天成" name="clothes"></el-checkbox>
@@ -449,6 +435,7 @@ export default {
         return {
             fullscreenLoading: false,
             activeNames: ['1'],
+            activeNames2: ['0'],
             ruleForm: {
                 school: '荒火',
                 // clothes: [],

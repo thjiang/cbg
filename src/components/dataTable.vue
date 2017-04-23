@@ -5,7 +5,7 @@
     <div class="table">
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <h1 style="line-height: 20px; color: #20A0FF">数据：</h2>
+                <h1 style="line-height: 20px; color: #20A0FF">数据：</h1>
             </div>
             <div class="text item">
                 <ul>

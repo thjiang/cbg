@@ -21,6 +21,10 @@ const allowCrossDomain = function (req, res, next) {
         "http://www.zhounan.win",
         "https://cbg.zhounan.win",
         "http://cbg.zhounan.win",
+		"https://www.icewish.win",
+        "http://www.icewish.win",
+        "https://cbg.icewish.win",
+        "http://cbg.icewish.win",
 		"http://106.14.179.201/"
     ];
 	if (allows.indexOf(req.headers.origin) > -1) {
@@ -111,7 +115,9 @@ app.get('/roleList', function (req, res) {
 	+ school + '&sex=' + sex + '&price_min=' + price_min + '&price_max='
 	+ price_max + '&equip_level_min=' + equip_level_min + '&equip_level_max=' + equip_level_max + '&xiuwei_min='
 	+ xiuwei_min + '&xiuwei_max=' + xiuwei_max + '&equ_xiuwei_min=' + equ_xiuwei_min + '&equ_xiuwei_max='
-	+ equ_xiuwei_max + '&juexing_level=' + juexing_level + '&guizong_level=' + guizong_level + '&mhp='
+	+ equ_xiuwei_max + '&juexing_level=' + juexing_level + '&guizong_level=' + guizong_level
+	+ '&equip_jia_hu_min=' + equip_jia_hu_min + '&equip_jia_hu_max=' + equip_jia_hu_max
+	+ '&equip_lian_hu_min=' + equip_lian_hu_min + '&equip_lian_hu_max=' + equip_lian_hu_max + '&mhp='
 	+ mhp + '&attr_basic_li=' + attr_basic_li + '&attr_basic_ti=' + attr_basic_ti + '&attr_basic_min='
 	+ attr_basic_min + '&msp=' + msp + '&attr_basic_ji=' + attr_basic_ji + '&attr_basic_hun='
 	+ attr_basic_hun + '&attr_basic_nian=' + attr_basic_nian + '&critical=' + critical + '&attadd='
