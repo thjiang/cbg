@@ -50,7 +50,7 @@ app.get('/roleList', function (req, res) {
 	const query = JSON.parse(req.query.params);
 	let page, school, sex, price_min, price_max, equip_level_min, equip_level_max,
 	xiuwei_min, xiuwei_max, equ_xiuwei_min, equ_xiuwei_max, juexing_level, guizong_level,
-	equip_jia_hu_min, equip_jia_hu_max, equip_lian_hu_min, equip_lian_hu_max;
+	equip_jia_hu_min, equip_jia_hu_max, equip_lian_hu_min, equip_lian_hu_max, mhp, attr_basic_li, attr_basic_ti, attr_basic_min, msp, attr_basic_ji, attr_basic_hun, attr_basic_nian, critical, attadd, pattack_min, pattack_max, hit, modadd, mattack_min, mattack_max, pdef, avoid, mdef, inprotect, attdef, defhuman, movespeed, attackspeed, castspeed, spreduce, inbreak, attackhuman, sract, srbody, srmind, cri_add_p, thump_add_p, absolutely_attack, cri_sub_p, thump_sub_p, absolutely_defence;
 
 	query.page ? page = query.page : page = "";
 	query.school ? school = query.school : school = 1;
@@ -69,12 +69,59 @@ app.get('/roleList', function (req, res) {
 	query.equip_jia_hu_max ? equip_jia_hu_max = query.equip_jia_hu_max : equip_jia_hu_max = "";
 	query.equip_lian_hu_min ? equip_lian_hu_min = query.equip_lian_hu_min : equip_lian_hu_min = "";
 	query.equip_lian_hu_max ? equip_lian_hu_max = query.equip_lian_hu_max : equip_lian_hu_max = "";
+	query.mhp ? mhp = query.mhp : mhp = "";
+	query.attr_basic_li ? attr_basic_li = query.attr_basic_li : attr_basic_li = "";
+	query.attr_basic_ti ? attr_basic_ti = query.attr_basic_ti : attr_basic_ti = "";
+	query.attr_basic_min ? attr_basic_min = query.attr_basic_min : attr_basic_min = "";
+	query.msp ? msp = query.msp : msp = "";
+	query.attr_basic_ji ? attr_basic_ji = query.attr_basic_ji : attr_basic_ji = "";
+	query.attr_basic_hun ? attr_basic_hun = query.attr_basic_hun : attr_basic_hun = "";
+	query.attr_basic_nian ? attr_basic_nian = query.attr_basic_nian : attr_basic_nian = "";
+	query.critical ? critical = query.critical : critical = "";
+	query.attadd ? attadd = query.attadd : attadd = "";
+	query.pattack_min ? pattack_min = query.pattack_min : pattack_min = "";
+	query.pattack_max ? pattack_max = query.pattack_max : pattack_max = "";
+	query.hit ? hit = query.hit : hit = "";
+	query.modadd ? modadd = query.modadd : modadd = "";
+	query.mattack_min ? mattack_min = query.mattack_min : mattack_min = "";
+	query.mattack_max ? mattack_max = query.mattack_max : mattack_max = "";
+	query.pdef ? pdef = query.pdef : pdef = "";
+	query.avoid ? avoid = query.avoid : avoid = "";
+	query.mdef ? mdef = query.mdef : mdef = "";
+	query.inprotect ? inprotect = query.inprotect : inprotect = "";
+	query.attdef ? attdef = query.attdef : attdef = "";
+	query.defhuman ? defhuman = query.defhuman : defhuman = "";
+	query.movespeed ? movespeed = query.movespeed : movespeed = "";
+	query.attackspeed ? attackspeed = query.attackspeed : attackspeed = "";
+	query.castspeed ? castspeed = query.castspeed : castspeed = "";
+	query.spreduce ? spreduce = query.spreduce : spreduce = "";
+	query.inbreak ? inbreak = query.inbreak : inbreak = "";
+	query.attackhuman ? attackhuman = query.attackhuman : attackhuman = "";
+	query.sract ? sract = query.sract : sract = "";
+	query.srbody ? srbody = query.srbody : srbody = "";
+	query.srmind ? srmind = query.srmind : srmind = "";
+	query.cri_add_p ? cri_add_p = query.cri_add_p : cri_add_p = "";
+	query.thump_add_p ? thump_add_p = query.thump_add_p : thump_add_p = "";
+	query.absolutely_attack ? absolutely_attack = query.absolutely_attack : absolutely_attack = "";
+	query.cri_sub_p ? cri_sub_p = query.cri_sub_p : cri_sub_p = "";
+	query.thump_sub_p ? thump_sub_p = query.thump_sub_p : thump_sub_p = "";
+	query.absolutely_defence ? absolutely_defence = query.absolutely_defence : absolutely_defence = "";
 
 	requestUrl = 'http://tx3.cbg.163.com/cgi-bin/search.py?act=overall_search_role&order_by=&page=1&other_arg=&school='
 	+ school + '&sex=' + sex + '&price_min=' + price_min + '&price_max='
 	+ price_max + '&equip_level_min=' + equip_level_min + '&equip_level_max=' + equip_level_max + '&xiuwei_min='
 	+ xiuwei_min + '&xiuwei_max=' + xiuwei_max + '&equ_xiuwei_min=' + equ_xiuwei_min + '&equ_xiuwei_max='
-	+ equ_xiuwei_max + '&juexing_level=' + juexing_level + '&guizong_level=' + guizong_level;
+	+ equ_xiuwei_max + '&juexing_level=' + juexing_level + '&guizong_level=' + guizong_level + '&mhp='
+	+ mhp + '&attr_basic_li=' + attr_basic_li + '&attr_basic_ti=' + attr_basic_ti + '&attr_basic_min='
+	+ attr_basic_min + '&msp=' + msp + '&attr_basic_ji=' + attr_basic_ji + '&attr_basic_hun='
+	+ attr_basic_hun + '&attr_basic_nian=' + attr_basic_nian + '&critical=' + critical + '&attadd='
+	+ attadd + '&pattack_min=' + pattack_min + '&pattack_max=' + pattack_max + '&hit='
+	+ hit + '&modadd=' + modadd + '&mattack_min=' + mattack_min + '&mattack_max=' + mattack_max + '&pdef='
+	+ pdef + '&avoid=' + avoid + '&mdef=' + mdef + '&inprotect=' + inprotect + '&attdef=' + attdef + '&defhuman='
+	+ defhuman + '&movespeed=' + movespeed + '&attackspeed=' + attackspeed + '&castspeed=' + castspeed + '&spreduce='
+	+ spreduce + '&inbreak=' + inbreak + '&attackhuman=' + attackhuman + '&sract=' + sract + '&srbody='
+	+ srbody + '&srmind=' + srmind + '&cri_add_p=' + cri_add_p + '&thump_add_p=' + thump_add_p + '&absolutely_attack='
+	+ absolutely_attack + '&cri_sub_p=' + cri_sub_p + '&thump_sub_p=' + thump_sub_p + '&absolutely_defence=' + absolutely_defence;
 
 	console.log(requestUrl);
 	request(requestUrl, function (error, response, body) {
