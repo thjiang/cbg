@@ -20,7 +20,8 @@ const allowCrossDomain = function (req, res, next) {
 		"https://www.zhounan.win",
         "http://www.zhounan.win",
         "https://cbg.zhounan.win",
-        "http://cbg.zhounan.win"
+        "http://cbg.zhounan.win",
+		"http://106.14.179.201/"
     ];
 	if (allows.indexOf(req.headers.origin) > -1) {
 		res.header("Access-Control-Allow-Origin", req.headers.origin);

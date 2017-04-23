@@ -446,35 +446,10 @@ export default {
                 }
             }, 200);
         };
-        var checkEquipLevel = (rule, value, callback) => {
-            if (value) {
-                setTimeout(() => {
-                    var tmp = (value.toString()).indexOf(".");
-                    if (value < 0 || value > 150000 || tmp > -1) {
-                        callback(new Error('请输入0-150000之间的正整数'));
-                    } else {
-                        callback();
-                    }
-                }, 200);
-            }
-        };
-        var checkXiuwei = (rule, value, callback) => {
-            if (value) {
-                setTimeout(() => {
-                    var tmp = (value.toString()).indexOf(".");
-                    if (value < 0 || value > 80000 || tmp > -1) {
-                        callback(new Error('请输入0-80000之间的正整数'));
-                    } else {
-                        callback();
-                    }
-                }, 200);
-            }
-        };
         return {
             fullscreenLoading: false,
             activeNames: ['1'],
             ruleForm: {
-                // delivery: false,
                 school: '荒火',
                 // clothes: [],
                 // skill: [],
@@ -536,28 +511,6 @@ export default {
                     message: '请至少选择一个门派',
                     trigger: 'change'
                 }],
-                // clothes: [{
-                //     type: 'array',
-                //     required: false,
-                //     trigger: 'change'
-                // }],
-                // skill: [{
-                //     type: 'array',
-                //     required: false,
-                //     trigger: 'change'
-                // }],
-                level1: [{
-                    type: 'number',
-                    required: false,
-                    // validator: checkLevel,
-                    trigger: 'blur'
-                }],
-                level2: [{
-                    type: 'number',
-                    required: false,
-                    // validator: checkLevel,
-                    trigger: 'blur'
-                }],
                 price1: [{
                     type: 'number',
                     required: true,
@@ -569,42 +522,7 @@ export default {
                     required: true,
                     validator: checkPrice,
                     trigger: 'blur'
-                }],
-                equip_level_min: [{
-                    type: 'number',
-                    required: false,
-                    // validator: checkEquipLevel,
-                    trigger: 'blur'
-                }],
-                equip_level_max: [{
-                    type: 'number',
-                    required: false,
-                    // validator: checkEquipLevel,
-                    trigger: 'blur'
-                }],
-                xiuwei_min: [{
-                    type: 'number',
-                    required: false,
-                    // validator: checkXiuwei,
-                    trigger: 'blur'
-                }],
-                xiuwei_max: [{
-                    type: 'number',
-                    required: false,
-                    // validator: checkXiuwei,
-                    trigger: 'blur'
                 }]
-                // price: [{
-                //     type: 'array',
-                //     required: true,
-                //     message: '请至少选择一个价格范围',
-                //     trigger: 'change'
-                // }],
-                // resource: [{
-                //     required: true,
-                //     message: '请选择活动资源',
-                //     trigger: 'change'
-                // }]
             }
         };
     },
@@ -690,9 +608,10 @@ export default {
                 var url = "http://127.0.0.1:8081/roleList";
                 if (window.location.href.indexOf("zhounan") > -1) {
                     url = "http://req.zhounan.win/roleList";
-                }
-                if (window.location.href.indexOf("thjiang") > -1) {
+                } else if (window.location.href.indexOf("thjiang") > -1) {
                     url = "http://req.thjiang.com/roleList";
+                } else if (window.location.href.indexOf("106.14.179.201") > -1) { // 临时 域名解析要备案
+                    url = "http://106.14.179.201:8081/roleList";
                 }
 
                 // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
