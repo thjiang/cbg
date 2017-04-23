@@ -43,7 +43,7 @@
         </el-table-column>
         <el-table-column prop="school" label="门派" width=""></el-table-column>
         <el-table-column prop="nickname" label="昵称" width="140"></el-table-column>
-        <el-table-column prop="server" label="服务器" sortable width=""></el-table-column>
+        <el-table-column prop="server" label="服务器" sortable width="100"></el-table-column>
         <el-table-column prop="equipscore" label="装评" sortable width=""></el-table-column>
         <el-table-column prop="score" label="修为" sortable width=""></el-table-column>
         <el-table-column prop="lefttime" label="时间" sortable width="110"></el-table-column>

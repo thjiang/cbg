@@ -40727,7 +40727,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "prop": "server",
       "label": "服务器",
       "sortable": "",
-      "width": ""
+      "width": "100"
     }
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
