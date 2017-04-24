@@ -358,14 +358,13 @@
                                     沧海桑田 210000,210001,210002,210003,210004,210005
                                     疏影横斜 121745,121746,121747,121748,121749,121750,121751,121752
                                     天狐霓裳 210148,210149,210210,210211
-                                    仙狐彩袂 210144,210145,210206,210207
-                                    心之所属 121634,121635 -->
+                                    仙狐彩袂 210144,210145,210206,210207 -->
                                     <el-checkbox label="玄素天成" name="clothes"></el-checkbox>
                                     <el-checkbox label="黛染青花" name="clothes"></el-checkbox>
                                     <el-checkbox label="海棠未雨" name="clothes"></el-checkbox>
                                     <el-checkbox label="孤鸿月影" name="clothes"></el-checkbox>
-                                    <el-checkbox label="祈福同心" name="clothes"></el-checkbox>
                                     <br>
+                                    <el-checkbox label="祈福同心" name="clothes"></el-checkbox>
                                     <el-checkbox label="岸芷汀兰" name="clothes"></el-checkbox>
                                     <el-checkbox label="蟾宫折桂" name="clothes"></el-checkbox>
                                     <el-checkbox label="绛云思暖" name="clothes"></el-checkbox>
@@ -558,6 +557,33 @@ export default {
                     thump_sub_p: model.thump_sub_p,
                     absolutely_defence: model.absolutely_defence
                 }
+
+                var special_clothes = "";
+                // 玄素天成 21121,21122,21123,21124,21326,21327,88326,88327
+                // 黛染青花 21189,21190,21202,21203,121533,121534,121572,121573
+                // 海棠未雨 121705,121706,210037,210038,210039,210040,210073,210074
+                // 孤鸿月影 21293,21294,21323,21324,121576,121577
+                // 祈福同心 21059
+                // 岸芷汀兰 21335,21336,121529,121530
+                // 蟾宫折桂 21487,21488,121515,121516,121580,121581
+                // 绛云思暖 21339,21340,121531,121532
+                // 沧海桑田 210000,210001,210002,210003,210004,210005
+                // 疏影横斜 121745,121746,121747,121748,121749,121750,121751,121752
+                // 天狐霓裳 210148,210149,210210,210211
+                // 仙狐彩袂 210144,210145,210206,210207
+                // var clothesArray = ['玄素天成', '黛染青花', '海棠未雨', '孤鸿月影', '祈福同心',
+                // '岸芷汀兰', '蟾宫折桂', '绛云思暖', '沧海桑田', '疏影横斜', '天狐霓裳', '仙狐彩袂'];
+                // for (var i = 0; i < this.clothes.length; i++) {
+                //     if (this.clothes.length == 1) {
+                //         special_clothes = ""
+                //     }
+                //     // for (var j = 0; j < clothesArray.length; j++) {
+                //     //     if (this.clothes[i] == clothesArray[j]) {
+                //     //
+                //     //     }
+                //     // }
+                // }
+
                 var url = "http://127.0.0.1:8081/roleList";
                 if (window.location.href.indexOf("zhounan") > -1) {
                     url = "http://req.zhounan.win/roleList";
