@@ -19,9 +19,6 @@
             <el-collapse-item title="查询条件：（点击可切换展开/折叠）" name="1">
                 <div class="search">
                 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-                    <!-- <el-form-item label="即时配送" prop="delivery">
-                        <el-switch on-text="" off-text="" v-model="ruleForm.delivery"></el-switch>
-                    </el-form-item> -->
                     <el-form-item label="选择门派：" prop="school">
                         <el-radio-group v-model="ruleForm.school">
                             <el-radio-button label="荒火" name="school"></el-radio-button>
@@ -201,43 +198,6 @@
                             </el-input>
                         </el-col>
                     </el-form-item>
-                    <el-form-item label="特殊属性：">
-                        <el-col :span="4">
-                            <el-input size="small" v-model="ruleForm.cri_add_p" type="number">
-                                <template slot="prepend">诛心≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input size="small" v-model="ruleForm.thump_add_p" type="number">
-                                <template slot="prepend">万钧≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input size="small" v-model="ruleForm.absolutely_attack" type="number">
-                                <template slot="prepend">破阵≥ </template>
-                            </el-input>
-                        </el-col>
-                        <br>
-                        <el-col :span="4">
-                            <el-input size="small" v-model="ruleForm.cri_sub_p" type="number">
-                                <template slot="prepend">御心≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input size="small" v-model="ruleForm.thump_sub_p" type="number">
-                                <template slot="prepend">铁壁≥ </template>
-                            </el-input>
-                        </el-col>
-                        <el-col class="line" :span="1">&nbsp;</el-col>
-                        <el-col :span="4">
-                            <el-input size="small" v-model="ruleForm.absolutely_defence" type="number">
-                                <template slot="prepend">磐石≥ </template>
-                            </el-input>
-                        </el-col>
-                    </el-form-item>
                     <el-collapse class="search-collapse" v-model="activeNames2">
                         <el-collapse-item title="高级查询条件：（点击可切换展开/折叠）" name="1">
                             <el-form-item label="装备评价：">
@@ -328,6 +288,43 @@
                                     </el-input>
                                 </el-col>
                             </el-form-item>
+                            <el-form-item label="特殊属性：">
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.cri_add_p" type="number">
+                                        <template slot="prepend">诛心≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.thump_add_p" type="number">
+                                        <template slot="prepend">万钧≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.absolutely_attack" type="number">
+                                        <template slot="prepend">破阵≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <br>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.cri_sub_p" type="number">
+                                        <template slot="prepend">御心≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.thump_sub_p" type="number">
+                                        <template slot="prepend">铁壁≥ </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col class="line" :span="1">&nbsp;</el-col>
+                                <el-col :span="4">
+                                    <el-input size="small" v-model="ruleForm.absolutely_defence" type="number">
+                                        <template slot="prepend">磐石≥ </template>
+                                    </el-input>
+                                </el-col>
+                            </el-form-item>
                             <el-form-item label="抗性属性：">
                                 <el-col :span="4">
                                     <el-input size="small" v-model="ruleForm.sract" type="number">
@@ -347,31 +344,43 @@
                                     </el-input>
                                 </el-col>
                             </el-form-item>
+                            <el-form-item label="选择时装：" prop="clothes">
+                                <el-checkbox-group v-model="ruleForm.clothes">
+
+                                    <!-- 玄素天成 21121,21122,21123,21124,21326,21327,88326,88327
+                                    黛染青花 21189,21190,21202,21203,121533,121534,121572,121573
+                                    海棠未雨 121705,121706,210037,210038,210039,210040,210073,210074
+                                    孤鸿月影 21293,21294,21323,21324,121576,121577
+                                    祈福同心 21059
+                                    岸芷汀兰 21335,21336,121529,121530
+                                    蟾宫折桂 21487,21488,121515,121516,121580,121581
+                                    绛云思暖 21339,21340,121531,121532
+                                    沧海桑田 210000,210001,210002,210003,210004,210005
+                                    疏影横斜 121745,121746,121747,121748,121749,121750,121751,121752
+                                    天狐霓裳 210148,210149,210210,210211
+                                    仙狐彩袂 210144,210145,210206,210207
+                                    心之所属 121634,121635 -->
+                                    <el-checkbox label="玄素天成" name="clothes"></el-checkbox>
+                                    <el-checkbox label="黛染青花" name="clothes"></el-checkbox>
+                                    <el-checkbox label="海棠未雨" name="clothes"></el-checkbox>
+                                    <el-checkbox label="孤鸿月影" name="clothes"></el-checkbox>
+                                    <el-checkbox label="祈福同心" name="clothes"></el-checkbox>
+                                    <br>
+                                    <el-checkbox label="岸芷汀兰" name="clothes"></el-checkbox>
+                                    <el-checkbox label="蟾宫折桂" name="clothes"></el-checkbox>
+                                    <el-checkbox label="绛云思暖" name="clothes"></el-checkbox>
+                                    <br>
+                                    <el-checkbox label="沧海桑田" name="clothes"></el-checkbox>
+                                    <el-checkbox label="疏影横斜" name="clothes"></el-checkbox>
+                                    <el-checkbox label="天狐霓裳" name="clothes"></el-checkbox>
+                                    <el-checkbox label="仙狐彩袂" name="clothes"></el-checkbox>
+                                </el-checkbox-group>
+                            </el-form-item>
                         </el-collapse-item>
                     </el-collapse>
 
-                    <!-- <el-form-item label="选择时装：" prop="clothes">
-                        <el-checkbox-group v-model="ruleForm.clothes">
-                            <el-checkbox label="玄素天成" name="clothes"></el-checkbox>
-                            <el-checkbox label="黛染青花" name="clothes"></el-checkbox>
-                            <el-checkbox label="孤鸿月影" name="clothes"></el-checkbox>
-                            <el-checkbox label="海棠未雨" name="clothes"></el-checkbox>
-                            <el-checkbox label="夜雨江南" name="clothes"></el-checkbox>
-                            <br>
-                            <el-checkbox label="岸芷汀兰" name="clothes"></el-checkbox>
-                            <el-checkbox label="绛云思暖" name="clothes"></el-checkbox>
-                            <el-checkbox label="飞狐华裘" name="clothes"></el-checkbox>
-                            <el-checkbox label="仙狐彩袂" name="clothes"></el-checkbox>
-                            <el-checkbox label="天狐霓裳" name="clothes"></el-checkbox>
-                            <br>
-                            <el-checkbox label="沧海桑田" name="clothes"></el-checkbox>
-                            <el-checkbox label="大圣金甲" name="clothes"></el-checkbox>
-                            <el-checkbox label="碧海惊涛" name="clothes"></el-checkbox>
-                            <el-checkbox label="蟾宫折桂" name="clothes"></el-checkbox>
-                            <el-checkbox label="疏影横斜" name="clothes"></el-checkbox>
-                        </el-checkbox-group>
-                    </el-form-item>
-                    <el-form-item label="选择特技：" prop="skill">
+
+                    <!-- <el-form-item label="选择特技：" prop="skill">
                         <el-checkbox-group v-model="ruleForm.skill">
                             <el-checkbox label="挥砍防护" name="skill"></el-checkbox>
                             <el-checkbox label="钝刺防护" name="skill"></el-checkbox>
@@ -384,12 +393,6 @@
                             <el-checkbox label="完封" name="skill"></el-checkbox>
                             <el-checkbox label="护心" name="skill"></el-checkbox>
                         </el-checkbox-group>
-                    </el-form-item> -->
-                    <!-- <el-form-item label="特殊资源" prop="resource">
-                        <el-radio-group v-model="ruleForm.resource">
-                            <el-radio label="线上品牌商赞助"></el-radio>
-                            <el-radio label="线下场地免费"></el-radio>
-                        </el-radio-group>
                     </el-form-item> -->
                     <el-form-item>
                         <el-button type="primary" @click="submitForm('ruleForm')">搜索</el-button>
@@ -407,38 +410,13 @@ import roleList from './roleList.vue';
 import bus from '../eventBus.js';
 export default {
     data() {
-        var checkLevel = (rule, value, callback) => {
-            if (value) {
-                setTimeout(() => {
-                    var tmp = (value.toString()).indexOf(".");
-                    if (value < 1 || value > 80 || tmp > -1) {
-                        callback(new Error('请输入1-80之间的正整数'));
-                    } else {
-                        callback();
-                    }
-                }, 200);
-            }
-        };
-        var checkPrice = (rule, value, callback) => {
-            if (!value) {
-                return callback(new Error('请输入价格'));
-            }
-            setTimeout(() => {
-                var tmp = (value.toString()).indexOf(".");
-                if (value < 80 || value > 300000 || tmp > -1) {
-                    callback(new Error('请输入80-300000之间的正整数'));
-                } else {
-                    callback();
-                }
-            }, 200);
-        };
         return {
             fullscreenLoading: false,
             activeNames: ['1'],
             activeNames2: ['0'],
             ruleForm: {
                 school: '荒火',
-                // clothes: [],
+                clothes: [],
                 // skill: [],
                 price1: '',
                 price2: '',
@@ -497,18 +475,6 @@ export default {
                     required: false,
                     message: '请至少选择一个门派',
                     trigger: 'change'
-                }],
-                price1: [{
-                    type: 'number',
-                    required: true,
-                    validator: checkPrice,
-                    trigger: 'blur'
-                }],
-                price2: [{
-                    type: 'number',
-                    required: true,
-                    validator: checkPrice,
-                    trigger: 'blur'
                 }]
             }
         };
@@ -616,7 +582,7 @@ export default {
                     _this.fullscreenLoading = false;
 
                     if (response.data.result && response.data.result.data && response.data.result.data.length === 0) {
-                        this.$message({
+                        _this.$message({
                             showClose: true,
                             message: '没有找到符合条件的角色'
                         });
@@ -636,10 +602,13 @@ export default {
                             }
                         }
                         bus.$emit("updateList", tmpRoles);
+
+                        _this.activeNames = ['0'];
+                        _this.activeNames2 = ['1'];
                     }
                 }, function(response) {
                     console.log(response);
-                    this.$message({
+                    _this.$message({
                         showClose: true,
                         message: response
                     });

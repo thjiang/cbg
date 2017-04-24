@@ -16,7 +16,7 @@ supervisor --inspect server/app.js
 pm2 start server/app.js --name 'cbg' --watch
 ```
 
-## 参数/接口文档
+## 参数/接口
 
 ### 服务端查询参数
 
@@ -25,9 +25,12 @@ http://tx3.cbg.163.com/cgi-bin/search.py?
 act=overall_search_role&order_by=&page=1&other_arg=&school=6&sex=1&
 price_min=456700&price_max=678900&equip_level_min=67&
 equip_level_max=80&xiuwei_min=54000&xiuwei_max=58000&
+special_clothes_logic=or&special_rider_logic=and&
+special_clothes=121705,121706,210037,210038,210039,210040,210073,210074|210000,210001,210002,210003,210004,210005&
+special_rider=21968|21818&
 ```
 
-### CBG返回数据对照文档
+### CBG返回数据对照
 
 见 `src/doc.json`
 

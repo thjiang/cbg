@@ -7,7 +7,7 @@
         font-family: "Bree Serif", "Open Sans", "Arial", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", serif;
     }
     .container {
-        max-width: 1080px;
+        width: 1080px;
         margin: 0 auto;
         .header {
             font-size: 18px;
@@ -32,43 +32,18 @@
             </div>
             <div class="">天下贰藏宝阁查询</div>
         </div>
-
-        <!-- <search v-on:search="recieveSearchData"></search> -->
         <search></search>
-        <!-- <role-list :searchData="searchData"></role-list> -->
-        <!-- <data-table></data-table> -->
     </div>
 </template>
 
 <script>
 import search from './components/search.vue';
-import dataTable from './components/dataTable.vue';
 // import roleList from './components/roleList.vue';
 
 export default {
     el: "#app",
-    data() {
-        return {
-            // searchData: {}
-        };
-    },
-    methods: {
-        // recieveSearchData(data) {
-        //     this.searchData = data;
-        //     console.log(data);
-        // },
-        handleSelect(key, keyPath) {
-            console.log(key, keyPath);
-        }
-    },
-    // mounted () {
-    //     this.$on("search", function (a) {
-    //         this.a = a;
-    //     }.bind(this));
-    // },
     components: {
-        search,
-        dataTable
+        search
     }
 }
 </script>
