@@ -10,27 +10,21 @@ const request = require('request');
 const app = express();
 
 const allowCrossDomain = function (req, res, next) {
-	// const allows = [
-    //     "http://localhost:9091",
-    //     "https://thjiang.github.io",
-    //     "https://www.thjiang.com",
-    //     "http://www.thjiang.com",
-    //     "https://cbg.thjiang.com",
-    //     "http://cbg.thjiang.com",
-	// 	"https://www.zhounan.win",
-    //     "http://www.zhounan.win",
-    //     "https://cbg.zhounan.win",
-    //     "http://cbg.zhounan.win",
-	// 	"https://www.icewish.win",
-    //     "http://www.icewish.win",
-    //     "https://cbg.icewish.win",
-    //     "http://cbg.icewish.win",
-	// 	"http://106.14.179.201/"
-    // ];
-	// if (allows.indexOf(req.headers.origin) > -1) {
-	// 	res.header("Access-Control-Allow-Origin", req.headers.origin);
-	// }
-	res.header('Access-Control-Allow-Origin', '*');
+	const allows = [
+        "http://localhost:9091",
+        "https://thjiang.github.io",
+        "https://www.thjiang.com",
+        "https://cbg.thjiang.com",
+		"https://www.zhounan.win",
+        "https://cbg.zhounan.win",
+		"https://www.icewish.top",
+        "https://cbg.icewish.top",
+		"http://106.14.179.201/"
+    ];
+	if (allows.indexOf(req.headers.origin) > -1) {
+		res.header("Access-Control-Allow-Origin", req.headers.origin);
+	}
+	// res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
 	res.header('Access-Control-Allow-Headers', 'Content-Type');
 	res.header('Access-Control-Allow-Credentials', 'true');
