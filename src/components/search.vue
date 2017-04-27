@@ -586,15 +586,15 @@ export default {
 
                 var url = "http://127.0.0.1:8081/roleList";
                 if (window.location.href.indexOf("zhounan") > -1) {
-                    url = "http://req.zhounan.win/roleList";
+                    url = "//req.zhounan.win/roleList";
                 } else if (window.location.href.indexOf("thjiang") > -1) {
-                    url = "http://req.thjiang.com/roleList";
+                    url = "//req.thjiang.com/roleList";
                 } else if (window.location.href.indexOf("106.14.179.201") > -1) { // 临时 域名解析要备案
-                    url = "http://106.14.179.201:8081/roleList";
+                    url = "//106.14.179.201:8081/roleList";
                 }
 
                 // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
-                // this.$http.get('http://req.zhounan.win/roleList', {params: {params: params}}, {
+                // this.$http.get('//req.zhounan.win/roleList', {params: {params: params}}, {
                 // this.$http.get('http://182.254.222.174:8081/roleList', {params: {id:12345}}, {
                 // this.$http.get('http://45.77.27.67:8081/roleList', {params: {params: params}}, {
 
