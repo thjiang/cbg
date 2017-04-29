@@ -132,7 +132,7 @@ app.get('/roleList', function (req, res) {
 				for (let i = 0; i < cbgData.msg.length; i++) {
 					checkedData[i] = {};
 					// 头像图片地址格式由2个数字组成：门派+性别，如云麓男，61，弈剑女82
-					checkedData[i].avatar = '//res.tx3.cbg.163.com/images/role/smallface/' + cbgData.msg[i].school + cbgData.msg[i].sex + '.jpg';
+					checkedData[i].avatar = 'http://res.tx3.cbg.163.com/images/role/smallface/' + cbgData.msg[i].school + cbgData.msg[i].sex + '.jpg';
 					checkedData[i].school = schoolArray[cbgData.msg[i].school - 1];
 					checkedData[i].nickname = unescape(cbgData.msg[i].equip_name.replace(/\u/g, "%u"));
 					checkedData[i].server = unescape(cbgData.msg[i].server_name.replace(/\u/g, "%u"));
