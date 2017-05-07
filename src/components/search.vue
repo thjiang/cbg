@@ -2,29 +2,33 @@
     .search-collapse {
         margin: 20px 0;
     }
+
     .search {
         margin-top: 20px;
         .line {
-            text-align:center;
+            text-align: center;
         }
     }
+
     .el-collapse-item__header {
         color: #0087ff;
         font-size: 14px;
     }
+
     .fly-select {
         display: inline-block;
         width: 80px;
     }
+
     .fly-select3 {
         width: 95px;
     }
 </style>
 <template>
-    <div class="" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="查询可能需要较长时间，请稍候">
-        <el-collapse class="search-collapse" v-model="activeNames">
-            <el-collapse-item title="查询条件：（点击可切换展开/折叠）" name="1">
-                <div class="search">
+<div v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="查询可能需要较长时间，请稍候">
+    <el-collapse class="search-collapse" v-model="activeNames">
+        <el-collapse-item title="查询条件：（点击可切换展开/折叠）" name="1">
+            <div class="search">
                 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
                     <el-form-item label="选择门派：" prop="school">
                         <el-radio-group v-model="ruleForm.school">
@@ -41,7 +45,6 @@
                             <el-radio-button label="幽篁" name="school"></el-radio-button>
                         </el-radio-group>
                     </el-form-item>
-                    <!-- <el-form :inline="true"> -->
                     <el-form-item label="等级范围：">
                         <el-col :span="3">
                             <el-form-item prop="level1">
@@ -60,7 +63,6 @@
                             <el-select v-model="flyValue11" @change="flyValue1Change" class="fly-select" size="small">
                                 <el-option v-for="item in flyOptions" :key="item.value" :value="item.value"></el-option>
                             </el-select>
-                            <!--  -->
                             <el-select v-model="flyValue22" @change="flyValue2Change" class="fly-select" size="small">
                                 <el-option v-for="item in flyOptions2" :key="item.value" :value="item.value"></el-option>
                             </el-select>
@@ -69,7 +71,6 @@
                             </el-select>
                         </el-col>
                     </el-form-item>
-                    <!-- </el-form> -->
                     <el-form-item label="价格范围：">
                         <el-col :span="3">
                             <el-form-item prop="price1">
@@ -423,8 +424,6 @@
                             </el-form-item> -->
                         </el-collapse-item>
                     </el-collapse>
-
-
                     <!-- <el-form-item label="选择特技：" prop="skill">
                         <el-checkbox-group v-model="ruleForm.skill">
                             <el-checkbox label="挥砍防护" name="skill"></el-checkbox>
@@ -444,11 +443,11 @@
                         <el-button @click="resetForm('ruleForm')">重置</el-button>
                     </el-form-item>
                 </el-form>
-                </div>
-            </el-collapse-item>
-        </el-collapse>
-        <role-list></role-list>
-    </div>
+            </div>
+        </el-collapse-item>
+    </el-collapse>
+    <role-list></role-list>
+</div>
 </template>
 <script>
 import roleList from './roleList.vue';
@@ -527,9 +526,9 @@ export default {
             },
             queryStr: "",
             flyOptions: [{
-            	value: '天魂'
+                value: '天魂'
             }, {
-            	value: '地魂'
+                value: '地魂'
             }],
             flyOptions2: [],
             flyOptions3: [{
@@ -563,25 +562,26 @@ export default {
     },
     methods: {
         submitForm(formName) {
-        	this.$refs[formName].validate((valid) => {
-        		if (valid) {
-        			this.search(this.$refs[formName].model);
-        		} else {
-        			this.$message({
-        				showClose: true,
-        				message: '参数有误，请检查后重试'
-        			});
-        			return false;
-        		}
-        	});
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    this.search(this.$refs[formName].model);
+                } else {
+                    this.$message({
+                        showClose: true,
+                        message: '参数有误，请检查后重试',
+                        type: 'error'
+                    });
+                    return false;
+                }
+            });
         },
         resetForm(formName) {
-        	this.$refs[formName].resetFields();
+            this.$refs[formName].resetFields();
         },
         flyValue1Change(value) {
-        	if (value == "天魂") {
+            if (value == "天魂") {
                 this.flyValue1 = 2;
-        	    this.flyOptions2 = [{
+                this.flyOptions2 = [{
                     value: '不限'
                 }, {
                     value: '壹天'
@@ -596,7 +596,7 @@ export default {
                 }, {
                     value: '陆天'
                 }]
-        	} else {
+            } else {
                 this.flyValue1 = 1;
                 this.flyOptions2 = [{
                     value: '不限'
@@ -612,81 +612,81 @@ export default {
             }
         },
         flyValue2Change(value) {
-        	switch (value) {
-        	    case '壹天':
-        	        this.flyValue2 = 1;
-        	        break;
-        	    case '贰天':
-        	        this.flyValue2 = 2;
-        	        break;
-        	    case '叁天':
-        	        this.flyValue2 = 3;
-        	        break;
-        	    case '肆天':
-        	        this.flyValue2 = 4;
-        	        break;
-        	    case '伍天':
-        	        this.flyValue2 = 5;
-        	        break;
-        	    case '陆天':
-        	        this.flyValue2 = 6;
-        	        break;
-        	    default:
-        	        this.flyValue2 = 0;
-        	}
+            switch (value) {
+                case '壹天':
+                    this.flyValue2 = 1;
+                    break;
+                case '贰天':
+                    this.flyValue2 = 2;
+                    break;
+                case '叁天':
+                    this.flyValue2 = 3;
+                    break;
+                case '肆天':
+                    this.flyValue2 = 4;
+                    break;
+                case '伍天':
+                    this.flyValue2 = 5;
+                    break;
+                case '陆天':
+                    this.flyValue2 = 6;
+                    break;
+                default:
+                    this.flyValue2 = 0;
+            }
         },
         flyValue3Change(value) {
             switch (value) {
-        	    case '壹境界':
-        	        this.flyValue3 = 1;
-        	        break;
-        	    case '贰境界':
-        	        this.flyValue3 = 2;
-        	        break;
-        	    case '叁境界':
-        	        this.flyValue3 = 3;
-        	        break;
-        	    case '肆境界':
-        	        this.flyValue3 = 4;
-        	        break;
-        	    case '伍境界':
-        	        this.flyValue3 = 5;
-        	        break;
-        	    case '陆境界':
-        	        this.flyValue3 = 6;
-        	        break;
-        	    case '柒境界':
-        	        this.flyValue3 = 7;
-        	        break;
-        	    case '捌境界':
-        	        this.flyValue3 = 8;
-        	        break;
-        	    case '玖境界':
-        	        this.flyValue3 = 9;
-        	        break;
-        	    default:
-        	        this.flyValue3 = 0;
-        	}
+                case '壹境界':
+                    this.flyValue3 = 1;
+                    break;
+                case '贰境界':
+                    this.flyValue3 = 2;
+                    break;
+                case '叁境界':
+                    this.flyValue3 = 3;
+                    break;
+                case '肆境界':
+                    this.flyValue3 = 4;
+                    break;
+                case '伍境界':
+                    this.flyValue3 = 5;
+                    break;
+                case '陆境界':
+                    this.flyValue3 = 6;
+                    break;
+                case '柒境界':
+                    this.flyValue3 = 7;
+                    break;
+                case '捌境界':
+                    this.flyValue3 = 8;
+                    break;
+                case '玖境界':
+                    this.flyValue3 = 9;
+                    break;
+                default:
+                    this.flyValue3 = 0;
+            }
         },
         search(model, page) {
-        	if (model.school) {
-        		var schoolArray = ['荒火', '天机', '翎羽', '魍魉', '太虚', '云麓', '冰心', '弈剑', '鬼墨', '龙巫', '幽篁'];
-        		model.school = schoolArray.indexOf(model.school) + 1;
-        		model.price_min = model.price1 * 100;
-        		model.price_max = model.price2 * 100;
+            if (model.school) {
+                var schoolArray = ['荒火', '天机', '翎羽', '魍魉', '太虚', '云麓', '冰心', '弈剑', '鬼墨', '龙巫', '幽篁'];
+                model.school = schoolArray.indexOf(model.school) + 1;
+                model.price_min = model.price1 * 100;
+                model.price_max = model.price2 * 100;
                 if (this.flyValue1) {
                     model.fly_level = ((this.flyValue1 + "") + (this.flyValue2 + "") + (this.flyValue3 + "")) * 1;
                 }
 
-        		var x;
-        		for (x in model) {
-        			if (model[x]) {
-        				this.queryStr += x + "=" + model[x] + "&";
-        			}
-        		}
+                var x;
+                for (x in model) {
+                    if (model[x]) {
+                        this.queryStr += x + "=" + model[x] + "&";
+                    }
+                }
 
                 this.request(this.queryStr);
-        	}
+            }
         },
         request(queryStr, page) {
             var _this = this;
@@ -694,72 +694,71 @@ export default {
             !!page ? param = "page=" + page + "&" + queryStr : param = "page=1&" + queryStr;
 
             var url = "http://127.0.0.1:8081/roleList";
-    		if (window.location.href.indexOf("zhounan") > -1) {
-    			url = "//req.zhounan.win/roleList";
-    		} else if (window.location.href.indexOf("thjiang") > -1) {
-    			url = "//req.thjiang.com/roleList";
-    		} else if (window.location.href.indexOf("106.14.179.201") > -1) { // 临时 域名解析要备案
-    			url = "//106.14.179.201:8081/roleList";
-    		}
+            if (window.location.href.indexOf("zhounan") > -1) {
+                url = "//req.zhounan.win/roleList";
+            } else if (window.location.href.indexOf("thjiang") > -1) {
+                url = "//req.thjiang.com/roleList";
+            } else if (window.location.href.indexOf("106.14.179.201") > -1) { // 临时 域名解析要备案
+                url = "//106.14.179.201:8081/roleList";
+            }
 
-    		this.fullscreenLoading = true;
-    		this.$http.get(url, {
-    			// params: {params: JSON.stringify(model)}
-    			params: {
-    				params: param
-    			}
-    		}, {
-    			headers: {},
-    			emulateJSON: true
-    		}).then(function(response) {
-    			_this.fullscreenLoading = false;
+            this.fullscreenLoading = true;
+            this.$http.get(url, {
+                // params: {params: JSON.stringify(model)}
+                params: {
+                    params: param
+                }
+            }, {
+                headers: {},
+                emulateJSON: true
+            }).then(function(response) {
+                _this.fullscreenLoading = false;
 
-    			if (response.data.result && response.data.result.data && response.data.result.data.msg && response.data.result.data.msg.length === 0) {
-    				_this.$message({
-    					showClose: true,
-    					message: '没有找到符合条件的角色'
-    				});
-    			} else {
-    				var tmpRoles = response.data.result.data.msg;
+                if (response.data.result && response.data.result.data && response.data.result.data.msg && response.data.result.data.msg.length === 0) {
+                    _this.$message({
+                        showClose: true,
+                        message: '没有找到符合条件的角色'
+                    });
+                } else {
+                    var tmpRoles = response.data.result.data.msg;
 
-    				var nowTime = new Date().getTime();
-    				for (var i = 0; i < tmpRoles.length; i++) {
-    					if (tmpRoles[i].deadline) {
-    						// 1天=24*60*60*1000=86400000ms,1小时=60*60*1000=3600000ms
-    						if (tmpRoles[i].deadline - nowTime > 86400000) {
-    							tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 86400000) + "天" + Math.floor((tmpRoles[i].deadline - nowTime) % 86400000 / 3600000) + "时";
-    						} else if (tmpRoles[i].deadline - nowTime > 3600000) {
-    							tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 3600000) + "小时";
-    						} else {
-    							tmpRoles[i].lefttime = "< 1小时";
-    						}
-    					}
-    				}
+                    var nowTime = new Date().getTime();
+                    for (var i = 0; i < tmpRoles.length; i++) {
+                        if (tmpRoles[i].deadline) {
+                            // 1天=24*60*60*1000=86400000ms,1小时=60*60*1000=3600000ms
+                            if (tmpRoles[i].deadline - nowTime > 86400000) {
+                                tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 86400000) + "天" + Math.floor((tmpRoles[i].deadline - nowTime) % 86400000 / 3600000) + "时";
+                            } else if (tmpRoles[i].deadline - nowTime > 3600000) {
+                                tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 3600000) + "小时";
+                            } else {
+                                tmpRoles[i].lefttime = "< 1小时";
+                            }
+                        }
+                    }
 
-    				var list = {
-    					roles: tmpRoles,
-    					paging: response.data.result.data.paging
-    				}
+                    var list = {
+                        roles: tmpRoles,
+                        paging: response.data.result.data.paging
+                    }
 
-    				bus.$emit("updateList", list);
+                    bus.$emit("updateList", list);
 
-    				_this.activeNames = ['0'];
-    				_this.activeNames2 = ['1'];
-    			}
-    		}, function(response) {
-    			console.log(response);
-    			_this.$message({
-    				showClose: true,
-    				message: response
-    			});
-    		});
+                    _this.activeNames = ['0'];
+                    _this.activeNames2 = ['1'];
+                }
+            }, function(response) {
+                _this.$message({
+                    showClose: true,
+                    message: response
+                });
+            });
         }
     },
     mounted: function() {
-    	var _this = this;
-    	bus.$on("changePage", function(nextPage) {
+        var _this = this;
+        bus.$on("changePage", function(nextPage) {
             _this.request(_this.queryStr, nextPage);
-    	});
+        });
     },
     components: {
         roleList

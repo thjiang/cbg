@@ -1,19 +1,20 @@
 const express = require('express');
 const request = require('request');
+
 const app = express();
 
-const allowCrossDomain = function (req, res, next) {
+const allowCrossDomain = function(req, res, next) {
 	const allows = [
-        "http://localhost:9091",
-        "https://thjiang.github.io",
-        "https://www.thjiang.com",
-        "https://cbg.thjiang.com",
+		"http://localhost:9091",
+		"https://thjiang.github.io",
+		"https://www.thjiang.com",
+		"https://cbg.thjiang.com",
 		"https://www.zhounan.win",
-        "https://cbg.zhounan.win",
+		"https://cbg.zhounan.win",
 		"https://www.icewish.top",
-        "https://cbg.icewish.top",
+		"https://cbg.icewish.top",
 		"http://106.14.179.201/"
-    ];
+	];
 	if (allows.indexOf(req.headers.origin) > -1) {
 		res.header("Access-Control-Allow-Origin", req.headers.origin);
 	}
@@ -28,16 +29,16 @@ app.use(allowCrossDomain);
 
 const schoolArray = ['荒火', '天机', '翎羽', '魍魉', '太虚', '云麓', '冰心', '弈剑', '鬼墨', '龙巫', '幽篁'];
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
 	res.send('Hello World');
 });
 
-app.get('/roleList', function (req, res) {
+app.get('/roleList', function(req, res) {
 	console.log(req.query.params);
 
-	let	requestUrl = 'http://tx3.cbg.163.com/cgi-bin/search.py?act=overall_search_role&order_by=&other_arg=&' + req.query.params
+	let requestUrl = 'http://tx3.cbg.163.com/cgi-bin/search.py?act=overall_search_role&order_by=&other_arg=&' + req.query.params
 
-	request(requestUrl, function (error, response, body) {
+	request(requestUrl, function(error, response, body) {
 		if (!error && response.statusCode === 200) {
 			const cbgData = JSON.parse(body);
 			if (cbgData.status === 0 && cbgData.msg && cbgData.paging) {
@@ -96,7 +97,7 @@ app.get('/roleList', function (req, res) {
 	});
 });
 
-const server = app.listen(8081, function () {
+const server = app.listen(8081, function() {
 	const host = server.address().address;
 	const port = server.address().port;
 
