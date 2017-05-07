@@ -15,13 +15,12 @@
         font-size: 14px;
     }
 
-    .fly-select {
-        display: inline-block;
-        width: 80px;
-    }
-
-    .fly-select3 {
-        width: 90px;
+    .fly {
+        margin-left: -8px;
+        .fly-select {
+            display: inline-block;
+            width: 85px;
+        }
     }
 </style>
 <template>
@@ -58,7 +57,7 @@
                             </el-form-item>
                         </el-col>
                         <el-col :span="1">&nbsp;</el-col>
-                        <el-col :span="9">
+                        <el-col class="fly" :span="9">
                             神启境界 ≥
                             <el-select v-model="flyValue11" @change="flyValue1Change" class="fly-select" size="small">
                                 <el-option v-for="item in flyOptions" :key="item.value" :value="item.value"></el-option>
@@ -66,7 +65,7 @@
                             <el-select v-model="flyValue22" @change="flyValue2Change" class="fly-select" size="small">
                                 <el-option v-for="item in flyOptions2" :key="item.value" :value="item.value"></el-option>
                             </el-select>
-                            <el-select v-model="flyValue33" @change="flyValue3Change" class="fly-select fly-select3" size="small">
+                            <el-select v-model="flyValue33" @change="flyValue3Change" class="fly-select" size="small">
                                 <el-option v-for="item in flyOptions3" :key="item.value" :value="item.value"></el-option>
                             </el-select>
                         </el-col>
