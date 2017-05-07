@@ -68,7 +68,8 @@ export default {
     mounted: function() {
         var _this = this;
         bus.$on("updateList",function(msg){
-            _this.roles = msg;
+            _this.roles = msg.roles;
+            // msg.paging
         });
     },
     methods: {

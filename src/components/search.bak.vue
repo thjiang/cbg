@@ -35,41 +35,41 @@
                         </el-radio-group>
                     </el-form-item>
                     <!-- <el-form :inline="true"> -->
-                    <el-form-item label="等级范围：">
-                        <el-col :span="2">
+                    <el-form-item label="输入等级：">
+                        <el-col :span="3">
                             <el-form-item prop="level1">
-                                <el-input size="small" type="number" v-model="ruleForm.level1" min="1" max="80"></el-input>
+                                <el-input size="small" type="number" placeholder="最低等级" v-model="ruleForm.level1" min="1" max="80"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col class="line" :span="1">-</el-col>
-                        <el-col :span="2">
+                        <el-col :span="3">
                             <el-form-item prop="level2">
-                                <el-input size="small" type="number" v-model="ruleForm.level2" min="1" max="80"></el-input>
+                                <el-input size="small" type="number" placeholder="最高等级" v-model="ruleForm.level2" min="1" max="80"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-form-item>
                     <!-- </el-form> -->
-                    <el-form-item label="价格范围：">
-                        <el-col :span="2">
+                    <el-form-item label="输入价格：">
+                        <el-col :span="3">
                             <el-form-item prop="price1">
                                 <el-input size="small" type="number" placeholder="最低价格" v-model="ruleForm.price1" min="80" max="300000"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col class="line" :span="1">-</el-col>
-                        <el-col :span="2">
+                        <el-col :span="3">
                             <el-form-item prop="price2">
                                 <el-input size="small" type="number" placeholder="最高价格" v-model="ruleForm.price2" min="80" max="300000"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-form-item>
-                    <el-form-item label="加护范围：">
-                        <el-col :span="2">
+                    <el-form-item label="装备加护：">
+                        <el-col :span="3">
                             <el-form-item prop="equip_jia_hu_min">
                                 <el-input size="small" type="number" placeholder="最低加护" v-model="ruleForm.equip_jia_hu_min" min="0" max="360"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col class="line" :span="1">-</el-col>
-                        <el-col :span="2">
+                        <el-col :span="3">
                             <el-form-item prop="equip_jia_hu_max">
                                 <el-input size="small" type="number" placeholder="最高加护" v-model="ruleForm.equip_jia_hu_max" min="0" max="360"></el-input>
                             </el-form-item>
@@ -237,31 +237,6 @@
                                     <el-form-item prop="equip_lian_hu_max">
                                         <el-input size="small" type="number" placeholder="请输入最高炼护" v-model="ruleForm.equip_lian_hu_max" min="0" max="80000"></el-input>
                                     </el-form-item>
-                                </el-col>
-                            </el-form-item>
-                            <el-form-item label="特殊等级：">
-                                <el-col :span="4">
-                                    <el-input size="small" v-model="ruleForm.juexing_level" type="number">
-                                        <template slot="prepend">觉醒≥ </template>
-                                    </el-input>
-                                </el-col>
-                                <el-col class="line" :span="1">&nbsp;</el-col>
-                                <el-col :span="4">
-                                    <el-input size="small" v-model="ruleForm.guizong_level" type="number">
-                                        <template slot="prepend">归宗≥ </template>
-                                    </el-input>
-                                </el-col>
-                                <el-col class="line" :span="1">&nbsp;</el-col>
-                                <el-col :span="4">
-                                    <el-input size="small" v-model="ruleForm.yinghun_level" type="number">
-                                        <template slot="prepend">英魂≥ </template>
-                                    </el-input>
-                                </el-col>
-                                <el-col class="line" :span="1">&nbsp;</el-col>
-                                <el-col :span="4">
-                                    <el-input size="small" v-model="ruleForm.child_level" type="number">
-                                        <template slot="prepend">孩子≥ </template>
-                                    </el-input>
                                 </el-col>
                             </el-form-item>
                             <el-form-item label="基础属性：">
@@ -491,10 +466,7 @@ export default {
                 cri_sub_p: "",
                 thump_sub_p: "",
                 absolutely_defence: "",
-                juexing_level: "",
-                guizong_level: "",
-                child_level: "",
-                yinghun_level: ""
+                // resource: ''juexing_level, guizong_level
             },
             rules: {
                 school: [{
