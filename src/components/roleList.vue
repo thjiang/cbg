@@ -51,7 +51,7 @@
             <el-table-column prop="server" label="服务器" sortable width="100"></el-table-column>
             <el-table-column prop="equipscore" label="装评" sortable width=""></el-table-column>
             <el-table-column prop="score" label="修为" sortable width=""></el-table-column>
-            <el-table-column prop="lefttime" label="时间" sortable width="110"></el-table-column>
+            <el-table-column prop="lefttime" label="时间" sortable width="100"></el-table-column>
             <el-table-column prop="price" label="价格" sortable width=""></el-table-column>
             <el-table-column label="操作" width="270">
                 <template scope="scope">
@@ -60,7 +60,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <el-pagination v-if="roles.length > 15" @current-change="currentChange" :current-page="cur_page" :page-size="15" layout="prev, pager, next, total" :total="total"></el-pagination>
+        <el-pagination v-if="total > 15" @current-change="currentChange" :current-page="cur_page" :page-size="15" layout="prev, pager, next, total" :total="total"></el-pagination>
     </div>
 </template>
 

@@ -12,6 +12,13 @@
         color: #0087ff;
         font-size: 14px;
     }
+    .fly-select {
+        display: inline-block;
+        width: 80px;
+    }
+    .fly-select3 {
+        width: 95px;
+    }
 </style>
 <template>
     <div class="" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="查询可能需要较长时间，请稍候">
@@ -36,45 +43,54 @@
                     </el-form-item>
                     <!-- <el-form :inline="true"> -->
                     <el-form-item label="等级范围：">
-                        <el-col :span="2">
+                        <el-col :span="3">
                             <el-form-item prop="level1">
                                 <el-input size="small" type="number" v-model="ruleForm.level1" min="1" max="80"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col class="line" :span="1">-</el-col>
-                        <el-col :span="2">
+                        <el-col :span="3">
                             <el-form-item prop="level2">
                                 <el-input size="small" type="number" v-model="ruleForm.level2" min="1" max="80"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="1">&nbsp;</el-col>
-                        <el-col :span="2">
+                        <el-col :span="9">
                             神启境界 ≥
-
+                            <el-select v-model="flyValue11" @change="flyValue1Change" class="fly-select" size="small">
+                                <el-option v-for="item in flyOptions" :key="item.value" :value="item.value"></el-option>
+                            </el-select>
+                            <!--  -->
+                            <el-select v-model="flyValue22" @change="flyValue2Change" class="fly-select" size="small">
+                                <el-option v-for="item in flyOptions2" :key="item.value" :value="item.value"></el-option>
+                            </el-select>
+                            <el-select v-model="flyValue33" @change="flyValue3Change" class="fly-select fly-select3" size="small">
+                                <el-option v-for="item in flyOptions3" :key="item.value" :value="item.value"></el-option>
+                            </el-select>
                         </el-col>
                     </el-form-item>
                     <!-- </el-form> -->
                     <el-form-item label="价格范围：">
-                        <el-col :span="2">
+                        <el-col :span="3">
                             <el-form-item prop="price1">
                                 <el-input size="small" type="number" v-model="ruleForm.price1" min="80" max="300000"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col class="line" :span="1">-</el-col>
-                        <el-col :span="2">
+                        <el-col :span="3">
                             <el-form-item prop="price2">
                                 <el-input size="small" type="number" v-model="ruleForm.price2" min="80" max="300000"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-form-item>
                     <el-form-item label="加护范围：">
-                        <el-col :span="2">
+                        <el-col :span="3">
                             <el-form-item prop="equip_jia_hu_min">
                                 <el-input size="small" type="number" v-model="ruleForm.equip_jia_hu_min" min="0" max="360"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col class="line" :span="1">-</el-col>
-                        <el-col :span="2">
+                        <el-col :span="3">
                             <el-form-item prop="equip_jia_hu_max">
                                 <el-input size="small" type="number" v-model="ruleForm.equip_jia_hu_max" min="0" max="360"></el-input>
                             </el-form-item>
@@ -509,7 +525,40 @@ export default {
                     trigger: 'change'
                 }]
             },
-            queryStr: ""
+            queryStr: "",
+            flyOptions: [{
+            	value: '天魂'
+            }, {
+            	value: '地魂'
+            }],
+            flyOptions2: [],
+            flyOptions3: [{
+                value: '不限'
+            }, {
+                value: '壹境界'
+            }, {
+                value: '贰境界'
+            }, {
+                value: '叁境界'
+            }, {
+                value: '肆境界'
+            }, {
+                value: '伍境界'
+            }, {
+                value: '陆境界'
+            }, {
+                value: '柒境界'
+            }, {
+                value: '捌境界'
+            }, {
+                value: '玖境界'
+            }],
+            flyValue1: "",
+            flyValue2: "",
+            flyValue3: "",
+            flyValue11: "",
+            flyValue22: "",
+            flyValue33: ""
         };
     },
     methods: {
@@ -529,12 +578,105 @@ export default {
         resetForm(formName) {
         	this.$refs[formName].resetFields();
         },
+        flyValue1Change(value) {
+        	if (value == "天魂") {
+                this.flyValue1 = 2;
+        	    this.flyOptions2 = [{
+                    value: '不限'
+                }, {
+                    value: '壹天'
+                }, {
+                    value: '贰天'
+                }, {
+                    value: '叁天'
+                }, {
+                    value: '肆天'
+                }, {
+                    value: '伍天'
+                }, {
+                    value: '陆天'
+                }]
+        	} else {
+                this.flyValue1 = 1;
+                this.flyOptions2 = [{
+                    value: '不限'
+                }, {
+                    value: '壹天'
+                }, {
+                    value: '贰天'
+                }, {
+                    value: '叁天'
+                }, {
+                    value: '肆天'
+                }]
+            }
+        },
+        flyValue2Change(value) {
+        	switch (value) {
+        	    case '壹天':
+        	        this.flyValue2 = 1;
+        	        break;
+        	    case '贰天':
+        	        this.flyValue2 = 2;
+        	        break;
+        	    case '叁天':
+        	        this.flyValue2 = 3;
+        	        break;
+        	    case '肆天':
+        	        this.flyValue2 = 4;
+        	        break;
+        	    case '伍天':
+        	        this.flyValue2 = 5;
+        	        break;
+        	    case '陆天':
+        	        this.flyValue2 = 6;
+        	        break;
+        	    default:
+        	        this.flyValue2 = 0;
+        	}
+        },
+        flyValue3Change(value) {
+            switch (value) {
+        	    case '壹境界':
+        	        this.flyValue3 = 1;
+        	        break;
+        	    case '贰境界':
+        	        this.flyValue3 = 2;
+        	        break;
+        	    case '叁境界':
+        	        this.flyValue3 = 3;
+        	        break;
+        	    case '肆境界':
+        	        this.flyValue3 = 4;
+        	        break;
+        	    case '伍境界':
+        	        this.flyValue3 = 5;
+        	        break;
+        	    case '陆境界':
+        	        this.flyValue3 = 6;
+        	        break;
+        	    case '柒境界':
+        	        this.flyValue3 = 7;
+        	        break;
+        	    case '捌境界':
+        	        this.flyValue3 = 8;
+        	        break;
+        	    case '玖境界':
+        	        this.flyValue3 = 9;
+        	        break;
+        	    default:
+        	        this.flyValue3 = 0;
+        	}
+        },
         search(model, page) {
         	if (model.school) {
         		var schoolArray = ['荒火', '天机', '翎羽', '魍魉', '太虚', '云麓', '冰心', '弈剑', '鬼墨', '龙巫', '幽篁'];
         		model.school = schoolArray.indexOf(model.school) + 1;
         		model.price_min = model.price1 * 100;
         		model.price_max = model.price2 * 100;
+                if (this.flyValue1) {
+                    model.fly_level = ((this.flyValue1 + "") + (this.flyValue2 + "") + (this.flyValue3 + "")) * 1;
+                }
 
         		var x;
         		for (x in model) {
@@ -585,11 +727,11 @@ export default {
     					if (tmpRoles[i].deadline) {
     						// 1天=24*60*60*1000=86400000ms,1小时=60*60*1000=3600000ms
     						if (tmpRoles[i].deadline - nowTime > 86400000) {
-    							tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 86400000) + "天" + Math.floor((tmpRoles[i].deadline - nowTime) % 86400000 / 3600000) + "小时";
+    							tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 86400000) + "天" + Math.floor((tmpRoles[i].deadline - nowTime) % 86400000 / 3600000) + "时";
     						} else if (tmpRoles[i].deadline - nowTime > 3600000) {
     							tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 3600000) + "小时";
     						} else {
-    							tmpRoles[i].lefttime = "不足1小时";
+    							tmpRoles[i].lefttime = "< 1小时";
     						}
     					}
     				}
