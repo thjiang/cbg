@@ -47,31 +47,36 @@
                                 <el-input size="small" type="number" v-model="ruleForm.level2" min="1" max="80"></el-input>
                             </el-form-item>
                         </el-col>
+                        <el-col :span="1">&nbsp;</el-col>
+                        <el-col :span="2">
+                            神启境界 ≥
+
+                        </el-col>
                     </el-form-item>
                     <!-- </el-form> -->
                     <el-form-item label="价格范围：">
                         <el-col :span="2">
                             <el-form-item prop="price1">
-                                <el-input size="small" type="number" placeholder="最低价格" v-model="ruleForm.price1" min="80" max="300000"></el-input>
+                                <el-input size="small" type="number" v-model="ruleForm.price1" min="80" max="300000"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col class="line" :span="1">-</el-col>
                         <el-col :span="2">
                             <el-form-item prop="price2">
-                                <el-input size="small" type="number" placeholder="最高价格" v-model="ruleForm.price2" min="80" max="300000"></el-input>
+                                <el-input size="small" type="number" v-model="ruleForm.price2" min="80" max="300000"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-form-item>
                     <el-form-item label="加护范围：">
                         <el-col :span="2">
                             <el-form-item prop="equip_jia_hu_min">
-                                <el-input size="small" type="number" placeholder="最低加护" v-model="ruleForm.equip_jia_hu_min" min="0" max="360"></el-input>
+                                <el-input size="small" type="number" v-model="ruleForm.equip_jia_hu_min" min="0" max="360"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col class="line" :span="1">-</el-col>
                         <el-col :span="2">
                             <el-form-item prop="equip_jia_hu_max">
-                                <el-input size="small" type="number" placeholder="最高加护" v-model="ruleForm.equip_jia_hu_max" min="0" max="360"></el-input>
+                                <el-input size="small" type="number" v-model="ruleForm.equip_jia_hu_max" min="0" max="360"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-form-item>
@@ -369,10 +374,10 @@
                                     </el-input>
                                 </el-col>
                             </el-form-item>
-                            <el-form-item label="选择时装：" prop="clothes">
+                            <!-- <el-form-item label="选择时装：" prop="clothes">
                                 <el-checkbox-group v-model="ruleForm.clothes">
 
-                                    <!-- 玄素天成 21121,21122,21123,21124,21326,21327,88326,88327
+                                    玄素天成 21121,21122,21123,21124,21326,21327,88326,88327
                                     黛染青花 21189,21190,21202,21203,121533,121534,121572,121573
                                     海棠未雨 121705,121706,210037,210038,210039,210040,210073,210074
                                     孤鸿月影 21293,21294,21323,21324,121576,121577
@@ -383,7 +388,7 @@
                                     沧海桑田 210000,210001,210002,210003,210004,210005
                                     疏影横斜 121745,121746,121747,121748,121749,121750,121751,121752
                                     天狐霓裳 210148,210149,210210,210211
-                                    仙狐彩袂 210144,210145,210206,210207 -->
+                                    仙狐彩袂 210144,210145,210206,210207
                                     <el-checkbox label="玄素天成" name="clothes"></el-checkbox>
                                     <el-checkbox label="黛染青花" name="clothes"></el-checkbox>
                                     <el-checkbox label="海棠未雨" name="clothes"></el-checkbox>
@@ -399,7 +404,7 @@
                                     <el-checkbox label="天狐霓裳" name="clothes"></el-checkbox>
                                     <el-checkbox label="仙狐彩袂" name="clothes"></el-checkbox>
                                 </el-checkbox-group>
-                            </el-form-item>
+                            </el-form-item> -->
                         </el-collapse-item>
                     </el-collapse>
 
@@ -440,7 +445,7 @@ export default {
             activeNames2: ['0'],
             ruleForm: {
                 school: '荒火',
-                clothes: [],
+                // clothes: [],
                 // skill: [],
                 price1: '',
                 price2: '',
@@ -503,179 +508,116 @@ export default {
                     message: '请至少选择一个门派',
                     trigger: 'change'
                 }]
-            }
+            },
+            queryStr: ""
         };
     },
     methods: {
         submitForm(formName) {
-            this.$refs[formName].validate((valid) => {
-                if (valid) {
-                    // this.$message({
-                    //     showClose: true,
-                    //     message: '查询参数为：门派 ' + this.$refs[formName].model.school + '，等级 ' + this.$refs[formName].model.level1 + '-' +  this.$refs[formName].model.level2 + '，价格 ' + this.$refs[formName].model.price1 + '-' + this.$refs[formName].model.price2
-                    // });
-
-                    // this.$emit('search', this.$refs[formName].model);
-                    this.search(this.$refs[formName].model);
-                } else {
-                    this.$message({
-                        showClose: true,
-                        message: '参数有误，请检查后重试'
-                    });
-                    return false;
-                }
-            });
+        	this.$refs[formName].validate((valid) => {
+        		if (valid) {
+        			this.search(this.$refs[formName].model);
+        		} else {
+        			this.$message({
+        				showClose: true,
+        				message: '参数有误，请检查后重试'
+        			});
+        			return false;
+        		}
+        	});
         },
         resetForm(formName) {
-            this.$refs[formName].resetFields();
+        	this.$refs[formName].resetFields();
         },
-        search(model) {
-            if (model.school) {
-                var _this = this;
-                var schoolArray = ['荒火', '天机', '翎羽', '魍魉', '太虚', '云麓', '冰心', '弈剑', '鬼墨', '龙巫', '幽篁'];
-                var params = {
-                    school: schoolArray.indexOf(model.school) + 1,
-                    equip_level_min: model.level1,
-                    equip_level_max: model.level2,
-                    price_min: model.price1 * 100,
-                    price_max: model.price2 * 100,
-                    equip_xiuwei_min: model.equip_xiuwei_min,
-                    equip_xiuwei_max: model.equip_xiuwei_max,
-                    xiuwei_min: model.xiuwei_min,
-                    xiuwei_max: model.xiuwei_max,
-                    equip_jia_hu_min: model.equip_jia_hu_min,
-                    equip_jia_hu_max: model.equip_jia_hu_max,
-                    equip_lian_hu_min: model.equip_lian_hu_min,
-                    equip_lian_hu_max: model.equip_lian_hu_max,
-                    mhp: model.mhp,
-                    attr_basic_li: model.attr_basic_li,
-                    attr_basic_ti: model.attr_basic_ti,
-                    attr_basic_min: model.attr_basic_min,
-                    msp: model.msp,
-                    attr_basic_ji: model.attr_basic_ji,
-                    attr_basic_hun: model.attr_basic_hun,
-                    attr_basic_nian: model.attr_basic_nian,
-                    critical: model.critical,
-                    attadd: model.attadd,
-                    pattack_min: model.pattack_min,
-                    pattack_max: model.pattack_max,
-                    hit: model.hit,
-                    modadd: model.modadd,
-                    mattack_min: model.mattack_min,
-                    mattack_max: model.mattack_max,
-                    pdef: model.pdef,
-                    avoid: model.avoid,
-                    mdef: model.mdef,
-                    inprotect: model.inprotect,
-                    attdef: model.attdef,
-                    defhuman: model.defhuman,
-                    movespeed: model.movespeed,
-                    attackspeed: model.attackspeed,
-                    castspeed: model.castspeed,
-                    spreduce: model.spreduce,
-                    inbreak: model.inbreak,
-                    attackhuman: model.attackhuman,
-                    sract: model.sract,
-                    srbody: model.srbody,
-                    srmind: model.srmind,
-                    cri_add_p: model.cri_add_p,
-                    thump_add_p: model.thump_add_p,
-                    absolutely_attack: model.absolutely_attack,
-                    cri_sub_p: model.cri_sub_p,
-                    thump_sub_p: model.thump_sub_p,
-                    absolutely_defence: model.absolutely_defence
-                }
+        search(model, page) {
+        	if (model.school) {
+        		var schoolArray = ['荒火', '天机', '翎羽', '魍魉', '太虚', '云麓', '冰心', '弈剑', '鬼墨', '龙巫', '幽篁'];
+        		model.school = schoolArray.indexOf(model.school) + 1;
+        		model.price_min = model.price1 * 100;
+        		model.price_max = model.price2 * 100;
 
-                var special_clothes = "";
-                // 玄素天成 21121,21122,21123,21124,21326,21327,88326,88327
-                // 黛染青花 21189,21190,21202,21203,121533,121534,121572,121573
-                // 海棠未雨 121705,121706,210037,210038,210039,210040,210073,210074
-                // 孤鸿月影 21293,21294,21323,21324,121576,121577
-                // 祈福同心 21059
-                // 岸芷汀兰 21335,21336,121529,121530
-                // 蟾宫折桂 21487,21488,121515,121516,121580,121581
-                // 绛云思暖 21339,21340,121531,121532
-                // 沧海桑田 210000,210001,210002,210003,210004,210005
-                // 疏影横斜 121745,121746,121747,121748,121749,121750,121751,121752
-                // 天狐霓裳 210148,210149,210210,210211
-                // 仙狐彩袂 210144,210145,210206,210207
-                // var clothesArray = ['玄素天成', '黛染青花', '海棠未雨', '孤鸿月影', '祈福同心',
-                // '岸芷汀兰', '蟾宫折桂', '绛云思暖', '沧海桑田', '疏影横斜', '天狐霓裳', '仙狐彩袂'];
-                // for (var i = 0; i < this.clothes.length; i++) {
-                //     if (this.clothes.length == 1) {
-                //         special_clothes = ""
-                //     }
-                //     // for (var j = 0; j < clothesArray.length; j++) {
-                //     //     if (this.clothes[i] == clothesArray[j]) {
-                //     //
-                //     //     }
-                //     // }
-                // }
+        		var x;
+        		for (x in model) {
+        			if (model[x]) {
+        				this.queryStr += x + "=" + model[x] + "&";
+        			}
+        		}
 
-                var url = "http://127.0.0.1:8081/roleList";
-                if (window.location.href.indexOf("zhounan") > -1) {
-                    url = "//req.zhounan.win/roleList";
-                } else if (window.location.href.indexOf("thjiang") > -1) {
-                    url = "//req.thjiang.com/roleList";
-                } else if (window.location.href.indexOf("106.14.179.201") > -1) { // 临时 域名解析要备案
-                    url = "//106.14.179.201:8081/roleList";
-                }
+                this.request(this.queryStr);
+        	}
+        },
+        request(queryStr, page) {
+            var _this = this;
+            var param = "";
+            !!page ? param = "page=" + page + "&" + queryStr : param = "page=1&" + queryStr;
 
-                // this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
-                // this.$http.get('//req.zhounan.win/roleList', {params: {params: params}}, {
-                // this.$http.get('http://182.254.222.174:8081/roleList', {params: {id:12345}}, {
-                // this.$http.get('http://45.77.27.67:8081/roleList', {params: {params: params}}, {
+            var url = "http://127.0.0.1:8081/roleList";
+    		if (window.location.href.indexOf("zhounan") > -1) {
+    			url = "//req.zhounan.win/roleList";
+    		} else if (window.location.href.indexOf("thjiang") > -1) {
+    			url = "//req.thjiang.com/roleList";
+    		} else if (window.location.href.indexOf("106.14.179.201") > -1) { // 临时 域名解析要备案
+    			url = "//106.14.179.201:8081/roleList";
+    		}
 
-                this.fullscreenLoading = true;
-                this.$http.get(url, {
-                    params: {params: JSON.stringify(params)}
-                }, {
-                    headers:{},
-                    emulateJSON: true
-                }).then(function(response) {
-                    _this.fullscreenLoading = false;
+    		this.fullscreenLoading = true;
+    		this.$http.get(url, {
+    			// params: {params: JSON.stringify(model)}
+    			params: {
+    				params: param
+    			}
+    		}, {
+    			headers: {},
+    			emulateJSON: true
+    		}).then(function(response) {
+    			_this.fullscreenLoading = false;
 
-                    if (response.data.result && response.data.result.data && response.data.result.data.msg && response.data.result.data.msg.length === 0) {
-                        _this.$message({
-                            showClose: true,
-                            message: '没有找到符合条件的角色'
-                        });
-                    } else {
-                        var tmpRoles = response.data.result.data.msg;
+    			if (response.data.result && response.data.result.data && response.data.result.data.msg && response.data.result.data.msg.length === 0) {
+    				_this.$message({
+    					showClose: true,
+    					message: '没有找到符合条件的角色'
+    				});
+    			} else {
+    				var tmpRoles = response.data.result.data.msg;
 
-                        var nowTime = new Date().getTime();
-                        for (var i = 0; i < tmpRoles.length; i++) {
-                            if (tmpRoles[i].deadline) {
-                                // 1天=24*60*60*1000=86400000ms,1小时=60*60*1000=3600000ms
-                                if (tmpRoles[i].deadline - nowTime > 86400000) {
-                                    tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 86400000) + "天" + Math.floor((tmpRoles[i].deadline - nowTime) % 86400000 / 3600000) + "小时";
-                                } else if (tmpRoles[i].deadline - nowTime > 3600000) {
-                                    tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 3600000) + "小时";
-                                } else {
-                                    tmpRoles[i].lefttime = "不足1小时";
-                                }
-                            }
-                        }
+    				var nowTime = new Date().getTime();
+    				for (var i = 0; i < tmpRoles.length; i++) {
+    					if (tmpRoles[i].deadline) {
+    						// 1天=24*60*60*1000=86400000ms,1小时=60*60*1000=3600000ms
+    						if (tmpRoles[i].deadline - nowTime > 86400000) {
+    							tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 86400000) + "天" + Math.floor((tmpRoles[i].deadline - nowTime) % 86400000 / 3600000) + "小时";
+    						} else if (tmpRoles[i].deadline - nowTime > 3600000) {
+    							tmpRoles[i].lefttime = Math.floor((tmpRoles[i].deadline - nowTime) / 3600000) + "小时";
+    						} else {
+    							tmpRoles[i].lefttime = "不足1小时";
+    						}
+    					}
+    				}
 
-                        var list = {
-                            roles: tmpRoles,
-                            paging: response.data.result.data.paging
-                        }
+    				var list = {
+    					roles: tmpRoles,
+    					paging: response.data.result.data.paging
+    				}
 
-                        bus.$emit("updateList", list);
+    				bus.$emit("updateList", list);
 
-                        _this.activeNames = ['0'];
-                        _this.activeNames2 = ['1'];
-                    }
-                }, function(response) {
-                    console.log(response);
-                    _this.$message({
-                        showClose: true,
-                        message: response
-                    });
-                });
-            }
+    				_this.activeNames = ['0'];
+    				_this.activeNames2 = ['1'];
+    			}
+    		}, function(response) {
+    			console.log(response);
+    			_this.$message({
+    				showClose: true,
+    				message: response
+    			});
+    		});
         }
+    },
+    mounted: function() {
+    	var _this = this;
+    	bus.$on("changePage", function(nextPage) {
+            _this.request(_this.queryStr, nextPage);
+    	});
     },
     components: {
         roleList

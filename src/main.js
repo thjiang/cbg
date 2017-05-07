@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueResource from 'vue-resource';
 // import ElementUI from 'element-ui';
 import { Button, Select, Table, TableColumn, Collapse, CollapseItem, Form, FormItem,
-     Col, Input, Radio, RadioGroup, RadioButton, Checkbox, CheckboxGroup, Loading, Message } from 'element-ui';
+     Col, Input, Radio, RadioGroup, RadioButton, Checkbox, CheckboxGroup, Loading, Message, Pagination } from 'element-ui';
 // import 'element-ui/lib/theme-default/index.css';
 import App from './app.vue';
 
@@ -23,6 +23,7 @@ Vue.use(RadioGroup);
 Vue.use(RadioButton);
 Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
+Vue.use(Pagination);
 
 Vue.use(Loading.directive);
 
