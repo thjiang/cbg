@@ -21,7 +21,7 @@
     }
 
     .fly-select3 {
-        width: 95px;
+        width: 90px;
     }
 </style>
 <template>
