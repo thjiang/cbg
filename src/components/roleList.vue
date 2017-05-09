@@ -55,9 +55,9 @@
         <el-table-column prop="price" label="价格" sortable width=""></el-table-column>
         <el-table-column label="操作" width="270">
             <template scope="scope">
-                    <el-button type="info"><a class="link" :href="scope.row.yxblink" target="_blank">英雄榜</a></el-button>
-                    <el-button type="info"><a class="link" :href="scope.row.cbglink" target="_blank">去购买</a></el-button>
-                </template>
+                <a class="link" :href="scope.row.yxblink" target="_blank"><el-button type="info">英雄榜</el-button></a>
+                <a class="link" :href="scope.row.cbglink" target="_blank"><el-button type="info">去购买</el-button></a>
+            </template>
         </el-table-column>
     </el-table>
     <el-pagination v-if="total > 15" @current-change="currentChange" :current-page="cur_page" :page-size="15" layout="prev, pager, next, total" :total="total"></el-pagination>
