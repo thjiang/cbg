@@ -29,19 +29,20 @@
         <el-collapse-item title="查询条件：（点击可切换展开/折叠）" name="1">
             <div class="search">
                 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-                    <el-form-item label="选择门派：" prop="school">
+                    <!-- <el-form-item label="选择门派：" prop="school"> -->
+                    <el-form-item label="选择门派：">
                         <el-radio-group v-model="ruleForm.school">
-                            <el-radio-button label="荒火" name="school"></el-radio-button>
-                            <el-radio-button label="天机" name="school"></el-radio-button>
-                            <el-radio-button label="翎羽" name="school"></el-radio-button>
-                            <el-radio-button label="魍魉" name="school"></el-radio-button>
-                            <el-radio-button label="太虚" name="school"></el-radio-button>
-                            <el-radio-button label="云麓" name="school"></el-radio-button>
-                            <el-radio-button label="冰心" name="school"></el-radio-button>
-                            <el-radio-button label="弈剑" name="school"></el-radio-button>
-                            <el-radio-button label="鬼墨" name="school"></el-radio-button>
-                            <el-radio-button label="龙巫" name="school"></el-radio-button>
-                            <el-radio-button label="幽篁" name="school"></el-radio-button>
+                            <el-radio-button label="荒火"></el-radio-button>
+                            <el-radio-button label="天机"></el-radio-button>
+                            <el-radio-button label="翎羽"></el-radio-button>
+                            <el-radio-button label="魍魉"></el-radio-button>
+                            <el-radio-button label="太虚"></el-radio-button>
+                            <el-radio-button label="云麓"></el-radio-button>
+                            <el-radio-button label="冰心"></el-radio-button>
+                            <el-radio-button label="弈剑"></el-radio-button>
+                            <el-radio-button label="鬼墨"></el-radio-button>
+                            <el-radio-button label="龙巫"></el-radio-button>
+                            <el-radio-button label="幽篁"></el-radio-button>
                         </el-radio-group>
                     </el-form-item>
                     <el-form-item label="等级范围：">
@@ -390,21 +391,8 @@
                                     </el-input>
                                 </el-col>
                             </el-form-item>
-                            <!-- <el-form-item label="选择时装：" prop="clothes">
-                                <el-checkbox-group v-model="ruleForm.clothes">
-
-                                    玄素天成 21121,21122,21123,21124,21326,21327,88326,88327
-                                    黛染青花 21189,21190,21202,21203,121533,121534,121572,121573
-                                    海棠未雨 121705,121706,210037,210038,210039,210040,210073,210074
-                                    孤鸿月影 21293,21294,21323,21324,121576,121577
-                                    祈福同心 21059
-                                    岸芷汀兰 21335,21336,121529,121530
-                                    蟾宫折桂 21487,21488,121515,121516,121580,121581
-                                    绛云思暖 21339,21340,121531,121532
-                                    沧海桑田 210000,210001,210002,210003,210004,210005
-                                    疏影横斜 121745,121746,121747,121748,121749,121750,121751,121752
-                                    天狐霓裳 210148,210149,210210,210211
-                                    仙狐彩袂 210144,210145,210206,210207
+                            <el-form-item label="选择时装：" prop="clothes">
+                                <el-checkbox-group v-model="clothes">
                                     <el-checkbox label="玄素天成" name="clothes"></el-checkbox>
                                     <el-checkbox label="黛染青花" name="clothes"></el-checkbox>
                                     <el-checkbox label="海棠未雨" name="clothes"></el-checkbox>
@@ -419,6 +407,17 @@
                                     <el-checkbox label="疏影横斜" name="clothes"></el-checkbox>
                                     <el-checkbox label="天狐霓裳" name="clothes"></el-checkbox>
                                     <el-checkbox label="仙狐彩袂" name="clothes"></el-checkbox>
+                                </el-checkbox-group>
+                            </el-form-item>
+
+                            <!-- <el-form-item label="元 魂 珠：" prop="pearls">
+                                <el-checkbox-group v-model="pearls">
+                                    <el-checkbox label="喜气洋羊" name="pearls"></el-checkbox>
+                                    <el-checkbox label="昴日星官" name="pearls"></el-checkbox>
+                                    <el-checkbox label="万圣天尊" name="pearls"></el-checkbox>
+                                    <el-checkbox label="八杀骑劫" name="pearls"></el-checkbox>
+                                    <el-checkbox label="马王爷" name="pearls"></el-checkbox>
+                                    <el-checkbox label="业火" name="pearls"></el-checkbox>
                                 </el-checkbox-group>
                             </el-form-item> -->
                         </el-collapse-item>
@@ -459,8 +458,6 @@ export default {
             activeNames2: ['0'],
             ruleForm: {
                 school: '荒火',
-                // clothes: [],
-                // skill: [],
                 price1: '',
                 price2: '',
                 level1: '',
@@ -517,13 +514,12 @@ export default {
             },
             rules: {
                 school: [{
-                    // type: 'array',
+                    type: 'string',
                     required: false,
                     message: '请至少选择一个门派',
                     trigger: 'change'
                 }]
             },
-            queryStr: "",
             flyOptions: [{
                 value: '天魂'
             }, {
@@ -556,7 +552,11 @@ export default {
             flyValue3: "",
             flyValue11: "",
             flyValue22: "",
-            flyValue33: ""
+            flyValue33: "",
+            queryStr: "",
+            clothes: [],
+            pearls: [],
+            // skill: []
         };
     },
     methods: {
@@ -673,6 +673,16 @@ export default {
                 model.school = schoolArray.indexOf(model.school) + 1;
                 model.price_min = model.price1 * 100;
                 model.price_max = model.price2 * 100;
+
+                delete model.price1;
+                delete model.price2;
+
+                model.level1 = model.equip_level_min;
+                model.level2 = model.equip_level_max;
+
+                delete model.level1;
+                delete model.level2;
+
                 if (this.flyValue1) {
                     model.fly_level = ((this.flyValue1 + "") + (this.flyValue2 + "") + (this.flyValue3 + "")) * 1;
                 }
@@ -683,6 +693,79 @@ export default {
                         this.queryStr += x + "=" + model[x] + "&";
                     }
                 }
+
+                if (this.clothes.length > 0) {
+                    var clothesStr = 'special_clothes_logic=and&special_clothes=';
+                    for (var i = 0; i < this.clothes.length; i++) {
+                        if (this.clothes[i] == '玄素天成') {
+                            clothesStr = clothesStr + '21121,21122,21123,21124,21326,21327,88326,88327|';
+                        }
+                        if (this.clothes[i] == '黛染青花') {
+                            clothesStr = clothesStr + '21189,21190,21202,21203,121533,121534,121572,121573|';
+                        }
+                        if (this.clothes[i] == '海棠未雨') {
+                            clothesStr = clothesStr + '121705,121706,210037,210038,210039,210040,210073,210074|';
+                        }
+                        if (this.clothes[i] == '孤鸿月影') {
+                            clothesStr = clothesStr + '21293,21294,21323,21324,121576,121577|';
+                        }
+                        if (this.clothes[i] == '祈福同心') {
+                            clothesStr = clothesStr + '21059|';
+                        }
+                        if (this.clothes[i] == '岸芷汀兰') {
+                            clothesStr = clothesStr + '21335,21336,121529,121530|';
+                        }
+                        if (this.clothes[i] == '蟾宫折桂') {
+                            clothesStr = clothesStr + '21487,21488,121515,121516,121580,121581|';
+                        }
+                        if (this.clothes[i] == '绛云思暖') {
+                            clothesStr = clothesStr + '21339,21340,121531,121532|';
+                        }
+                        if (this.clothes[i] == '沧海桑田') {
+                            clothesStr = clothesStr + '210000,210001,210002,210003,210004,210005|';
+                        }
+                        if (this.clothes[i] == '疏影横斜') {
+                            clothesStr = clothesStr + '121745,121746,121747,121748,121749,121750,121751,121752|';
+                        }
+                        if (this.clothes[i] == '天狐霓裳') {
+                            clothesStr = clothesStr + '210148,210149,210210,210211|';
+                        }
+                        if (this.clothes[i] == '仙狐彩袂') {
+                            clothesStr = clothesStr + '210144,210145,210206,210207|';
+                        }
+                    }
+                    clothesStr = clothesStr + "&";
+
+                    this.queryStr = this.queryStr + clothesStr;
+                }
+
+                // if (this.pearls.length > 0) {
+                //     var pearlsStr = 'pet_special_kind_logic=and&pet_special_kind=';
+                //     for (var i = 0; i < this.pearls.length; i++) {
+                //         if (this.pearls[i] == '喜气洋羊') {
+                //             pearlsStr = pearlsStr + '喜气洋羊,';
+                //         }
+                //         if (this.pearls[i] == '昴日星官') {
+                //             pearlsStr = pearlsStr + '昴日星官,';
+                //         }
+                //         if (this.pearls[i] == '万圣天尊') {
+                //             pearlsStr = pearlsStr + '万圣天尊,';
+                //         }
+                //         if (this.pearls[i] == '八杀骑劫') {
+                //             pearlsStr = pearlsStr + '八杀骑劫,';
+                //         }
+                //         if (this.pearls[i] == '马王爷') {
+                //             pearlsStr = pearlsStr + '马王爷,';
+                //         }
+                //         if (this.pearls[i] == '业火') {
+                //             pearlsStr = pearlsStr + '业火,';
+                //         }
+                //     }
+                //     pearlsStr = pearlsStr.substring(0, pearlsStr.length-1);
+                //     pearlsStr = pearlsStr + "&";
+                //
+                //     this.queryStr = this.queryStr + pearlsStr;
+                // }
 
                 this.request(this.queryStr);
             }
@@ -697,8 +780,8 @@ export default {
                 url = "//req.zhounan.win/roleList";
             } else if (window.location.href.indexOf("thjiang") > -1) {
                 url = "//req.thjiang.com/roleList";
-            } else if (window.location.href.indexOf("106.14.179.201") > -1) { // 临时 域名解析要备案
-                url = "//106.14.179.201:8081/roleList";
+            } else if (window.location.href.indexOf("icewish") > -1) { // 临时 域名解析要备案
+                url = "//req.icewish.top/roleList";
             }
 
             this.fullscreenLoading = true;
@@ -713,12 +796,35 @@ export default {
             }).then(function(response) {
                 _this.fullscreenLoading = false;
 
-                if (response.data.result && response.data.result.data && response.data.result.data.msg && response.data.result.data.msg.length === 0) {
+                _this.flyValue1 = '';
+                _this.flyValue2 = '';
+                _this.flyValue3 = '';
+                _this.flyValue11 = '';
+                _this.flyValue22 = '';
+                _this.flyValue33 = '';
+                _this.clothes = [];
+                _this.pearls = [];
+
+                var x;
+                for (x in _this.ruleForm) {
+                    if (_this.ruleForm[x]) {
+                        _this.ruleForm[x] = '';
+                    }
+                }
+
+                _this.ruleForm.school = '荒火';
+                
+                if (response.data.result && (response.data.result.success == false)) {
+                    _this.$message({
+                        showClose: true,
+                        message: response.status.message
+                    });
+                } else if (response.data.result && response.data.result.data && response.data.result.data.msg && response.data.result.data.msg.length === 0) {
                     _this.$message({
                         showClose: true,
                         message: '没有找到符合条件的角色'
                     });
-                } else {
+                } else if (response.data.result && response.data.result.data && response.data.result.data.msg && response.data.result.data.msg.length > 0) {
                     var tmpRoles = response.data.result.data.msg;
 
                     var nowTime = new Date().getTime();
@@ -744,6 +850,11 @@ export default {
 
                     _this.activeNames = ['0'];
                     _this.activeNames2 = ['1'];
+                } else {
+                    _this.$message({
+                        showClose: true,
+                        message: '获取数据失败，请联系作者'
+                    });
                 }
             }, function(response) {
                 _this.$message({
