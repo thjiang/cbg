@@ -775,16 +775,14 @@ export default {
             var param = "";
             !!page ? param = "page=" + page + "&" + queryStr : param = "page=1&" + queryStr;
 
-            // var url = "http://127.0.0.1:8081/roleList";
-            // if (window.location.href.indexOf("zhounan") > -1) {
-            //     url = "//req.zhounan.win/roleList";
-            // } else if (window.location.href.indexOf("thjiang") > -1) {
-            //     url = "//req.thjiang.com/roleList";
-            // } else if (window.location.href.indexOf("icewish") > -1) {
-            //     url = "//req.icewish.top/roleList";
-            // }
-
-            var url = "//req.icewish.top/roleList";
+            var url = "http://127.0.0.1:8081/roleList";
+            if (window.location.href.indexOf("zhounan") > -1) {
+                url = "//req.zhounan.win/roleList";
+            } else if (window.location.href.indexOf("thjiang") > -1) {
+                url = "//req.thjiang.com/roleList";
+            } else if (window.location.href.indexOf("icewish") > -1) {
+                url = "//req.icewish.top/roleList";
+            }
 
             this.fullscreenLoading = true;
             this.$http.get(url, {
