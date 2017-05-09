@@ -780,7 +780,7 @@ export default {
                 url = "//req.zhounan.win/roleList";
             } else if (window.location.href.indexOf("thjiang") > -1) {
                 url = "//req.thjiang.com/roleList";
-            } else if (window.location.href.indexOf("icewish") > -1) { // 临时 域名解析要备案
+            } else if (window.location.href.indexOf("icewish") > -1) {
                 url = "//req.icewish.top/roleList";
             }
 
@@ -813,7 +813,7 @@ export default {
                 }
 
                 _this.ruleForm.school = '荒火';
-                
+
                 if (response.data.result && (response.data.result.success == false)) {
                     _this.$message({
                         showClose: true,
