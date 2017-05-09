@@ -677,8 +677,8 @@ export default {
                 delete model.price1;
                 delete model.price2;
 
-                model.level1 = model.equip_level_min;
-                model.level2 = model.equip_level_max;
+                model.equip_level_min = model.level1;
+                model.equip_level_max = model.level2;
 
                 delete model.level1;
                 delete model.level2;
@@ -695,7 +695,7 @@ export default {
                 }
 
                 if (this.clothes.length > 0) {
-                    var clothesStr = 'special_clothes_logic=and&special_clothes=';
+                    var clothesStr = '';
                     for (var i = 0; i < this.clothes.length; i++) {
                         if (this.clothes[i] == '玄素天成') {
                             clothesStr = clothesStr + '21121,21122,21123,21124,21326,21327,88326,88327|';
@@ -734,7 +734,7 @@ export default {
                             clothesStr = clothesStr + '210144,210145,210206,210207|';
                         }
                     }
-                    clothesStr = clothesStr + "&";
+                    clothesStr = 'special_clothes_logic=and&special_clothes=' + clothesStr + "&";
 
                     this.queryStr = this.queryStr + clothesStr;
                 }
@@ -775,14 +775,16 @@ export default {
             var param = "";
             !!page ? param = "page=" + page + "&" + queryStr : param = "page=1&" + queryStr;
 
-            var url = "http://127.0.0.1:8081/roleList";
-            if (window.location.href.indexOf("zhounan") > -1) {
-                url = "//req.zhounan.win/roleList";
-            } else if (window.location.href.indexOf("thjiang") > -1) {
-                url = "//req.thjiang.com/roleList";
-            } else if (window.location.href.indexOf("icewish") > -1) {
-                url = "//req.icewish.top/roleList";
-            }
+            // var url = "http://127.0.0.1:8081/roleList";
+            // if (window.location.href.indexOf("zhounan") > -1) {
+            //     url = "//req.zhounan.win/roleList";
+            // } else if (window.location.href.indexOf("thjiang") > -1) {
+            //     url = "//req.thjiang.com/roleList";
+            // } else if (window.location.href.indexOf("icewish") > -1) {
+            //     url = "//req.icewish.top/roleList";
+            // }
+
+            var url = "//req.icewish.top/roleList";
 
             this.fullscreenLoading = true;
             this.$http.get(url, {
