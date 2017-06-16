@@ -35,13 +35,13 @@ app.get('/', function(req, res) {
 app.get('/roleList', function(req, res) {
 	console.log(req.query.params);
 
-	let requestUrl = 'http://tx3.cbg.163.com/cgi-bin/search.py?act=overall_search_role&order_by=&other_arg=&' + req.query.params
+	const requestUrl = 'http://tx3.cbg.163.com/cgi-bin/search.py?act=overall_search_role&order_by=&other_arg=&' + req.query.params
 
 	request(requestUrl, function(error, response, body) {
 		if (!error && response.statusCode === 200) {
 			const cbgData = JSON.parse(body);
 			if (cbgData.status === 0 && cbgData.msg && cbgData.paging) {
-				let checkedData = {
+				const checkedData = {
 					paging: "",
 					msg: ""
 				};
@@ -66,7 +66,7 @@ app.get('/roleList', function(req, res) {
 					checkedData.msg[i].yxblink = 'http://bang.tx3.163.com/bang/search#name=' + encodeURI(unescape(cbgData.msg[i].equip_name.replace(/\u/g, "%u")));
 				}
 
-				let data = {
+				const data = {
 					result: {
 						success: true,
 						data: checkedData
@@ -80,7 +80,7 @@ app.get('/roleList', function(req, res) {
 				res.send(data);
 			}
 		} else {
-			let data = {
+			const data = {
 				result: {
 					success: false,
 					data: []
