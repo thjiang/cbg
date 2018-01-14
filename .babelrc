@@ -1,10 +1,7 @@
 {
-  "presets": [
-    ["es2015", { "modules": false }]
-  ],
-  "plugins": [["component", [
-    {
-      "libraryName": "element-ui"
-    }
-  ]]]
+    "presets": [
+        ["env", { "modules": false }]
+    ],
+	"plugins": ["syntax-dynamic-import"],
+    "comments": false
 }
