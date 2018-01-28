@@ -4,38 +4,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // webpack 性能分析
 // const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-// const git = require('git-rev-sync');
-
-// const version = getVersion();
-const version = '0.0.1';
 const env = process.env.NODE_ENV.trim();
 
 console.log("当前环境：" + env);
-console.log("当前分支： publish/" + version);
 
-// var cdnpath = "http://localhost:9091/build/static";
 let cdnpath = "http://localhost:9091/build";
 let publicPath = '/build/';
 let filename = 'pages/index.html';
 
-if (env === "daily") {
-    cdnpath = "https://assets.daily.geilicdn.com/m/zhanhui-admin/" + version;
+if (env === "prod") {
+    cdnpath = "https://assets.geilicdn.com/m/zhanhui-admin/";
     publicPath = cdnpath + '/';
     filename = path.join(__dirname, 'build/pages/index.html');
-} else if (env === "pre") {
-    cdnpath = "https://assets.pre.geilicdn.com/m/zhanhui-admin/" + version;
-    publicPath = cdnpath + '/';
-    filename = path.join(__dirname, 'build/pages/index.html');
-} else if (env === "prod") {
-    cdnpath = "https://assets.geilicdn.com/m/zhanhui-admin/" + version;
-    publicPath = cdnpath + '/';
-    filename = path.join(__dirname, 'build/pages/index.html');
-}
-
-function getVersion() {
-    let ver = git.branch();
-    ver = ver.indexOf('publish/') > -1 ? ver.replace(/publish\//, '') : '0.0.0';
-    return ver;
 }
 
 module.exports = {

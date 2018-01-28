@@ -6,12 +6,9 @@
   "scripts": {
     "dev": "NODE_ENV=dev webpack-dev-server --progress",
     "wdev": "set NODE_ENV=dev && webpack-dev-server --progress",
-    "daily": "NODE_ENV=daily webpack",
-    "wdaily": "set NODE_ENV=daily && webpack",
-    "d": "NODE_ENV=dev webpack-dev-server",
-    "daily2": "NODE_ENV=daily webpack --display-error-details",
-    "pre": "NODE_ENV=pre webpack",
+    "prod2": "NODE_ENV=prod webpack --display-error-details",
     "prod": "NODE_ENV=prod webpack",
+    "wprod": "NODE_ENV=prod webpack",
     "wds-n": "webpack-dev-server --hot --inline --no-info",
     "dll": "webpack --config webpack.dll.config.js"
   },
