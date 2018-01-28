@@ -10,8 +10,9 @@ Vue.use(iView);
 
 // const router = new VueRouter(routerConfig);
 
-new Vue({
-    el: '#app',
-    // router: router,
-    render: h => h(App)
-});
+new Vue(App);
+// new Vue({
+//     el: '#app',
+//     // router: router,
+//     render: h => h(App)
+// });

@@ -1,11 +1,19 @@
 {
-  "name": "cbg",
+  "name": "discover",
   "version": "1.0.0",
   "description": "天下贰藏宝阁高级查询",
   "main": "main.js",
   "scripts": {
-    "dev": "node config/dev.js",
-    "build": "node config/prod.js"
+    "dev": "NODE_ENV=dev webpack-dev-server --progress",
+    "wdev": "set NODE_ENV=dev && webpack-dev-server --progress",
+    "daily": "NODE_ENV=daily webpack",
+    "wdaily": "set NODE_ENV=daily && webpack",
+    "d": "NODE_ENV=dev webpack-dev-server",
+    "daily2": "NODE_ENV=daily webpack --display-error-details",
+    "pre": "NODE_ENV=pre webpack",
+    "prod": "NODE_ENV=prod webpack",
+    "wds-n": "webpack-dev-server --hot --inline --no-info",
+    "dll": "webpack --config webpack.dll.config.js"
   },
   "author": "browserify@qq.com",
   "license": "LGPL-3.0",
@@ -15,7 +23,7 @@
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-env": "^1.6.1",
     "css-loader": "^0.28.8",
-    "cssnano": "^3.10.0",
+    "cssnano": "^4.0.0-rc.2",
     "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-html": "^4.0.1",
@@ -39,7 +47,7 @@
     "webpack-merge": "^4.1.1"
   },
   "dependencies": {
-    "iview": "^2.8.0",
+    "iview": "^2.9.0",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1"
   }
