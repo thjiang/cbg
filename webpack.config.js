@@ -14,7 +14,7 @@ let publicPath = '/build/';
 let filename = 'pages/index.html';
 
 if (env === "daily") {
-    cdnpath = "https://assets.daily.geilicdn.com/m/zhanhui-admin/" + version;
+    cdnpath = "https://c.icewish.top/const/cbg/";
     bundlecdnpath = cdnpath;
     publicPath = cdnpath + '/';
     filename = path.join(__dirname, 'build/pages/index.html');

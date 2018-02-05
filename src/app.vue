@@ -23,6 +23,7 @@ a {
 
 html, body {
     height: 100%;
+    background-color: #e2f2fa;
 }
 
 .clear {
@@ -31,14 +32,10 @@ html, body {
 </style>
 
 <template>
-    <div class="nav">
-        <router-link to="/" exact>首页</router-link>
+    <section class="app">
+        <!-- <router-link to="/" exact>首页</router-link>
         <router-link to="/test" exact>测试模块</router-link>
-        <router-link to="/async" exact>异步组件</router-link>
-        <Button>Default</Button>
-    <Button type="primary">Primary</Button>
-    <Button type="ghost">Ghost</Button>
-    <Button type="dashed">Dashed</Button>
-    <Button type="text">Text</Button>
-    </div>
+        <router-link to="/async" exact>异步组件</router-link> -->
+        <router-view></router-view>
+    </section>
 </template>

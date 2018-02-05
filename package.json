@@ -1,8 +1,8 @@
 {
   "name": "market-manage",
   "version": "1.0.0",
-  "description": "市集活动系统商家端",
-  "author": "jiangtianhang@weidian.com",
+  "description": "天下贰藏宝阁高级查询",
+  "author": "browserify@qq.com",
   "main": "main.js",
   "scripts": {
     "dev": "NODE_ENV=dev webpack-dev-server --progress",
