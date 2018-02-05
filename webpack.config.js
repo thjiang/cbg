@@ -9,11 +9,13 @@ const env = process.env.NODE_ENV.trim();
 console.log("当前环境：" + env);
 
 let cdnpath = "http://localhost:9091/build";
+let bundlecdnpath = "http://localhost:9091/build/static";
 let publicPath = '/build/';
 let filename = 'pages/index.html';
 
-if (env === "prod") {
-    cdnpath = "https://assets.geilicdn.com/m/zhanhui-admin/";
+if (env === "daily") {
+    cdnpath = "https://assets.daily.geilicdn.com/m/zhanhui-admin/" + version;
+    bundlecdnpath = cdnpath;
     publicPath = cdnpath + '/';
     filename = path.join(__dirname, 'build/pages/index.html');
 }
@@ -60,15 +62,27 @@ module.exports = {
         // }),
         new webpack.DllReferencePlugin({
             context: __dirname,
-            manifest: require('./dll/bundle-manifest.json')
+            manifest: require('./build/static/dll/bundle-manifest.json')
         }),
         new HtmlWebpackPlugin({
             inject: false,
             title: '天下贰藏宝阁高级查询',
             filename: filename,
             template: 'index.ejs',
-            cdnpath: cdnpath
+            cdnpath: cdnpath,
+            bundlecdnpath: bundlecdnpath
         })
+        // new BundleAnalyzerPlugin({
+        //     analyzerMode: 'server',
+        //     analyzerHost: '127.0.0.1',
+        //     analyzerPort: 8888,
+        //     reportFilename: 'report.html',
+        //     defaultSizes: 'parsed',
+        //     openAnalyzer: true,
+        //     generateStatsFile: false,
+        //     statsFilename: 'stats.json',
+        //     logLevel: 'info'
+        // })
 	],
 	resolve: {
         modules: [path.resolve(__dirname, 'node_modules')]
@@ -84,5 +98,5 @@ module.exports = {
         port: 9091
 	}
 
-    // http://h5.dev.weidian.com/build/pages/#!/activity/1
+    // http://www.dev.com:9091/build/pages/
 };

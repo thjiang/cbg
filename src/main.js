@@ -1,18 +1,23 @@
 import Vue from 'vue';
-// import VueRouter from 'vue-router';
+// import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
 import iView from 'iview';
-import 'iview/dist/styles/iview.css';
+// import 'iview/dist/styles/iview.css';
+// 不再打包CSS，直接使用link标签引入
+
+import VueRouter from 'vue-router';
+import routerConfig from './router';
+
 import App from './app.vue';
-// import routerConfig from './router';
 
-// Vue.use(VueRouter);
 Vue.use(iView);
+// Vue.use(ElementUI);
+Vue.use(VueRouter);
 
-// const router = new VueRouter(routerConfig);
+const router = new VueRouter(routerConfig);
 
-new Vue(App);
-// new Vue({
-//     el: '#app',
-//     // router: router,
-//     render: h => h(App)
-// });
+new Vue({
+    el: '#app',
+    router: router,
+    render: h => h(App)
+});

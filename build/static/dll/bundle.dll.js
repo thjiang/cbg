@@ -24263,7 +24263,6 @@ exports.default = {
             startX: 0,
             currentX: 0,
             startPos: 0,
-            newPos: null,
             oldValue: val
         };
     },
@@ -24305,31 +24304,31 @@ exports.default = {
         },
         minPosition: function minPosition() {
             var val = this.currentValue;
-            return (val[0] - this.min) / (this.max - this.min) * 100;
+            return (val[0] - this.min) / this.valueRange * 100;
         },
 
         maxPosition: function maxPosition() {
             var val = this.currentValue;
 
-            return (val[1] - this.min) / (this.max - this.min) * 100;
+            return (val[1] - this.min) / this.valueRange * 100;
         },
         barStyle: function barStyle() {
 
             var style = {
-                width: (this.currentValue[0] - this.min) / (this.max - this.min) * 100 + '%'
+                width: (this.currentValue[0] - this.min) / this.valueRange * 100 + '%'
             };
 
             if (this.range) {
-                style.left = (this.currentValue[0] - this.min) / (this.max - this.min) * 100 + '%';
-                style.width = (this.currentValue[1] - this.currentValue[0]) / (this.max - this.min) * 100 + '%';
+                style.left = (this.currentValue[0] - this.min) / this.valueRange * 100 + '%';
+                style.width = (this.currentValue[1] - this.currentValue[0]) / this.valueRange * 100 + '%';
             }
 
             return style;
         },
         stops: function stops() {
-            var stopCount = (this.max - this.min) / this.step;
+            var stopCount = this.valueRange / this.step;
             var result = [];
-            var stepWidth = 100 * this.step / (this.max - this.min);
+            var stepWidth = 100 * this.step / this.valueRange;
             for (var i = 1; i < stopCount; i++) {
                 result.push(i * stepWidth);
             }
@@ -24340,6 +24339,9 @@ exports.default = {
         },
         tipDisabled: function tipDisabled() {
             return this.tipFormat(this.currentValue[0]) === null || this.showTip === 'never';
+        },
+        valueRange: function valueRange() {
+            return this.max - this.min;
         }
     },
     methods: {
@@ -24351,11 +24353,11 @@ exports.default = {
                 min = _ref5[0],
                 max = _ref5[1];
 
-            min = Math.max(0, min);
-            min = Math.min(100, min);
+            min = Math.max(this.min, min);
+            min = Math.min(this.max, min);
 
-            max = Math.max(0, min, max);
-            max = Math.min(100, max);
+            max = Math.max(this.min, min, max);
+            max = Math.min(this.max, max);
             return [min, max];
         },
         onPointerDown: function onPointerDown(event, type) {
@@ -24372,22 +24374,21 @@ exports.default = {
         onPointerDragStart: function onPointerDragStart(event) {
             this.dragging = false;
             this.startX = this.getPointerX(event);
-            this.startPos = parseInt(this[String(this.pointerDown) + 'Position'], 10);
+            this.startPos = this[String(this.pointerDown) + 'Position'] * this.valueRange / 100 + this.min;
         },
         onPointerDrag: function onPointerDrag(event) {
             this.dragging = true;
             this.$refs[String(this.pointerDown) + 'Tooltip'].visible = true;
             this.currentX = this.getPointerX(event);
+            var diff = (this.currentX - this.startX) / this.sliderWidth * this.valueRange;
 
-            var diff = (this.currentX - this.startX) / this.sliderWidth * 100;
-            this.newPos = this.startPos + diff;
-            this.changeButtonPosition(this.newPos);
+            this.changeButtonPosition(this.startPos + diff);
         },
         onPointerDragEnd: function onPointerDragEnd() {
             if (this.dragging) {
                 this.dragging = false;
                 this.$refs[String(this.pointerDown) + 'Tooltip'].visible = false;
-                this.changeButtonPosition(this.newPos);
+                this.emitChange();
             }
 
             this.pointerDown = '';
@@ -24397,32 +24398,32 @@ exports.default = {
             (0, _dom.off)(window, 'touchend', this.onPointerDragEnd);
         },
         changeButtonPosition: function changeButtonPosition(newPos, forceType) {
-
             var type = forceType || this.pointerDown;
             var index = type === 'min' ? 0 : 1;
             if (type === 'min') newPos = this.checkLimits([newPos, this.maxPosition])[0];else newPos = this.checkLimits([this.minPosition, newPos])[1];
 
-            var lengthPerStep = 100 / ((this.max - this.min) / this.step);
-            var steps = Math.round(newPos / lengthPerStep);
-
+            var modulus = newPos % this.step;
             var value = this.currentValue;
-            value[index] = Math.round(steps * lengthPerStep * (this.max - this.min) * 0.01 + this.min);
+            value[index] = newPos - modulus;
             this.currentValue = [].concat((0, _toConsumableArray3.default)(value));
 
             if (!this.dragging) {
                 if (this.currentValue[index] !== this.oldValue[index]) {
-                    var exportValue = this.range ? this.currentValue : this.currentValue[0];
-                    this.$emit('on-change', exportValue);
-                    this.dispatch('FormItem', 'on-form-change', exportValue);
+                    this.emitChange();
                     this.oldValue[index] = this.currentValue[index];
                 }
             }
+        },
+        emitChange: function emitChange() {
+            var exportValue = this.range ? this.currentValue : this.currentValue[0];
+            this.$emit('on-change', exportValue);
+            this.dispatch('FormItem', 'on-form-change', exportValue);
         },
         sliderClick: function sliderClick(event) {
             if (this.disabled) return;
             var currentX = this.getPointerX(event);
             var sliderOffsetLeft = this.$refs.slider.getBoundingClientRect().left;
-            var newPos = (currentX - sliderOffsetLeft) / this.sliderWidth * 100;
+            var newPos = (currentX - sliderOffsetLeft) / this.sliderWidth * this.valueRange + this.min;
 
             if (!this.range || newPos <= this.minPosition) this.changeButtonPosition(newPos, 'min');else if (newPos >= this.maxPosition) this.changeButtonPosition(newPos, 'max');else this.changeButtonPosition(newPos, newPos - this.firstPosition <= this.secondPosition - newPos ? 'min' : 'max');
         },
@@ -29532,7 +29533,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 var API = (0, _extends3.default)({
-    version: '2.9.0',
+    version: '2.9.2',
     locale: _index2.default.use,
     i18n: _index2.default.i18n,
     install: install,
@@ -38887,8 +38888,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_slider_vue__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_slider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_slider_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_slider_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_slider_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_node_modules_vue_loader_lib_template_compiler_index_id_data_v_1374b80d_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_slider_vue__ = __webpack_require__(444);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_node_modules_vue_loader_lib_template_compiler_index_id_data_v_1374b80d_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_slider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_loader_node_modules_vue_loader_lib_template_compiler_index_id_data_v_1374b80d_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_slider_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_node_modules_vue_loader_lib_template_compiler_index_id_data_v_0b3a44a1_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_slider_vue__ = __webpack_require__(444);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_loader_node_modules_vue_loader_lib_template_compiler_index_id_data_v_0b3a44a1_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_slider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_loader_node_modules_vue_loader_lib_template_compiler_index_id_data_v_0b3a44a1_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_slider_vue__);
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -38905,7 +38906,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_slider_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__babel_loader_node_modules_vue_loader_lib_template_compiler_index_id_data_v_1374b80d_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_slider_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__babel_loader_node_modules_vue_loader_lib_template_compiler_index_id_data_v_0b3a44a1_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_slider_vue___default.a,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,

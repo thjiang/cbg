@@ -1,19 +1,18 @@
 {
-  "name": "discover",
+  "name": "market-manage",
   "version": "1.0.0",
-  "description": "天下贰藏宝阁高级查询",
+  "description": "市集活动系统商家端",
+  "author": "jiangtianhang@weidian.com",
   "main": "main.js",
   "scripts": {
     "dev": "NODE_ENV=dev webpack-dev-server --progress",
     "wdev": "set NODE_ENV=dev && webpack-dev-server --progress",
-    "prod2": "NODE_ENV=prod webpack --display-error-details",
     "prod": "NODE_ENV=prod webpack",
-    "wprod": "NODE_ENV=prod webpack",
+    "wprod": "set NODE_ENV=prod && webpack",
+    "prod2": "NODE_ENV=prod webpack --display-error-details",
     "wds-n": "webpack-dev-server --hot --inline --no-info",
     "dll": "webpack --config webpack.dll.config.js"
   },
-  "author": "browserify@qq.com",
-  "license": "LGPL-3.0",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -29,6 +28,7 @@
     "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
+    "git-rev-sync": "^1.9.1",
     "html-webpack-plugin": "^2.30.1",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
@@ -39,12 +39,13 @@
     "vue-loader": "^13.7.0",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^3.10.0",
+    "webpack-bundle-analyzer": "^2.9.2",
     "webpack-dashboard": "^1.0.2",
     "webpack-dev-server": "^2.10.1",
     "webpack-merge": "^4.1.1"
   },
   "dependencies": {
-    "iview": "^2.9.0",
+    "iview": "^2.9.2",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1"
   }
