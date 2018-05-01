@@ -1,102 +1,73 @@
-const path = require('path');
 const webpack = require('webpack');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // webpack 性能分析
-// const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const env = process.env.NODE_ENV.trim();
+module.exports = env => {
+    let cdnpath = "http://localhost:2048/build";
+    let publicPath = '/build/';
 
-console.log("当前环境：" + env);
+    if (env.NODE_ENV === 'prod') {
+        cdnpath = publicPath = "https://c.icewish.top/const/cbg";
+    }
 
-let cdnpath = "http://localhost:9091/build";
-let bundlecdnpath = "http://localhost:9091/build/static";
-let publicPath = '/build/';
-let filename = 'pages/index.html';
-
-if (env === "daily") {
-    cdnpath = "https://c.icewish.top/const/cbg/";
-    bundlecdnpath = cdnpath;
-    publicPath = cdnpath + '/';
-    filename = path.join(__dirname, 'build/pages/index.html');
-}
-
-module.exports = {
-    entry: {
-		index: path.join(__dirname, 'src', 'main'),
-        // vendors: ['vue']
-	},
-	output: {
-		path: path.join(__dirname, 'build/static'),
-		filename: 'main.js',
-        publicPath: publicPath
-	},
-    // externals: {
-    //     'vue': 'Vue',
-    //     'VueRouter': 'VueRouter'
-    // },
-	module: {
-        loaders: [{
-            test: /\.css$/,
-            loader: 'style-loader!css-loader!postcss-loader'
-        }, {
-            test: /\.less$/,
-            loader: 'style-loader!css-loader!less-loader'
-        }, {
-            test: /\.vue$/,
-            loader: 'vue-loader'
-        }, {
-            test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
-            loader: 'file-loader',
-            query: {
-                name: '[name].[ext]'
-            }
-        }, {
-			test: /\.js$/,
-            loader: 'babel-loader?cacheDirectory=true',
-            exclude: /node_modules/
-		}]
-	},
-	plugins: [
-		// new webpack.optimize.CommonsChunkPlugin({
-        //     name: 'vendors', filename: 'vendor.bundle.js'
-        // }),
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require('./build/static/dll/bundle-manifest.json')
-        }),
-        new HtmlWebpackPlugin({
-            inject: false,
-            title: '天下贰藏宝阁高级查询',
-            filename: filename,
-            template: 'index.ejs',
-            cdnpath: cdnpath,
-            bundlecdnpath: bundlecdnpath
-        })
-        // new BundleAnalyzerPlugin({
-        //     analyzerMode: 'server',
-        //     analyzerHost: '127.0.0.1',
-        //     analyzerPort: 8888,
-        //     reportFilename: 'report.html',
-        //     defaultSizes: 'parsed',
-        //     openAnalyzer: true,
-        //     generateStatsFile: false,
-        //     statsFilename: 'stats.json',
-        //     logLevel: 'info'
-        // })
-	],
-	resolve: {
-        modules: [path.resolve(__dirname, 'node_modules')]
-	},
-	devServer: {
-		hot: false,
-        inline: true,
-        quiet: false,
-        disableHostCheck: true, // 解决 Invalid Host Header，禁用 host header 正确性检测
-        stats: {
-            chunks: false
+    return {
+        entry: './src/main',
+        output: {
+            // filename: '[name].[hash:8].js',
+            filename: '[name].js',
+            path: path.join(__dirname, 'build'),
+            publicPath: publicPath
         },
-        port: 9091
-	}
-
-    // http://www.dev.com:9091/build/pages/
+        module: {
+            rules: [{
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
+            }, {
+                test: /\.css$/,
+                use: [
+                    env.NODE_ENV === 'dev' ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader'
+                ]
+            }, {
+                test: /\.less$/,
+                // loader: 'style-loader!css-loader!postcss-loader!less-loader'
+                use: [
+                    env.NODE_ENV === 'dev' ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'postcss-loader',
+                    'less-loader'
+                ]
+            }]
+        },
+        plugins: [
+            new webpack.DllReferencePlugin({
+                context: __dirname,
+                manifest: require('./build/dll/bundle-manifest.json')
+            }),
+            new HtmlWebpackPlugin({
+                inject: false,
+                title: 'React Demo',
+                template: 'index.ejs',
+                cdnpath: cdnpath
+            }),
+            new MiniCssExtractPlugin({
+                filename: "index.css",
+                chunkFilename: "[id].css"
+            })
+        ],
+        mode: env.NODE_ENV === 'prod' ? 'production' : 'development',
+        devServer: {
+            open: true,
+            openPage: 'build/',
+            inline: true,
+            quiet: false,
+            progress: true,
+            disableHostCheck: true, // 解决 Invalid Host Header，禁用 host header 正确性检测
+            stats: {
+                chunks: false
+            },
+            port: 2048
+        }
+    }
 };

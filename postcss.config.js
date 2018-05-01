@@ -3,9 +3,8 @@ module.exports = {
         require('cssnano')({
             autoprefixer: {
                 add: true,
-                browsers: ['> 5%']
-                // browsers: [''last 5 versions'']
+                browsers: ['> 3%', 'last 2 versions']
             }
         })
     ]
-}
+};
