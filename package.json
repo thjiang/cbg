@@ -1,41 +1,41 @@
 {
-  "name": "cbg",
-  "version": "1.0.0",
-  "description": "天下贰藏宝阁高级查询",
-  "main": "main.js",
+  "name": "test",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "antd": "^3.4.4",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2"
-  },
-  "devDependencies": {
-    "autoprefixer": "^8.4.1",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-import": "^1.7.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.11",
-    "cssnano": "^3.10.0",
-    "happypack": "^5.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "less": "^3.0.2",
-    "less-loader": "^4.1.0",
-    "mini-css-extract-plugin": "^0.4.0",
-    "postcss-loader": "^2.1.4",
-    "style-loader": "^0.21.0",
-    "uglifyjs-webpack-plugin": "^1.2.5",
-    "webpack": "^4.6.0",
-    "webpack-bundle-analyzer": "^2.11.1",
-    "webpack-cli": "^2.0.15",
-    "webpack-dev-server": "^3.1.3",
-    "webpack-merge": "^4.1.2"
+    "@types/jest": "24.0.13",
+    "@types/node": "12.0.7",
+    "@types/react": "16.8.19",
+    "@types/react-dom": "16.8.4",
+    "antd": "^3.19.3",
+    "babel-plugin-import": "^1.12.0",
+    "customize-cra": "^0.2.13",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-app-rewired": "^2.1.3",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1",
+    "typescript": "^3.4.5"
   },
   "scripts": {
-    "dll": "webpack --config webpack.dll.config.js",
-    "dev": "webpack-dev-server --env.NODE_ENV=dev --hot",
-    "pro": "webpack --env.NODE_ENV=prod"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
-  "author": "browserify@qq.com",
-  "license": "ISC"
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

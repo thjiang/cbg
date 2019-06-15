@@ -1,0 +1,31 @@
+.App-logo {
+    display: inline-block;
+    animation: App-logo-spin infinite 10s linear;
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
+}
+
+.App-header {
+    display: flex;
+    height: 80px;
+    line-height: 80px;
+    max-width: 80%;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.App-name {
+    font-size: 24px;
+    font-weight: lighter;
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
